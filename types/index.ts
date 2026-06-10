@@ -46,7 +46,7 @@ export interface Lead {
   name: string;
   mobile: string;
   email: string;
-  source: 'contact' | 'brochure' | 'unlock_content';
+  source: 'contact' | 'brochure' | 'unlock_content' | 'project_detail';
   project?: { _id: string; name: string; slug: string } | null;
   projectName?: string;
   message?: string;
@@ -60,7 +60,7 @@ export interface LeadFormData {
   mobile: string;
   email: string;
   message?: string;
-  source: 'contact' | 'brochure' | 'unlock_content';
+  source: 'contact' | 'brochure' | 'unlock_content' | 'project_detail';
   projectId?: string;
   unlockedContent?: string;
 }

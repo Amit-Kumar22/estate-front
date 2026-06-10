@@ -4,7 +4,7 @@ export interface LeadPayload {
   name: string;
   mobile: string;
   email: string;
-  source: 'contact' | 'brochure' | 'unlock_content';
+  source: 'contact' | 'brochure' | 'unlock_content' | 'project_detail';
   projectId?: string;
   message?: string;
   unlockedContent?: string;

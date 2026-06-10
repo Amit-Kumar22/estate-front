@@ -24,7 +24,7 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 interface LeadFormProps {
-  source: 'contact' | 'brochure' | 'unlock_content';
+  source: 'contact' | 'brochure' | 'unlock_content' | 'project_detail';
   projectId?: string;
   projectName?: string;
   unlockedContent?: string;

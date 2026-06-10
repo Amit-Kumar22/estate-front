@@ -1,12 +1,15 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import React, { useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { MapPin, IndianRupee, ArrowRight, Calendar } from 'lucide-react';
+import { MapPin, ArrowRight, Calendar } from 'lucide-react';
 import { Project } from '@/types';
 import { getImageUrl, getStatusLabel, getStatusColor } from '@/lib/utils';
+import Modal from '@/components/common/Modal';
+import LeadForm from '@/components/common/LeadForm';
+
+const GATE_KEY = 'project_detail_gate_passed';
 
 interface ProjectCardProps {
   project: Project;
@@ -14,7 +17,26 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+  const router = useRouter();
+  const [modalOpen, setModalOpen] = useState(false);
   const imageUrl = getImageUrl(project.heroImages?.[0]);
+
+  const handleViewDetails = useCallback(() => {
+    // If user already submitted details before, navigate directly
+    if (typeof window !== 'undefined' && localStorage.getItem(GATE_KEY)) {
+      router.push(`/projects/${project.slug}`);
+    } else {
+      setModalOpen(true);
+    }
+  }, [router, project.slug]);
+
+  const handleLeadSuccess = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(GATE_KEY, '1');
+    }
+    setModalOpen(false);
+    router.push(`/projects/${project.slug}`);
+  }, [router, project.slug]);
 
   return (
     <motion.div
@@ -88,8 +110,8 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         </div>
 
         {/* CTA */}
-        <Link
-          href={`/projects/${project.slug}`}
+        <button
+          onClick={handleViewDetails}
           className="mt-3 flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl text-xs font-semibold
             bg-green-600 text-white hover:bg-green-700
             dark:bg-green-500/8 dark:text-green-400 dark:border dark:border-green-500/20
@@ -99,8 +121,28 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         >
           View Details
           <ArrowRight className="w-3.5 h-3.5" />
-        </Link>
+        </button>
       </div>
+
+      {/* Lead Gate Modal */}
+      <Modal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Get Project Details"
+        size="sm"
+      >
+        <div className="px-5 pb-5">
+          <LeadForm
+            source="project_detail"
+            projectId={project._id}
+            projectName={project.name}
+            title=""
+            subtitle="Please share your details to view full project information."
+            submitLabel="View Project Details"
+            onSuccess={handleLeadSuccess}
+          />
+        </div>
+      </Modal>
     </motion.div>
   );
 }

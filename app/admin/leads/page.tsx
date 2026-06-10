@@ -56,6 +56,7 @@ export default function AdminLeadsPage() {
     { value: 'contact', label: 'Contact' },
     { value: 'brochure', label: 'Brochure' },
     { value: 'unlock_content', label: 'Unlock Content' },
+    { value: 'project_detail', label: 'Project Detail' },
   ];
 
   return (
@@ -137,9 +138,10 @@ export default function AdminLeadsPage() {
                         <span className={`badge text-[10px] capitalize ${
                           lead.source === 'contact' ? 'badge-green' :
                           lead.source === 'brochure' ? 'badge-blue' :
+                          lead.source === 'project_detail' ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' :
                           'bg-orange-500/10 text-orange-400 border-orange-500/20'
                         }`}>
-                          {lead.source.replace('_', ' ')}
+                          {lead.source.replace(/_/g, ' ')}
                         </span>
                       </td>
                       <td className="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">
