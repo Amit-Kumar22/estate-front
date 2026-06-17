@@ -1,10 +1,12 @@
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function BlogDetailPage({ params }: PageProps) {
+export default async function BlogDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-20">
       <h1 className="text-4xl font-bold mb-4">
@@ -12,7 +14,7 @@ export default function BlogDetailPage({ params }: PageProps) {
       </h1>
 
       <p className="text-lg">
-        Blog Slug: {params.slug}
+        Blog Slug: {slug}
       </p>
     </div>
   );

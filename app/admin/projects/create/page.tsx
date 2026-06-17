@@ -1,12 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import dynamic from 'next/dynamic';
 import { projectApi } from '@/lib/api';
-import { ArrowLeft, Plus, X, Loader2, Save, Upload } from 'lucide-react';
+import { ArrowLeft, Plus, X, Loader2, Save, Upload, LocateFixed, Map } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+
+const LocationPickerModal = dynamic(
+  () => import('@/components/admin/LocationPickerModal'),
+  { ssr: false }
+);
 
 const STATUS_OPTIONS = [
   { value: 'current', label: 'Current' },
@@ -31,6 +37,8 @@ export default function CreateProjectPage() {
   const [configurations, setConfigurations] = useState<ConfigRow[]>([{ type: '', area: '', price: '' }]);
   const [heroImages, setHeroImages] = useState<File[]>([]);
   const [brochure, setBrochure] = useState<File | null>(null);
+  const [locationPickerOpen, setLocationPickerOpen] = useState(false);
+  const [gettingLocation, setGettingLocation] = useState(false);
 
   const createMutation = useMutation({
     mutationFn: (fd: FormData) => projectApi.create(fd),
@@ -41,6 +49,57 @@ export default function CreateProjectPage() {
     },
     onError: () => toast.error('Failed to create project'),
   });
+
+  const applyLocation = useCallback((lat: number, lng: number, address: string) => {
+    setForm((f) => ({
+      ...f,
+      latitude: lat.toFixed(6),
+      longitude: lng.toFixed(6),
+      location: f.location || address,
+    }));
+  }, []);
+
+  const handleGetCurrentLocation = useCallback(() => {
+    if (!navigator.geolocation) {
+      toast.error('Geolocation is not supported by your browser');
+      return;
+    }
+    setGettingLocation(true);
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const { latitude: lat, longitude: lng } = pos.coords;
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
+            { headers: { 'Accept-Language': 'en' } }
+          );
+          const data = await res.json();
+          const addr = data.address || {};
+          const suburb = addr.suburb || addr.neighbourhood || addr.road || '';
+          const city = addr.city || addr.town || addr.village || addr.county || '';
+          const state = addr.state || '';
+          const parts = [suburb, city, state].filter(Boolean);
+          const address = [...new Set(parts)].join(', ') || data.display_name;
+          applyLocation(lat, lng, address);
+          toast.success('Location filled from GPS');
+        } catch {
+          applyLocation(lat, lng, `${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+          toast.success('Coordinates filled from GPS');
+        } finally {
+          setGettingLocation(false);
+        }
+      },
+      (err) => {
+        setGettingLocation(false);
+        if (err.code === err.PERMISSION_DENIED) {
+          toast.error('Location access denied. Please allow location in browser settings.');
+        } else {
+          toast.error('Could not get your location. Please try again.');
+        }
+      },
+      { timeout: 10000 }
+    );
+  }, [applyLocation]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,7 +170,32 @@ export default function CreateProjectPage() {
               <input value={form.virtualTourUrl} onChange={(e) => setForm((f) => ({ ...f, virtualTourUrl: e.target.value }))} placeholder="https://..." className={inputCls} />
             </Field>
           </div>
-          <div className="grid grid-cols-2 gap-4 mt-4">
+          {/* Location buttons */}
+          <div className="flex items-center gap-2 mt-4">
+            <button
+              type="button"
+              onClick={handleGetCurrentLocation}
+              disabled={gettingLocation}
+              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg border border-blue-200 dark:border-blue-500/20 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/5 hover:bg-blue-100 dark:hover:bg-blue-500/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            >
+              {gettingLocation ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <LocateFixed className="w-3.5 h-3.5" />
+              )}
+              {gettingLocation ? 'Getting location…' : 'Get Current Location'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setLocationPickerOpen(true)}
+              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg border border-green-200 dark:border-green-500/20 text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-500/5 hover:bg-green-100 dark:hover:bg-green-500/10 transition-all"
+            >
+              <Map className="w-3.5 h-3.5" />
+              Choose Location on Map
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 mt-3">
             <Field label="Latitude">
               <input type="number" step="any" value={form.latitude} onChange={(e) => setForm((f) => ({ ...f, latitude: e.target.value }))} placeholder="e.g. 19.0760" className={inputCls} />
             </Field>
@@ -241,6 +325,14 @@ export default function CreateProjectPage() {
           </Link>
         </div>
       </form>
+      <LocationPickerModal
+        isOpen={locationPickerOpen}
+        onClose={() => setLocationPickerOpen(false)}
+        onSelect={(lat, lng, address) => {
+          applyLocation(lat, lng, address);
+          setLocationPickerOpen(false);
+        }}
+      />
     </div>
   );
 }

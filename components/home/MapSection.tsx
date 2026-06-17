@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
@@ -8,10 +9,17 @@ import { projectApi } from '@/lib/api';
 import { Project } from '@/types';
 import { getImageUrl } from '@/lib/utils';
 import appConfig from '@/config/app.config';
+import Modal from '@/components/common/Modal';
+import LeadForm from '@/components/common/LeadForm';
+
+const GATE_KEY = 'project_detail_gate_passed';
 
 export default function MapSection() {
+  const router = useRouter();
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<unknown>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [gateOpen, setGateOpen] = useState(false);
 
   const { data } = useQuery({
     queryKey: ['projects-map'],
@@ -22,6 +30,16 @@ export default function MapSection() {
   });
 
   const projects = data || [];
+
+  const handleGateSuccess = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(GATE_KEY, '1');
+    }
+    setGateOpen(false);
+    if (selectedProject) {
+      router.push(`/projects/${selectedProject.slug}`);
+    }
+  }, [router, selectedProject]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !mapRef.current || !projects.length) return;
@@ -111,9 +129,9 @@ export default function MapSection() {
                 <h4 style="font-weight: 700; font-size: 13px; margin-bottom: 4px; color: #f1f5f9;">${project.name}</h4>
                 <p style="font-size: 11px; color: #9ca3af; margin-bottom: 6px;">📍 ${project.location}</p>
                 <p style="font-size: 12px; font-weight: 700; color: ${color}; margin-bottom: 10px;">${project.price}</p>
-                <a href="/projects/${project.slug}" style="display: block; text-align: center; padding: 8px; background: ${color}; color: white; text-decoration: none; border-radius: 6px; font-size: 12px; font-weight: 600;">
+                <button data-action="view-project" data-slug="${project.slug}" style="display: block; width: 100%; text-align: center; padding: 8px; background: ${color}; color: white; border: none; cursor: pointer; border-radius: 6px; font-size: 12px; font-weight: 600;">
                   View Details →
-                </a>
+                </button>
               </div>
             </div>
           `;
@@ -145,6 +163,25 @@ export default function MapSection() {
       }
     };
   }, [projects]);
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const btn = (e.target as HTMLElement).closest('[data-action="view-project"]') as HTMLElement | null;
+      if (!btn) return;
+      e.preventDefault();
+      const slug = btn.getAttribute('data-slug');
+      const project = projects.find((p) => p.slug === slug);
+      if (!project) return;
+      setSelectedProject(project);
+      if (typeof window !== 'undefined' && localStorage.getItem(GATE_KEY)) {
+        router.push(`/projects/${slug}`);
+      } else {
+        setGateOpen(true);
+      }
+    };
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [projects, router]);
 
   return (
     <section className="section bg-white dark:bg-[#0a0a0a]">
@@ -202,6 +239,26 @@ export default function MapSection() {
           ))}
         </div>
       </div>
+
+      {/* Lead Gate Modal */}
+      <Modal
+        isOpen={gateOpen}
+        onClose={() => setGateOpen(false)}
+        title="Get Project Details"
+        size="sm"
+      >
+        <div className="px-5 pb-5">
+          <LeadForm
+            source="project_detail"
+            projectId={selectedProject?._id}
+            projectName={selectedProject?.name}
+            title=""
+            subtitle="Please share your details to view full project information."
+            submitLabel="View Project Details"
+            onSuccess={handleGateSuccess}
+          />
+        </div>
+      </Modal>
     </section>
   );
 }

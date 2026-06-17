@@ -1,15 +1,22 @@
 'use client';
 
-import React, { useRef, useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Link from 'next/link';
+import { ChevronRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { projectApi } from '@/lib/api';
 import ProjectCard from '@/components/project/ProjectCard';
+import Modal from '@/components/common/Modal';
+import LeadForm from '@/components/common/LeadForm';
 import { Project } from '@/types';
 
+const GATE_KEY = 'project_detail_gate_passed';
+
 export default function FeaturedProjects() {
+  const router = useRouter();
+  const [gateOpen, setGateOpen] = useState(false);
+
   const { data, isLoading } = useQuery({
     queryKey: ['featured-projects'],
     queryFn: async () => {
@@ -19,6 +26,22 @@ export default function FeaturedProjects() {
   });
 
   const projects = data || [];
+
+  const handleViewAll = useCallback(() => {
+    if (typeof window !== 'undefined' && localStorage.getItem(GATE_KEY)) {
+      router.push('/projects');
+    } else {
+      setGateOpen(true);
+    }
+  }, [router]);
+
+  const handleGateSuccess = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(GATE_KEY, '1');
+    }
+    setGateOpen(false);
+    router.push('/projects');
+  }, [router]);
 
   return (
     <section className="section bg-green-50 dark:bg-[#0d0d0d]">
@@ -66,12 +89,30 @@ export default function FeaturedProjects() {
 
         {/* View All */}
         <div className="mt-10 text-center">
-          <Link href="/projects" className="btn-outline">
+          <button onClick={handleViewAll} className="btn-outline">
             View All Projects
             <ChevronRight className="w-4 h-4" />
-          </Link>
+          </button>
         </div>
       </div>
+
+      {/* Lead Gate Modal */}
+      <Modal
+        isOpen={gateOpen}
+        onClose={() => setGateOpen(false)}
+        title="Get Project Details"
+        size="sm"
+      >
+        <div className="px-5 pb-5">
+          <LeadForm
+            source="project_detail"
+            title=""
+            subtitle="Please share your details to explore all our projects."
+            submitLabel="View All Projects"
+            onSuccess={handleGateSuccess}
+          />
+        </div>
+      </Modal>
     </section>
   );
 }
