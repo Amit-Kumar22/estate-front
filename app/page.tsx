@@ -4,6 +4,7 @@ import Hero from '@/components/home/Hero';
 import FeaturedProjects from '@/components/home/FeaturedProjects';
 import GallerySection from '@/components/home/GallerySection';
 import WelcomeSection from '@/components/home/WelcomeSection';
+import FamilyLegacySection from '@/components/home/FamilyLegacySection';
 import WhyChooseUsSection from '@/components/home/WhyChooseUsSection';
 import BlogSection from '@/components/home/BlogSection';
 import AwardsSection from '@/components/home/AwardsSection';
@@ -12,6 +13,7 @@ import WhatsAppButton from '@/components/common/WhatsAppButton';
 import Footer from '@/components/layout/Footer';
 import MapSectionWrapper from '@/components/home/MapSectionWrapper';
 import { settingsApi } from '@/lib/api';
+import TestimonialsSection from '@/components/home/TestimonialSection';
 
 async function getSettings(): Promise<Record<string, string> | null> {
   try {
@@ -56,8 +58,10 @@ export default async function HomePage() {
 
   <WelcomeSection />
 
+  <FamilyLegacySection />
 
   <FeaturedProjects />
+  <TestimonialsSection />
 
   <JourneyTimelineSection />
 

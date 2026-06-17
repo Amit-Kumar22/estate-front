@@ -34,7 +34,7 @@ export default function JourneyTimelineSection() {
                         </h2>
 
                         <p className="text-white/90 text-base md:text-lg leading-8">
-                           The new company pvt Ltd. began its journey with a vision
+                           The RD Heights pvt Ltd. began its journey with a vision
                             to redefine modern living through premium residential and commercial
                             developments. Over the years, we have built a strong reputation for
                             quality, innovation, and customer trust while delivering landmark

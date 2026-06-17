@@ -73,4 +73,11 @@ export const queryKeys = {
     categories: () => [...queryKeys.blogs.all(), 'categories'] as const,
     tags:       () => [...queryKeys.blogs.all(), 'tags'] as const,
   },
+  // ─── Family Legacy ────────────────────────────────────────────────────────
+  familyLegacy: {
+    all:    () => ['familyLegacy'] as const,
+    public: () => [...queryKeys.familyLegacy.all(), 'public'] as const,
+    admin:  () => [...queryKeys.familyLegacy.all(), 'admin'] as const,
+    detail: (id: string) => [...queryKeys.familyLegacy.all(), 'detail', id] as const,
+  },
 } as const;

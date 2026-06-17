@@ -199,6 +199,29 @@ export interface DashboardData {
   recentLeads: Lead[];
 }
 
+// ─── Family Legacy Types ──────────────────────────────────────────────────────
+export interface FamilyMember {
+  _id: string;
+  image: string;
+  name: string;
+  designation: string;
+  description: string;
+  year: string;
+  order: number;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface FamilyMemberFormData {
+  image?: File | string;
+  name: string;
+  designation: string;
+  description: string;
+  year: string;
+  order: number;
+}
+
 // ─── API Response Types ───────────────────────────────────────────────────────
 export interface ApiResponse<T> {
   status: 'success' | 'error' | 'fail';

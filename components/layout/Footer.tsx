@@ -51,9 +51,14 @@ export default function Footer() {
                 <Building2 className="w-5 h-5 text-white" />
               </div>
               <div>
-                <span className="font-display font-bold text-gray-900 dark:text-white text-lg leading-none">
-                  {appConfig.site.name}
-                </span>
+                <div className="flex items-baseline leading-none select-none">
+                  <span className="font-display font-bold text-xl tracking-tight text-gray-900 dark:text-white transition-colors duration-300 group-hover:text-green-500">
+                    RD
+                  </span>
+                  <span className="font-display font-medium text-xl tracking-tight ml-1.5 text-gray-500 dark:text-gray-300 transition-colors duration-300 group-hover:text-green-400">
+                    Heights
+                  </span>
+                </div>
                 <span className="block text-green-600 dark:text-green-400 text-[9px] font-semibold tracking-[0.2em] uppercase leading-none mt-0.5">
                   {appConfig.site.tagline}
                 </span>

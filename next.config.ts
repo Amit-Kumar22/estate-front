@@ -22,6 +22,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: getApiHostname() },
       // Allow any subdomain of the same production hostname (e.g. cdn.yourdomain.com)
       { protocol: 'https', hostname: `*.${getApiHostname()}` },
+      // Placeholder portraits used by fallback family-legacy cards
+      { protocol: 'https', hostname: 'randomuser.me' },
     ],
     formats: ['image/avif', 'image/webp'],
   },

@@ -38,10 +38,6 @@ export default function Navbar() {
   const { isDark } = useTheme();
   const { isAuthenticated } = useAuth();
 
-  const nameParts = appConfig.site.name.split(' ');
-  const logoLine1 = nameParts[0]?.toUpperCase() ?? '';
-  const logoLine2 = nameParts.slice(1).join(' ') || appConfig.site.tagline;
-
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     const handleClickOutside = (e: MouseEvent) => {
@@ -153,12 +149,12 @@ export default function Navbar() {
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow-btn-green group-hover:shadow-btn-green-lg transition-all duration-300 group-hover:-translate-y-0.5">
                 <Building2 className="w-5 h-5 text-white" />
               </div>
-              <div>
-                <span className={`font-display font-bold text-lg leading-none transition-colors duration-300 ${logoTextClass}`}>
-                  {logoLine1}
+              <div className="flex items-baseline leading-none select-none">
+                <span className={`font-display font-bold text-xl tracking-tight transition-colors duration-300 group-hover:text-green-500 ${logoTextClass}`}>
+                  RD
                 </span>
-                <span className="block text-green-500 text-[9px] font-semibold tracking-[0.2em] uppercase leading-none mt-0.5">
-                  {logoLine2}
+                <span className={`font-display font-medium text-xl tracking-tight ml-1.5 transition-colors duration-300 group-hover:text-green-400 ${isLightSolid ? 'text-gray-500' : 'text-gray-300'}`}>
+                  Heights
                 </span>
               </div>
             </Link>

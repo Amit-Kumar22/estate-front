@@ -25,7 +25,7 @@ export default function WelcomeSection() {
               </span>
             </div>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-              Welcome to Real Estate
+              Welcome to RD Heights Pvt Ltd. - Your Trusted Real Estate Partner
             </h2>
             <p className="text-base md:text-lg text-emerald-600 dark:text-emerald-400 font-medium">
               Find Your Dream Property with Confidence
