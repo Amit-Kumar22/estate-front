@@ -89,6 +89,53 @@ export interface Award {
   createdAt: string;
 }
 
+// ─── Why Choose Us Types ──────────────────────────────────────────────────────
+export interface WhyChooseUs {
+  _id: string;
+  title: string;
+  description: string;
+  icon: string;
+  order: number;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ─── Blog Types ────────────────────────────────────────────────────────────────
+export interface Blog {
+  _id: string;
+  title: string;
+  slug: string;
+  featuredImage: string;
+  shortDescription: string;
+  content: string;
+  author: string;
+  category: string;
+  tags: string[];
+  publishDate: string;
+  seoMetaTitle?: string;
+  seoMetaDescription?: string;
+  status: 'published' | 'draft';
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BlogFormData {
+  title: string;
+  slug?: string;
+  featuredImage?: File | string;
+  shortDescription: string;
+  content: string;
+  author: string;
+  category: string;
+  tags: string[];
+  publishDate?: string;
+  seoMetaTitle?: string;
+  seoMetaDescription?: string;
+  status: 'published' | 'draft';
+}
+
 // ─── Settings Types ───────────────────────────────────────────────────────────
 export interface SiteSettings {
   companyName: string;

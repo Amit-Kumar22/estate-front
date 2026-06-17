@@ -38,11 +38,11 @@ export default function Modal({
   }, [isOpen, onClose]);
 
   const sizes = {
-    sm: 'max-w-sm',
-    md: 'max-w-md',
-    lg: 'max-w-lg',
-    xl: 'max-w-2xl',
-  };
+  sm: 'max-w-md',
+  md: 'max-w-2xl',
+  lg: 'max-w-4xl',
+  xl: 'max-w-6xl',
+};
 
   return (
     <AnimatePresence>
@@ -67,8 +67,7 @@ export default function Modal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className={`relative w-full ${sizes[size]} bg-white dark:bg-[#111] rounded-2xl border border-gray-100 dark:border-[#1f1f1f] shadow-2xl overflow-hidden ${className}`}
-          >
+className={`relative w-[95vw] ${sizes[size]} max-h-[90vh] overflow-y-auto bg-white dark:bg-[#111] rounded-2xl border border-gray-100 dark:border-[#1f1f1f] shadow-2xl ${className}`}          >
             {/* Header */}
             {title && (
               <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-[#1f1f1f]">

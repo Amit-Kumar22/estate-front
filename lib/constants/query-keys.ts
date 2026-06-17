@@ -52,4 +52,25 @@ export const queryKeys = {
     all:   () => ['dashboard'] as const,
     stats: () => [...queryKeys.dashboard.all(), 'stats'] as const,
   },
+
+  // ─── Why Choose Us ────────────────────────────────────────────────────────
+  whyChooseUs: {
+    all:    () => ['whyChooseUs'] as const,
+    public: () => [...queryKeys.whyChooseUs.all(), 'public'] as const,
+    admin:  () => [...queryKeys.whyChooseUs.all(), 'admin'] as const,
+    detail: (id: string) => [...queryKeys.whyChooseUs.all(), 'detail', id] as const,
+  },
+
+  // ─── Blogs ────────────────────────────────────────────────────────────────
+  blogs: {
+    all:        () => ['blogs'] as const,
+    lists:      () => [...queryKeys.blogs.all(), 'list'] as const,
+    list:       (params: Record<string, unknown>) => [...queryKeys.blogs.lists(), params] as const,
+    public:     () => [...queryKeys.blogs.all(), 'public'] as const,
+    admin:      () => [...queryKeys.blogs.all(), 'admin'] as const,
+    detail:     (slug: string) => [...queryKeys.blogs.all(), 'detail', slug] as const,
+    byId:       (id: string)   => [...queryKeys.blogs.all(), 'id', id] as const,
+    categories: () => [...queryKeys.blogs.all(), 'categories'] as const,
+    tags:       () => [...queryKeys.blogs.all(), 'tags'] as const,
+  },
 } as const;

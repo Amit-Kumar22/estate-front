@@ -16,7 +16,6 @@ const client: AxiosInstance = axios.create({
   withCredentials: true, // forwards the backend's HttpOnly 'jwt' cookie automatically
   timeout: appConfig.api.timeout,
   headers: {
-    'Content-Type': 'application/json',
     Accept: 'application/json',
   },
 });

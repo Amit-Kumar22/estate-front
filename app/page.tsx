@@ -3,7 +3,11 @@ import Navbar from '@/components/layout/Navbar';
 import Hero from '@/components/home/Hero';
 import FeaturedProjects from '@/components/home/FeaturedProjects';
 import GallerySection from '@/components/home/GallerySection';
+import WelcomeSection from '@/components/home/WelcomeSection';
+import WhyChooseUsSection from '@/components/home/WhyChooseUsSection';
+import BlogSection from '@/components/home/BlogSection';
 import AwardsSection from '@/components/home/AwardsSection';
+import JourneyTimelineSection from '@/components/home/JourneyTimelineSection';
 import WhatsAppButton from '@/components/common/WhatsAppButton';
 import Footer from '@/components/layout/Footer';
 import MapSectionWrapper from '@/components/home/MapSectionWrapper';
@@ -41,19 +45,32 @@ export default async function HomePage() {
   return (
     <>
       <Navbar />
-      <main>
-        <Hero
-          headline={settings?.heroHeadline ?? undefined}
-          subheadline={settings?.heroSubheadline ?? undefined}
-          videoUrl={settings?.heroVideoUrl ?? undefined}
-          backgroundImage={settings?.heroBackgroundImage ?? undefined}
-          stats={buildHeroStats(settings)}
-        />
-        <FeaturedProjects />
-        <GallerySection />
-        <MapSectionWrapper />
-        <AwardsSection />
-      </main>
+    <main>
+  <Hero
+    headline={settings?.heroHeadline ?? undefined}
+    subheadline={settings?.heroSubheadline ?? undefined}
+    videoUrl={settings?.heroVideoUrl ?? undefined}
+    backgroundImage={settings?.heroBackgroundImage ?? undefined}
+    stats={buildHeroStats(settings)}
+  />
+
+  <WelcomeSection />
+
+
+  <FeaturedProjects />
+
+  <JourneyTimelineSection />
+
+  <GallerySection />
+
+  <WhyChooseUsSection />
+
+  <BlogSection />
+
+  <MapSectionWrapper />
+
+  <AwardsSection />
+</main>
       <Footer />
       <WhatsAppButton
         phone={settings?.whatsappNumber ?? undefined}

@@ -100,10 +100,10 @@ const appConfig = {
   hero: {
     /**
      * Served from Next.js public folder — same origin, zero CORS issues.
-     * Replace /videos/hero.mp4 with your own real estate footage once live.
+     * Replace /videos/luxury-home1.mp4 with your own real estate footage once live.
      * Admin can also override this via Admin → Settings → Hero Video URL.
      */
-    fallbackVideoUrl: '/videos/hero.mp4',
+    fallbackVideoUrl: '/videos/luxury-home1.mp4',
   },
 
   // ─── Social (set via Admin → Settings; defaults empty) ─────────────────────

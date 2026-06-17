@@ -16,6 +16,8 @@ import {
   awardService,
   dashboardService,
   settingsService,
+  whyChooseUsService,
+  blogService,
 } from './api/index';
 
 // Legacy aliases — method names bridged where they changed
@@ -47,17 +49,31 @@ export const awardApi = {
   delete: awardService.remove,
 };
 
+export const whyChooseUsApi = {
+  ...whyChooseUsService,
+  /** @deprecated use whyChooseUsService.remove() */
+  delete: whyChooseUsService.remove,
+};
+
+export const blogApi = {
+  ...blogService,
+  /** @deprecated use blogService.remove() */
+  delete: blogService.remove,
+};
+
 export const dashboardApi = dashboardService;
 export const settingsApi = settingsService;
 
 // Also export new canonical names
 export {
   authService,
+  whyChooseUsService,
   projectService,
   leadService,
   galleryService,
   awardService,
   dashboardService,
   settingsService,
+  blogService,
 };
 
