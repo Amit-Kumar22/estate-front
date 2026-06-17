@@ -59,10 +59,10 @@ export default function LeadForm({
   const onSubmit = async (values: FormValues) => {
     try {
       const payload: LeadPayload = {
-        name:            values.name,
-        mobile:          values.mobile,
-        email:           values.email,
-        message:         values.message,
+        name: values.name,
+        mobile: values.mobile,
+        email: values.email,
+        message: values.message,
         source,
         projectId,
         unlockedContent,
@@ -118,11 +118,11 @@ export default function LeadForm({
         {/* Name */}
         <div>
           <div className="relative">
-            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
+            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none z-10" />
             <input
               {...register('name')}
               placeholder="Your Name *"
-              className={`input pl-9 ${errors.name ? 'input-error' : ''}`}
+              className={`input !pl-14 ${errors.name ? 'input-error' : ''}`}
             />
           </div>
           {errors.name && (
@@ -133,11 +133,12 @@ export default function LeadForm({
         {/* Mobile */}
         <div>
           <div className="relative">
-            <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
+            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none z-10" />
+
             <input
               {...register('mobile')}
               placeholder="Mobile Number *"
-              className={`input pl-9 ${errors.mobile ? 'input-error' : ''}`}
+              className={`input !pl-14 ${errors.mobile ? 'input-error' : ''}`}
             />
           </div>
           {errors.mobile && (
@@ -148,12 +149,13 @@ export default function LeadForm({
         {/* Email */}
         <div>
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none z-10" />
+
             <input
               {...register('email')}
               type="email"
               placeholder="Email Address *"
-              className={`input pl-9 ${errors.email ? 'input-error' : ''}`}
+              className={`input !pl-14 ${errors.email ? 'input-error' : ''}`}
             />
           </div>
           {errors.email && (
@@ -165,12 +167,12 @@ export default function LeadForm({
         {showMessage && (
           <div>
             <div className="relative">
-              <MessageSquare className="absolute left-3 top-3 w-3.5 h-3.5 text-gray-400" />
+              <MessageSquare className="absolute left-4 top-3 w-3.5 h-3.5 text-gray-400" />
               <textarea
                 {...register('message')}
                 placeholder="Your Message (optional)"
                 rows={3}
-                className="input pl-9 resize-none"
+                className="input pl-14 resize-none"
               />
             </div>
           </div>
