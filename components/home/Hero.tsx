@@ -102,12 +102,12 @@ export default function Hero({
         <div
           className={`absolute inset-0 bg-gradient-to-b ${
             hasMedia
-              ? 'from-black/40 via-black/50 to-black/80'
+              ? 'from-black/10 via-black/20 to-black/55'
               : 'from-black/20 via-black/30 to-black/60'
           }`}
         />
         {hasMedia && (
-          <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent" />
         )}
       </div>
 
