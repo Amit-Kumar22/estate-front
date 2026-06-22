@@ -28,20 +28,20 @@ const FALLBACK_MEMBERS: FamilyMember[] = [
     description: 'Expanded across regions, bringing modern design and world-class infrastructure.',
     year: '2000',
   },
-  {
-    _id: 'f3', order: 3, isActive: true, createdAt: '', updatedAt: '',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
-    name: 'Amit Sharma', designation: 'CEO',
-    description: 'Pioneered smart homes and sustainable communities for a better tomorrow.',
-    year: '2015',
-  },
-  {
-    _id: 'f4', order: 4, isActive: true, createdAt: '', updatedAt: '',
-    image: 'https://randomuser.me/api/portraits/men/22.jpg',
-    name: 'Rohan Sharma', designation: 'Next Generation',
-    description: 'Driving innovation through technology-first strategies and a global vision.',
-    year: '2024',
-  },
+  // {
+  //   _id: 'f3', order: 3, isActive: true, createdAt: '', updatedAt: '',
+  //   image: 'https://randomuser.me/api/portraits/men/32.jpg',
+  //   name: 'Amit Sharma', designation: 'CEO',
+  //   description: 'Pioneered smart homes and sustainable communities for a better tomorrow.',
+  //   year: '2015',
+  // },
+  // {
+  //   _id: 'f4', order: 4, isActive: true, createdAt: '', updatedAt: '',
+  //   image: 'https://randomuser.me/api/portraits/men/22.jpg',
+  //   name: 'Rohan Sharma', designation: 'Next Generation',
+  //   description: 'Driving innovation through technology-first strategies and a global vision.',
+  //   year: '2024',
+  // },
 ];
 
 const GEN_LABELS = ['Gen 1', 'Gen 2', 'Gen 3', 'Gen 4'];
@@ -227,18 +227,18 @@ export default function FamilyLegacySection() {
         {/* ── Timeline + Cards ── */}
         <div className="relative">
 
-          {/* Horizontal connector line — desktop (behind cards, at dot level) */}
-          <div className="hidden lg:block absolute top-[22px] left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-green-400 to-transparent dark:via-green-600 z-0" />
-
           {/* Vertical connector line — mobile single-column */}
           <div className="lg:hidden absolute left-[9px] top-4 bottom-4 w-px bg-gradient-to-b from-transparent via-green-400 to-transparent dark:via-green-600 z-0" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+          <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
             {isLoading
-              ? Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="w-full sm:w-[calc(50%-8px)] lg:w-64">
+                    <SkeletonCard />
+                  </div>
+                ))
               : members.slice(0, 4).map((member, i) => (
-                  /* Mobile: left dot + indent */
-                  <div key={member._id} className="flex items-start gap-3 sm:block">
+                  <div key={member._id} className="w-full sm:w-[calc(50%-8px)] lg:w-64 flex items-start gap-3 sm:block">
                     {/* Mobile-only dot */}
                     <div className="flex-shrink-0 mt-4 sm:hidden">
                       <div className="w-[18px] h-[18px] rounded-full bg-green-500 border-2 border-white dark:border-black ring-2 ring-green-300 dark:ring-green-700 shadow" />

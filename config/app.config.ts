@@ -103,7 +103,7 @@ const appConfig = {
      * Replace /videos/luxury-home1.mp4 with your own real estate footage once live.
      * Admin can also override this via Admin → Settings → Hero Video URL.
      */
-    fallbackVideoUrl: '/videos/luxury-home2.mp4',
+    fallbackVideoUrl: '/videos/luxury-home4.mp4',
   },
 
   // ─── Social (set via Admin → Settings; defaults empty) ─────────────────────
