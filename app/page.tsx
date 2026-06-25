@@ -10,6 +10,7 @@ import BlogSection from '@/components/home/BlogSection';
 import AwardsSection from '@/components/home/AwardsSection';
 import JourneyTimelineSection from '@/components/home/JourneyTimelineSection';
 import WhatsAppButton from '@/components/common/WhatsAppButton';
+import BrochureDownloadButton from '@/components/common/BrochureDownloadButton';
 import Footer from '@/components/layout/Footer';
 import MapSectionWrapper from '@/components/home/MapSectionWrapper';
 import { settingsApi } from '@/lib/api';
@@ -80,6 +81,7 @@ export default async function HomePage() {
         phone={settings?.whatsappNumber ?? undefined}
         message={settings?.whatsappMessage ?? undefined}
       />
+      <BrochureDownloadButton />
     </>
   );
 }

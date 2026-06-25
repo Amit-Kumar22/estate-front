@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/common/WhatsAppButton';
+import BrochureDownloadButton from '@/components/common/BrochureDownloadButton';
 import ProjectHeroCarousel from '@/components/project/ProjectHeroCarousel';
 import ProjectOverview from '@/components/project/ProjectOverview';
 import AmenitiesSection from '@/components/project/AmenitiesSection';
@@ -116,6 +117,11 @@ export default async function ProjectDetailPage({
       </main>
       <Footer />
       <WhatsAppButton />
+      <BrochureDownloadButton
+        projectId={project._id}
+        projectName={project.name}
+        brochureUrl={project.brochureUrl}
+      />
     </>
   );
 }
