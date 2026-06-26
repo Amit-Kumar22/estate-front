@@ -65,20 +65,12 @@ const appConfig = {
 
   // ─── Auth ──────────────────────────────────────────────────────────────────
   auth: {
-    /**
-     * Auth JWT is stored in a client-readable cookie (not HttpOnly) so we can
-     * read it in the Axios interceptor and attach it as an Authorization header.
-     * The backend also sets its own HttpOnly 'jwt' cookie (belt-and-suspenders).
-     */
-    tokenCookieName: 'admin_token',
     /** Non-sensitive display data (name, email, role) — localStorage is fine */
-    userKey:         'admin_user',
+    userKey:       'admin_user',
     /** Theme preference — UI only, localStorage is fine */
-    themeKey:        'theme',
-    loginPath:       '/admin/login',
-    dashboardPath:   '/admin',
-    /** Cookie max-age in seconds: 30 days */
-    cookieMaxAge:    30 * 24 * 60 * 60,
+    themeKey:      'theme',
+    loginPath:     '/admin/login',
+    dashboardPath: '/admin',
   },
 
   // ─── Pagination ────────────────────────────────────────────────────────────

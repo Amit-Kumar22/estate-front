@@ -4,7 +4,6 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { authApi } from '@/lib/api';
 import { Admin } from '@/types';
 import appConfig from '@/config/app.config';
-import { getCookie, setCookie, removeCookie } from '@/lib/utils/cookies';
 
 interface AuthContextType {
   admin: Admin | null;
@@ -22,23 +21,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const initAuth = async () => {
-      try {
-        // Token lives in a Secure; SameSite=Strict cookie
-        const token  = getCookie(appConfig.auth.tokenCookieName);
-        // Non-sensitive display data (name, email, role) in localStorage
-        const stored = localStorage.getItem(appConfig.auth.userKey);
+      // Use cached display data for an instant render while we validate
+      const stored = localStorage.getItem(appConfig.auth.userKey);
+      if (!stored) {
+        setIsLoading(false);
+        return;
+      }
 
-        if (token && stored) {
-          setAdmin(JSON.parse(stored) as Admin);
-          // Validate token with the server on every cold start
-          const res = await authApi.getMe();
-          setAdmin(res.data.data.admin);
-          // Refresh the stored display data in case it changed
-          localStorage.setItem(appConfig.auth.userKey, JSON.stringify(res.data.data.admin));
-        }
+      try {
+        setAdmin(JSON.parse(stored) as Admin);
+        // Browser sends the HttpOnly 'token' cookie automatically (withCredentials: true)
+        const res = await authApi.getMe();
+        setAdmin(res.data.data.admin);
+        localStorage.setItem(appConfig.auth.userKey, JSON.stringify(res.data.data.admin));
       } catch {
-        // Token invalid or expired — clear everything
-        removeCookie(appConfig.auth.tokenCookieName);
+        // Session expired or invalid — clear local state
         localStorage.removeItem(appConfig.auth.userKey);
         setAdmin(null);
       } finally {
@@ -50,24 +47,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     const res = await authApi.login(email, password);
-    const { token, data } = res.data;
+    const { data } = res.data;
 
-    // Store JWT in a cookie: Secure (prod), SameSite=Strict, 30-day expiry
-    setCookie(appConfig.auth.tokenCookieName, token, {
-      maxAge:   appConfig.auth.cookieMaxAge,
-      sameSite: 'Strict',
-    });
-
-    // Store non-sensitive display data in localStorage
+    // JWT is stored in the HttpOnly cookie set by the backend — never touch it here.
+    // Only cache non-sensitive display data (name, email, role) in localStorage.
     localStorage.setItem(appConfig.auth.userKey, JSON.stringify(data.admin));
     setAdmin(data.admin);
   };
 
   const logout = async () => {
     try {
-      await authApi.logout(); // clears the backend's HttpOnly cookie
+      await authApi.logout(); // backend clears the HttpOnly 'token' cookie
     } finally {
-      removeCookie(appConfig.auth.tokenCookieName);
       localStorage.removeItem(appConfig.auth.userKey);
       setAdmin(null);
     }
