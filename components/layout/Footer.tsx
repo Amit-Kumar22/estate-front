@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Building2, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin, Youtube } from 'lucide-react';
+import { Building2, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin, Youtube, Star, PenLine } from 'lucide-react';
 import appConfig from '@/config/app.config';
+import ReviewForm from '@/components/home/ReviewForm';
 
 const footerLinks = {
   Company: [
@@ -33,6 +34,8 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const [reviewOpen, setReviewOpen] = useState(false);
+
   const contactDetails = [
     { icon: Phone,  text: appConfig.site.phone },
     { icon: Mail,   text: appConfig.site.email },
@@ -40,6 +43,7 @@ export default function Footer() {
   ];
 
   return (
+    <>
     <footer className="bg-green-50 dark:bg-[#050505] border-t border-green-100 dark:border-[#111]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
@@ -103,6 +107,25 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* Review CTA strip */}
+        <div className="py-4 border-t border-green-100 dark:border-[#111] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="flex gap-0.5">
+              {[1,2,3,4,5].map((s) => <Star key={s} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />)}
+            </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              Had a great experience? <span className="font-semibold text-gray-700 dark:text-gray-300">Let others know.</span>
+            </p>
+          </div>
+          <button
+            onClick={() => setReviewOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-green-200 dark:border-green-800/50 bg-white dark:bg-green-900/10 text-green-700 dark:text-green-400 text-xs font-semibold hover:bg-green-600 hover:text-white hover:border-green-600 dark:hover:bg-green-600 dark:hover:text-white dark:hover:border-green-600 transition-all flex-shrink-0 group"
+          >
+            <PenLine className="w-3.5 h-3.5" />
+            Write a Review
+          </button>
+        </div>
+
         {/* Bottom Bar */}
         <div className="pt-5 border-t border-green-100 dark:border-[#111] flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-400 dark:text-gray-600">
@@ -125,5 +148,8 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+
+      {reviewOpen && <ReviewForm onClose={() => setReviewOpen(false)} />}
+    </>
   );
 }

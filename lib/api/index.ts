@@ -16,4 +16,5 @@ export { settingsService }  from './settings.service';
 export { whyChooseUsService } from './whyChooseUs.service';
 export { blogService }      from './blog.service';
 export { familyLegacyService } from './familyLegacy.service';
+export { reviewService }    from './review.service';
 export { default as apiClient } from './client';

@@ -6,11 +6,12 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu, X, ChevronDown, Building2, Home, Image, Award,
-  Phone, LogIn, Layers
+  Phone, LogIn, Layers, Star,
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useAuth } from '@/context/AuthContext';
 import ThemeToggle from '@/components/common/ThemeToggle';
+import ReviewForm from '@/components/home/ReviewForm';
 import appConfig from '@/config/app.config';
 
 const navLinks = [
@@ -33,6 +34,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [reviewOpen, setReviewOpen] = useState(false);
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { isDark } = useTheme();
@@ -216,6 +218,18 @@ export default function Navbar() {
             {/* Right Actions */}
             <div className="flex items-center gap-2">
               <ThemeToggle />
+              {/* Write a Review — desktop */}
+              <button
+                onClick={() => setReviewOpen(true)}
+                className={`hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium border transition-all group ${
+                  isLightSolid
+                    ? 'border-green-200 text-green-700 hover:bg-green-600 hover:text-white hover:border-green-600'
+                    : 'border-green-700/40 text-green-400 hover:bg-green-600 hover:text-white hover:border-green-600'
+                }`}
+              >
+                <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400 group-hover:fill-white group-hover:text-white transition-colors" />
+                Review
+              </button>
               {/* Desktop: Login or Dashboard based on auth state */}
               {isAuthenticated ? (
                 <Link
@@ -309,7 +323,14 @@ export default function Navbar() {
                   </Link>
                 )
               )}
-              <div className={`pt-3 border-t ${mobileDividerClass}`}>
+              <div className={`pt-3 border-t ${mobileDividerClass} space-y-2`}>
+                <button
+                  onClick={() => { setMobileOpen(false); setReviewOpen(true); }}
+                  className={`flex items-center gap-2.5 w-full px-4 py-3 rounded-xl text-sm font-medium transition-all ${getMobileLinkClass(false)}`}
+                >
+                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  Write a Review
+                </button>
                 {isAuthenticated ? (
                   <Link
                     href="/admin"
@@ -332,6 +353,8 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {reviewOpen && <ReviewForm onClose={() => setReviewOpen(false)} />}
     </>
   );
 }

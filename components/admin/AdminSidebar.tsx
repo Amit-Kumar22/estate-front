@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, Building2, ImageIcon, Trophy, Users2,
-  Settings, LogOut, Menu, X, HelpCircle, Leaf, FileBarChart, Sparkles, BookOpen,
+  Settings, LogOut, Menu, X, HelpCircle, Leaf, FileBarChart, Sparkles, BookOpen, Star,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -27,6 +27,7 @@ const navGroups = [
       { label: 'Why Choose Us',   href: '/admin/why-choose-us',   icon: Sparkles,      exact: false as const },
       { label: 'Blogs',           href: '/admin/blogs',           icon: BookOpen,      exact: false as const },
       { label: 'Leads',           href: '/admin/leads',           icon: Users2,        exact: false as const },
+      { label: 'Reviews',         href: '/admin/reviews',         icon: Star,          exact: false as const },
       { label: 'Users',           href: '/admin/users',           icon: FileBarChart,  exact: false as const },
       { label: 'Settings',        href: '/admin/settings',        icon: Settings,      exact: false as const },
     ],

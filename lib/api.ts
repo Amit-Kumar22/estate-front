@@ -19,6 +19,7 @@ import {
   whyChooseUsService,
   blogService,
   familyLegacyService,
+  reviewService,
 } from './api/index';
 
 // Legacy aliases — method names bridged where they changed
@@ -65,6 +66,7 @@ export const blogApi = {
 export const dashboardApi = dashboardService;
 export const settingsApi = settingsService;
 export const familyLegacyApi = familyLegacyService;
+export const reviewApi = reviewService;
 
 // Also export new canonical names
 export {
@@ -78,5 +80,6 @@ export {
   settingsService,
   blogService,
   familyLegacyService,
+  reviewService,
 };
 

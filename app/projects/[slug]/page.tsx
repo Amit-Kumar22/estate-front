@@ -13,6 +13,7 @@ import ImageUnlockSection from '@/components/project/ImageUnlockSection';
 import ProjectMapWrapper from '@/components/project/ProjectMapWrapper';
 import { projectApi } from '@/lib/api';
 import { Project } from '@/types';
+import WriteReviewButton from '@/components/common/WriteReviewButton';
 
 async function getProject(slug: string): Promise<Project | null> {
   try {
@@ -110,6 +111,7 @@ export default async function ProjectDetailPage({
                     </button>
                   </div>
                 )}
+                <WriteReviewButton variant="sidebar" />
               </div>
             </div>
           </div>
