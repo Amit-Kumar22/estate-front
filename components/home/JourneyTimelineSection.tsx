@@ -206,8 +206,7 @@ export default function JourneyTimelineSection() {
                     ══════════════════════════════════════ */}
                     <div
                         ref={cardRef}
-                        className="journey-card-init w-full"
-                        style={{ maxWidth: '60%' }}
+                        className="journey-card-init w-full lg:max-w-[60%]"
                     >
                         <div
                             className="w-full flex flex-col md:flex-row items-center gap-4 px-5 py-4 rounded-[16px]"
@@ -220,7 +219,7 @@ export default function JourneyTimelineSection() {
                             }}
                         >
                             {/* Left */}
-                            <div className="flex-1 min-w-0">
+                            <div className="flex-1 min-w-0 w-full text-center md:text-left">
                                 <span
                                     className="inline-block text-xs font-bold tracking-[3px] uppercase mb-1"
                                     style={{ color: '#F5C542' }}
@@ -298,8 +297,7 @@ export default function JourneyTimelineSection() {
                     ══════════════════════════════════════ */}
                     <div
                         ref={panelRef}
-                        className="w-full"
-                        style={{ maxWidth: '78%' }}
+                        className="w-full lg:max-w-[78%]"
                     >
                         <div
                             className="w-full px-5 py-4 rounded-[20px]"
@@ -330,7 +328,7 @@ export default function JourneyTimelineSection() {
                                 {/* Connecting line */}
                                 <div
                                     ref={lineRef}
-                                    className="journey-line-track mx-auto mb-0"
+                                    className="journey-line-track mx-auto mb-0 hidden lg:block"
                                     style={{
                                         position: 'absolute',
                                         top: '17px',
@@ -343,7 +341,7 @@ export default function JourneyTimelineSection() {
                                 </div>
 
                                 {/* Nodes */}
-                                <div className="relative z-10 grid grid-cols-6 gap-3">
+                                <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-3 gap-y-6 lg:gap-y-3">
                                     {milestones.map((m, i) => (
                                         <div
                                             key={m.year}
