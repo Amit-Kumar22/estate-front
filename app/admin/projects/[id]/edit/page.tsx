@@ -6,7 +6,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { projectApi } from '@/lib/api';
 import { Project } from '@/types';
-import { ArrowLeft, Plus, X, Loader2, Save, Trash2, LocateFixed, Map } from 'lucide-react';
+import { ArrowLeft, Plus, X, Loader2, Save, Trash2, LocateFixed, Map, Upload } from 'lucide-react';
 import Link from 'next/link';
 import { getImageUrl } from '@/lib/utils';
 import { queryKeys } from '@/lib/constants/query-keys';
@@ -350,19 +350,59 @@ export default function EditProjectPage() {
 
         {/* Upload new media */}
         <Section title="Upload New Media">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-4">
+            {/* New Hero Images */}
             <div>
-              <p className="text-xs text-gray-400 mb-2">Add Hero Images</p>
+              <p className="text-xs text-gray-400 font-medium mb-2">
+                Add Hero Images
+                <span className="ml-1 text-gray-300 dark:text-gray-600">(appended to existing)</span>
+              </p>
               <label className="flex flex-col items-center justify-center gap-2 h-20 rounded-xl border-2 border-dashed border-gray-300 dark:border-[#1f1f1f] hover:border-green-500/40 cursor-pointer transition-all">
+                <Upload className="w-4 h-4 text-gray-400" />
                 <span className="text-xs text-gray-400">
-                  {newHeroImages.length ? `${newHeroImages.length} file(s)` : 'Click to upload'}
+                  {newHeroImages.length ? `+ Add more (${newHeroImages.length} queued)` : 'Click to select images'}
                 </span>
-                <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => setNewHeroImages(Array.from(e.target.files ?? []))} />
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const incoming = Array.from(e.target.files ?? []);
+                    setNewHeroImages((prev) => [...prev, ...incoming]);
+                    e.target.value = '';
+                  }}
+                />
               </label>
+
+              {/* Preview grid for newly selected images */}
+              {newHeroImages.length > 0 && (
+                <div className="mt-3 grid grid-cols-3 sm:grid-cols-5 gap-2">
+                  {newHeroImages.map((file, i) => {
+                    const url = URL.createObjectURL(file);
+                    return (
+                      <div key={i} className="relative group aspect-square rounded-lg overflow-hidden bg-gray-100 dark:bg-[#1a1a1a]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={url} alt={`new-${i}`} className="w-full h-full object-cover" onLoad={() => URL.revokeObjectURL(url)} />
+                        <button
+                          type="button"
+                          onClick={() => setNewHeroImages((prev) => prev.filter((_, idx) => idx !== i))}
+                          className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 w-5 h-5 rounded-full bg-red-500 flex items-center justify-center text-white transition-opacity"
+                        >
+                          <X className="w-2.5 h-2.5" />
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
+
+            {/* Replace Brochure */}
             <div>
-              <p className="text-xs text-gray-400 mb-2">Replace Brochure (PDF)</p>
+              <p className="text-xs text-gray-400 font-medium mb-2">Replace Brochure (PDF)</p>
               <label className="flex flex-col items-center justify-center gap-2 h-20 rounded-xl border-2 border-dashed border-gray-300 dark:border-[#1f1f1f] hover:border-green-500/40 cursor-pointer transition-all">
+                <Upload className="w-4 h-4 text-gray-400" />
                 <span className="text-xs text-gray-400">
                   {newBrochure ? newBrochure.name : project?.brochureUrl ? 'Replace existing PDF' : 'Upload PDF'}
                 </span>

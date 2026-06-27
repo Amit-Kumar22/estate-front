@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { FileDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Modal from '@/components/common/Modal';
-import LeadForm from '@/components/common/LeadForm';
+import OtpVerifyModal from '@/components/common/OtpVerifyModal';
 import appConfig from '@/config/app.config';
 import toast from 'react-hot-toast';
 
@@ -21,31 +20,29 @@ export default function BrochureDownloadButton({
 }: BrochureDownloadButtonProps) {
   const [modalOpen, setModalOpen] = useState(false);
 
+  if (!projectId) return null;
+
   const handleSuccess = (data: { brochureUrl?: string }) => {
     setModalOpen(false);
 
-    const url = data.brochureUrl
-      ? data.brochureUrl.startsWith('http')
-        ? data.brochureUrl
-        : `${appConfig.api.storageBase}${data.brochureUrl}`
-      : '/sample-brochure.pdf';
+    const raw = data.brochureUrl || brochureUrl;
+    if (!raw) {
+      toast.success('Thank you! Our team will share the brochure with you shortly.');
+      return;
+    }
 
+    const url = raw.startsWith('http') ? raw : `${appConfig.api.storageBase}${raw}`;
     const slug = (projectName ?? 'project').replace(/[^a-z0-9]+/gi, '-').toLowerCase();
-    const filename = `${slug}-brochure.pdf`;
 
-    toast.success('Brochure ready! Downloading...');
+    toast.success('Brochure ready! Downloading…');
     const link = document.createElement('a');
     link.href = url;
-    link.download = filename;
+    link.download = `${slug}-brochure.pdf`;
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
-
-  const subtitle = projectName
-    ? `Share your details to receive the ${projectName} brochure.`
-    : 'Share your details to download our project brochure.';
 
   return (
     <>
@@ -61,22 +58,18 @@ export default function BrochureDownloadButton({
         <span className="hidden sm:inline">Download Brochure</span>
       </motion.button>
 
-      <Modal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        title="Download Brochure"
-        size="sm"
-      >
-        <LeadForm
-          source="brochure"
+      {modalOpen && (
+        <OtpVerifyModal
           projectId={projectId}
-          projectName={projectName}
+          projectName={projectName ?? ''}
+          source="brochure"
+          title="Download Brochure"
+          subtitle="Enter your details to receive the project brochure — we'll verify your email first."
+          submitLabel="Verify & Download"
+          onClose={() => setModalOpen(false)}
           onSuccess={handleSuccess}
-          title=""
-          subtitle={subtitle}
-          submitLabel="Download Brochure"
         />
-      </Modal>
+      )}
     </>
   );
 }

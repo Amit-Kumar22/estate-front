@@ -119,7 +119,7 @@ export default function Hero({
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           {/* Eyebrow */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -129,7 +129,7 @@ export default function Hero({
             <span className="text-green-400 text-xs font-semibold tracking-wider uppercase">
               Premium RD Heights Pvt Ltd. 
             </span>
-          </motion.div>
+          </motion.div> */}
 
           {/* Headline — from settings API */}
           {displayHeadline && (

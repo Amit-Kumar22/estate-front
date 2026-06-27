@@ -7,9 +7,10 @@ import { getStatusColor, getStatusLabel } from '@/lib/utils';
 
 interface ProjectOverviewProps {
   project: Project;
+  hideConfiguration?: boolean;
 }
 
-export default function ProjectOverview({ project }: ProjectOverviewProps) {
+export default function ProjectOverview({ project, hideConfiguration = false }: ProjectOverviewProps) {
   return (
     <div className="space-y-6">
       {/* Title & Status */}
@@ -81,7 +82,7 @@ export default function ProjectOverview({ project }: ProjectOverviewProps) {
       )}
 
       {/* Configuration Table */}
-      {project.configuration?.length > 0 && (
+      {!hideConfiguration && project.configuration?.length > 0 && (
         <div>
           <h2 className="font-display text-lg font-bold text-gray-900 dark:text-white mb-3">
             Configuration & Pricing

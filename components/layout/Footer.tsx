@@ -45,12 +45,12 @@ export default function Footer() {
   return (
     <>
     <footer className="bg-green-50 dark:bg-[#050505] border-t border-green-100 dark:border-[#111]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-3">
 
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-5 group">
+            <Link href="/" className="inline-flex items-center gap-2.5 mb-3 group">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow-btn-green group-hover:shadow-btn-green-lg transition-all duration-300">
                 <Building2 className="w-5 h-5 text-white" />
               </div>
@@ -68,10 +68,10 @@ export default function Footer() {
                 </span>
               </div>
             </Link>
-            <p className="text-sm text-gray-500 dark:text-gray-500 leading-relaxed mb-5 max-w-xs">
+            <p className="text-sm text-gray-500 dark:text-gray-500 leading-relaxed mb-3 max-w-xs">
               {appConfig.site.defaultDescription}
             </p>
-            <div className="space-y-2.5">
+            <div className="space-y-1.5">
               {contactDetails.map(({ icon: Icon, text }, i) => (
                 <div key={i} className="flex items-center gap-2.5 text-xs text-gray-500 dark:text-gray-500">
                   <div className="w-6 h-6 rounded-lg bg-green-100 dark:bg-green-500/10 flex items-center justify-center flex-shrink-0">
@@ -86,11 +86,11 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
-              <h4 className="text-gray-900 dark:text-white font-bold text-sm mb-4 flex items-center gap-2">
+              <h4 className="text-gray-900 dark:text-white font-bold text-sm mb-2 flex items-center gap-2">
                 <span className="w-4 h-0.5 bg-green-500 rounded-full" />
                 {heading}
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-1.5">
                 {links.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -108,7 +108,7 @@ export default function Footer() {
         </div>
 
         {/* Review CTA strip */}
-        <div className="py-4 border-t border-green-100 dark:border-[#111] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="py-2 border-t border-green-100 dark:border-[#111] flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-3">
             <div className="flex gap-0.5">
               {[1,2,3,4,5].map((s) => <Star key={s} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />)}
@@ -127,7 +127,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-5 border-t border-green-100 dark:border-[#111] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="pt-2 border-t border-green-100 dark:border-[#111] flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-gray-400 dark:text-gray-600">
             © {new Date().getFullYear()} {appConfig.site.name}. All rights reserved.
           </p>

@@ -23,14 +23,14 @@ export default function AwardsSection() {
   if (!isLoading && awards.length === 0) return null;
 
   return (
-    <section className="section bg-green-50 dark:bg-[#0d0d0d]">
+    <section className="py-3 md:py-5 bg-gradient-to-br from-green-100 via-green-100 to-emerald-100 dark:from-[#0d2210] dark:via-[#0f1f0f] dark:to-[#111]">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-6"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-50 dark:bg-yellow-500/8 border border-yellow-200 dark:border-yellow-500/15 mb-4">
             <Trophy className="w-3.5 h-3.5 text-yellow-600 dark:text-yellow-500" />

@@ -77,7 +77,7 @@ export default function Navbar() {
     ? isDark
       ? 'py-2 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 shadow-2xl'
       : 'py-2 bg-white border-b border-green-100 shadow-navbar'
-    : 'py-4 bg-transparent'; // only used on home page before scroll
+    : 'py-4 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-none'; // transparent with legibility gradient
 
   const logoTextClass = isLightSolid ? 'text-gray-900' : 'text-white';
 
@@ -89,7 +89,7 @@ export default function Navbar() {
           : 'text-green-400 bg-green-500/10'
         : isLightSolid
           ? 'text-gray-700 hover:text-green-600 hover:bg-green-50'
-          : 'text-gray-300 hover:text-white hover:bg-white/5'
+          : 'text-white hover:text-green-300 hover:bg-white/10'
     }`;
 
   const getDropdownBtnClass = (active: boolean) =>
@@ -100,7 +100,7 @@ export default function Navbar() {
           : 'text-green-400 bg-green-500/10'
         : isLightSolid
           ? 'text-gray-700 hover:text-green-600 hover:bg-green-50'
-          : 'text-gray-300 hover:text-white hover:bg-white/5'
+          : 'text-white hover:text-green-300 hover:bg-white/10'
     }`;
 
   const dropdownMenuClass = isLightSolid
@@ -138,7 +138,7 @@ export default function Navbar() {
 
   const mobileToggleClass = isLightSolid
     ? 'text-gray-700 hover:text-green-600 hover:bg-green-100'
-    : 'text-gray-300 hover:text-white hover:bg-white/10';
+    : 'text-white hover:text-green-300 hover:bg-white/10';
 
   return (
     <>

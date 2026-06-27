@@ -278,21 +278,63 @@ export default function CreateProjectPage() {
 
         {/* Media */}
         <Section title="Media">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-4">
+            {/* Hero Images */}
             <div>
-              <p className="text-xs text-gray-400 mb-2">Hero Images</p>
-              <label className="flex flex-col items-center justify-center gap-2 h-28 rounded-xl border-2 border-dashed border-gray-300 dark:border-[#1f1f1f] hover:border-green-500/40 cursor-pointer transition-all">
-                <Upload className="w-5 h-5 text-gray-400" />
+              <p className="text-xs text-gray-400 font-medium mb-2">
+                Hero Images
+                <span className="ml-1 text-gray-300 dark:text-gray-600">(first 2 shown to all visitors, rest gated)</span>
+              </p>
+              <label className="flex flex-col items-center justify-center gap-2 h-20 rounded-xl border-2 border-dashed border-gray-300 dark:border-[#1f1f1f] hover:border-green-500/40 cursor-pointer transition-all">
+                <Upload className="w-4 h-4 text-gray-400" />
                 <span className="text-xs text-gray-400">
-                  {heroImages.length ? `${heroImages.length} file(s) selected` : 'Click to upload'}
+                  {heroImages.length ? `+ Add more images (${heroImages.length} selected)` : 'Click to select images'}
                 </span>
-                <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => setHeroImages(Array.from(e.target.files ?? []))} />
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const incoming = Array.from(e.target.files ?? []);
+                    setHeroImages((prev) => [...prev, ...incoming]);
+                    // reset so same files can be re-added if needed
+                    e.target.value = '';
+                  }}
+                />
               </label>
+
+              {/* Preview grid */}
+              {heroImages.length > 0 && (
+                <div className="mt-3 grid grid-cols-3 sm:grid-cols-5 gap-2">
+                  {heroImages.map((file, i) => {
+                    const url = URL.createObjectURL(file);
+                    return (
+                      <div key={i} className="relative group aspect-square rounded-lg overflow-hidden bg-gray-100 dark:bg-[#1a1a1a]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={url} alt={`preview-${i}`} className="w-full h-full object-cover" onLoad={() => URL.revokeObjectURL(url)} />
+                        {i === 0 && (
+                          <span className="absolute bottom-0 left-0 right-0 text-center text-[9px] bg-green-600/80 text-white py-0.5">Cover</span>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => setHeroImages((prev) => prev.filter((_, idx) => idx !== i))}
+                          className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 w-5 h-5 rounded-full bg-red-500 flex items-center justify-center text-white transition-opacity"
+                        >
+                          <X className="w-2.5 h-2.5" />
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
+
+            {/* Brochure */}
             <div>
-              <p className="text-xs text-gray-400 mb-2">Brochure (PDF)</p>
-              <label className="flex flex-col items-center justify-center gap-2 h-28 rounded-xl border-2 border-dashed border-gray-300 dark:border-[#1f1f1f] hover:border-green-500/40 cursor-pointer transition-all">
-                <Upload className="w-5 h-5 text-gray-400" />
+              <p className="text-xs text-gray-400 font-medium mb-2">Brochure (PDF)</p>
+              <label className="flex flex-col items-center justify-center gap-2 h-20 rounded-xl border-2 border-dashed border-gray-300 dark:border-[#1f1f1f] hover:border-green-500/40 cursor-pointer transition-all">
+                <Upload className="w-4 h-4 text-gray-400" />
                 <span className="text-xs text-gray-400">
                   {brochure ? brochure.name : 'Click to upload PDF'}
                 </span>
