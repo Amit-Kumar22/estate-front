@@ -11,6 +11,7 @@ export { projectService }   from './project.service';
 export { leadService }      from './lead.service';
 export { galleryService }   from './gallery.service';
 export { awardService }     from './award.service';
+export { publicReviewService } from './publicReview.service';
 export { dashboardService } from './dashboard.service';
 export { settingsService }  from './settings.service';
 export { whyChooseUsService } from './whyChooseUs.service';

@@ -80,4 +80,12 @@ export const queryKeys = {
     admin:  () => [...queryKeys.familyLegacy.all(), 'admin'] as const,
     detail: (id: string) => [...queryKeys.familyLegacy.all(), 'detail', id] as const,
   },
+
+  // ─── Public Reviews ───────────────────────────────────────────────────────
+  publicReviews: {
+    all:    () => ['publicReviews'] as const,
+    public: () => [...queryKeys.publicReviews.all(), 'public'] as const,
+    admin:  () => [...queryKeys.publicReviews.all(), 'admin'] as const,
+    detail: (id: string) => [...queryKeys.publicReviews.all(), 'detail', id] as const,
+  },
 } as const;

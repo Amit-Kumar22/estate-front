@@ -15,6 +15,7 @@ import Footer from '@/components/layout/Footer';
 import MapSectionWrapper from '@/components/home/MapSectionWrapper';
 import { settingsApi } from '@/lib/api';
 import TestimonialsSection from '@/components/home/TestimonialSection';
+import PublicReviewSection from '@/components/home/PublicReviewSection';
 
 async function getSettings(): Promise<Record<string, string> | null> {
   try {
@@ -63,6 +64,7 @@ export default async function HomePage() {
 
   <FeaturedProjects />
   <TestimonialsSection />
+  <PublicReviewSection />
 
   <JourneyTimelineSection />
 

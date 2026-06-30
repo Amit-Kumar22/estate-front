@@ -89,6 +89,18 @@ export interface Award {
   createdAt: string;
 }
 
+// ─── Public Review Types ──────────────────────────────────────────────────────
+export interface PublicReview {
+  _id: string;
+  name: string;
+  quote: string;
+  thumbnail: string;
+  videoUrl: string;
+  order: number;
+  isActive: boolean;
+  createdAt: string;
+}
+
 // ─── Why Choose Us Types ──────────────────────────────────────────────────────
 export interface WhyChooseUs {
   _id: string;
