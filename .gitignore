@@ -34,3 +34,8 @@ Thumbs.db
 # PWA files
 public/sw.js
 public/workbox-*.js
+
+# Large video files
+public/videos/*.mp4
+public/videos/*.webm
+public/videos/*.mov
