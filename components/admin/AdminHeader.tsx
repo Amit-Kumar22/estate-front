@@ -15,7 +15,7 @@ const pageMeta: Record<string, { title: string; subtitle: string }> = {
   '/admin/awards':     { title: 'Awards',      subtitle: 'Showcase company awards and accolades' },
   '/admin/leads':      { title: 'Leads',       subtitle: 'Track and manage enquiries from visitors' },
   '/admin/users':      { title: 'Admin Users', subtitle: 'Manage admin accounts and permissions' },
-  '/admin/settings':   { title: 'Settings',    subtitle: 'Configure company details and preferences' },
+  '/admin/settings':   { title: 'Setting',    subtitle: 'Configure company details and preferences' },
 };
 
 export default function AdminHeader() {
