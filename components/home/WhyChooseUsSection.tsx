@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { whyChooseUsService } from '@/lib/api';
 import { WhyChooseUs } from '@/types';
@@ -10,6 +10,13 @@ import Image from 'next/image';
 import { Sparkles, Loader2, AlertCircle } from 'lucide-react';
 
 export default function WhyChooseUsSection() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Only fetch data after component is mounted on the client
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const { data, isLoading, error, isError } = useQuery({
     queryKey: queryKeys.whyChooseUs.public(),
     queryFn: async () => {
@@ -23,6 +30,7 @@ export default function WhyChooseUsSection() {
         throw err;
       }
     },
+    enabled: isMounted, // Only run query after component is mounted
   });
 
   const items = data ?? [];
