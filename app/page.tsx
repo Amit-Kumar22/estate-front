@@ -7,6 +7,7 @@ import WelcomeSection from '@/components/home/WelcomeSection';
 import VisionMissionSection from '@/components/home/VisionMissionSection';
 import WhyChooseUsSection from '@/components/home/WhyChooseUsSection';
 import BlogSection from '@/components/home/BlogSection';
+import FAQSection from '@/components/home/FAQSection';
 import AwardsSection from '@/components/home/AwardsSection';
 import JourneyTimelineSection from '@/components/home/JourneyTimelineSection';
 import FamilyLegacySection from '@/components/home/FamilyLegacySection';
@@ -75,6 +76,8 @@ export default async function HomePage() {
   <WhyChooseUsSection />
 
   <BlogSection />
+
+  <FAQSection />
 
   <MapSectionWrapper />
 

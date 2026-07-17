@@ -1,82 +1,99 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
 
 const milestones = [
     {
-        year: '2011',
-        title: 'Company Founded',
-        desc: 'The foundation of our journey.',
+        year: '2013',
+        title: 'The Beginning',
+        desc: 'Vision to build quality developments.',
         highlighted: true,
+        details: {
+            heading: 'The Beginning',
+            description: 'RD ECO Developers Pvt. Ltd. was established with a vision to build quality residential and commercial developments while maintaining the highest standards of professionalism and transparency.',
+            projects: []
+        }
     },
     {
-        year: '2016',
-        title: '100+ Projects Completed',
-        desc: 'Delivering quality and building trust.',
+        year: '2014-2015',
+        title: 'Building Foundation',
+        desc: 'First residential projects launched.',
         highlighted: false,
+        details: {
+            heading: 'Building Our Foundation',
+            description: 'The company began developing its first residential projects, focusing on quality construction, customer trust, and timely delivery.',
+            projects: ['Ram Swaroop Apartment', 'RD Heights']
+        }
     },
     {
-        year: '2017',
-        title: 'New Manufacturing Unit',
-        desc: 'Expanding our capabilities.',
+        year: '2016-2018',
+        title: 'Expanding Presence',
+        desc: 'Portfolio expansion & commercial entry.',
         highlighted: false,
+        details: {
+            heading: 'Expanding Our Presence',
+            description: 'As customer confidence grew, RD ECO Developers expanded its portfolio with larger residential developments and entered the commercial real estate segment.',
+            projects: ['SR Chetna Kutir (Commercial)', 'Chetna Residency', 'Devadhari Pratap Commercial Complex']
+        }
     },
     {
-        year: '2020',
-        title: 'ISO 9001:2015 Certified',
-        desc: 'Commitment to certified quality.',
+        year: '2019-2022',
+        title: 'Premium Living',
+        desc: 'Modern amenities & superior quality.',
         highlighted: false,
+        details: {
+            heading: 'Creating Premium Living Spaces',
+            description: 'With years of experience and customer trust, the company launched premium developments offering modern amenities, superior construction quality, and prime locations.',
+            projects: ['AM Pinnacle', 'Premium Residential Developments', 'Lifestyle-Oriented Housing Projects']
+        }
     },
     {
-        year: '2024',
-        title: 'AI & Automation Division',
-        desc: 'Innovation driving the future.',
+        year: '2023-Present',
+        title: 'Building Future',
+        desc: 'Shaping Bihar\'s modern skyline.',
         highlighted: false,
-    },
-    {
-        year: '2025',
-        title: 'Global Expansion Initiated',
-        desc: 'Taking our vision worldwide.',
-        highlighted: false,
+        details: {
+            heading: 'Building the Future',
+            description: 'RD ECO Developers continues to shape Bihar\'s skyline with modern residential communities and commercial developments designed for future generations.',
+            projects: ['Sushila Complex', 'AM Pinnacle', 'RD Heights', 'Chetna Residency', 'Ram Swaroop Apartment', 'Devadhari Pratap Commercial Complex']
+        }
     },
 ];
 
 /* ── Milestone icon SVGs (blue / gold) ─────────────────────────── */
 const MilestoneIcons = [
-    /* 2011 – flag / founding */
+    /* 2013 – flag / founding */
     <svg key="flag" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
         <path d="M6 4v24M6 4l14 5-14 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>,
-    /* 2016 – checkmark badge */
-    <svg key="check" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
-        <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="2" />
-        <path d="M10 16l4 4 8-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    /* 2014-2015 – building */
+    <svg key="building" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
+        <rect x="6" y="8" width="20" height="20" rx="1" stroke="currentColor" strokeWidth="2" />
+        <path d="M12 8v20M20 8v20M6 14h20M6 20h20" stroke="currentColor" strokeWidth="2" />
     </svg>,
-    /* 2017 – factory */
-    <svg key="factory" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
+    /* 2016-2018 – expansion */
+    <svg key="expand" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
         <rect x="4" y="14" width="24" height="13" rx="1" stroke="currentColor" strokeWidth="2" />
         <path d="M4 14l8-7 8 7M16 14l8-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <rect x="13" y="20" width="6" height="7" rx="1" stroke="currentColor" strokeWidth="1.5" />
     </svg>,
-    /* 2020 – shield */
-    <svg key="shield" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
-        <path d="M16 4L6 8v8c0 5.5 4.4 10.7 10 12 5.6-1.3 10-6.5 10-12V8L16 4z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M11 16l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    /* 2019-2022 – premium */
+    <svg key="premium" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
+        <path d="M16 4l4 8 8 1-6 6 1 8-7-4-7 4 1-8-6-6 8-1z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
     </svg>,
-    /* 2024 – chip / AI */
-    <svg key="chip" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
-        <rect x="9" y="9" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
-        <path d="M13 4v5M19 4v5M13 23v5M19 23v5M4 13h5M4 19h5M23 13h5M23 19h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <rect x="13" y="13" width="6" height="6" rx="1" fill="currentColor" opacity=".4" />
-    </svg>,
-    /* 2025 – globe */
-    <svg key="globe" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
+    /* 2023-Present – future */
+    <svg key="future" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
+        <path d="M16 4v8m0 8v8m8-12h-8m-8 0h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="2" />
-        <path d="M5 16h22M16 5c-3 3-5 6.5-5 11s2 8 5 11M16 5c3 3 5 6.5 5 11s-2 8-5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M16 4l3 3-3 3m0 4l3 3-3 3m0-16l-3 3 3 3m0 4l-3 3 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>,
 ];
 
 export default function JourneyTimelineSection() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [timelineModalOpen, setTimelineModalOpen] = useState(false);
+    const [selectedMilestone, setSelectedMilestone] = useState<typeof milestones[0] | null>(null);
     const lineRef = useRef<HTMLDivElement>(null);
     const nodesRef = useRef<(HTMLDivElement | null)[]>([]);
     const cardRef = useRef<HTMLDivElement>(null);
@@ -224,7 +241,7 @@ export default function JourneyTimelineSection() {
                                     className="inline-block text-xs font-bold tracking-[3px] uppercase mb-1"
                                     style={{ color: '#F5C542' }}
                                 >
-                                    OUR STORY
+                                    OUR JOURNEY
                                 </span>
                                 <h2 className="text-white font-bold text-xl md:text-2xl leading-tight mb-2">
                                     We Started Our&nbsp;Journey
@@ -233,14 +250,10 @@ export default function JourneyTimelineSection() {
                                     className="text-xs leading-5 mb-3"
                                     style={{ color: 'rgba(255,255,255,0.78)' }}
                                 >
-                                    RD Heights Pvt. Ltd. began its journey with a vision to redefine
-                                    modern living through premium residential and commercial
-                                    developments. Over the years, we have built a strong reputation
-                                    for quality, innovation, and customer trust — delivering landmark
-                                    projects that shape communities.
+                                    Every successful journey begins with a vision. For RD ECO Developers Pvt. Ltd., that vision started in 2013 with a commitment to redefine urban living by delivering quality homes, commercial spaces, and lifestyle-driven communities across Bihar.
                                 </p>
-                                <a
-                                    href="#"
+                                <button
+                                    onClick={() => setIsModalOpen(true)}
                                     className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-300"
                                     style={{
                                         border: '1.5px solid #F5C542',
@@ -256,8 +269,8 @@ export default function JourneyTimelineSection() {
                                         (e.currentTarget as HTMLElement).style.color = '#F5C542';
                                     }}
                                 >
-                                    Know More <span>→</span>
-                                </a>
+                                    Learn More <span>→</span>
+                                </button>
                             </div>
 
                             {/* Right – gold line-art growth icon */}
@@ -341,7 +354,7 @@ export default function JourneyTimelineSection() {
                                 </div>
 
                                 {/* Nodes */}
-                                <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-3 gap-y-6 lg:gap-y-3">
+                                <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-3 gap-y-6 lg:gap-y-3">
                                     {milestones.map((m, i) => (
                                         <div
                                             key={m.year}
@@ -387,11 +400,33 @@ export default function JourneyTimelineSection() {
 
                                             {/* Description */}
                                             <span
-                                                className="text-center leading-snug"
+                                                className="text-center leading-snug mb-1"
                                                 style={{ fontSize: '9px', color: 'rgba(255,255,255,0.5)' }}
                                             >
                                                 {m.desc}
                                             </span>
+
+                                            {/* Read More Button */}
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedMilestone(m);
+                                                    setTimelineModalOpen(true);
+                                                }}
+                                                className="text-[8px] font-semibold transition-all duration-300 px-2 py-0.5 rounded-full"
+                                                style={{
+                                                    color: '#2D6BFF',
+                                                    background: 'rgba(45, 107, 255, 0.1)',
+                                                    border: '1px solid rgba(45, 107, 255, 0.3)',
+                                                }}
+                                                onMouseEnter={e => {
+                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(45, 107, 255, 0.2)';
+                                                }}
+                                                onMouseLeave={e => {
+                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(45, 107, 255, 0.1)';
+                                                }}
+                                            >
+                                                Read More
+                                            </button>
                                         </div>
                                     ))}
                                 </div>
@@ -400,6 +435,203 @@ export default function JourneyTimelineSection() {
                     </div>
 
                 </div>
+
+                {/* Journey Story Modal */}
+                <AnimatePresence>
+                    {isModalOpen && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                            {/* Backdrop with blur */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+                                onClick={() => setIsModalOpen(false)}
+                            />
+
+                            {/* Modal Content */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                transition={{ duration: 0.2 }}
+                                className="relative w-full max-w-3xl max-h-[85vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
+                            >
+                                {/* Header */}
+                                <div className="sticky top-0 z-10 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-700 dark:to-emerald-800 px-6 py-4 flex items-center justify-between">
+                                    <div>
+                                        <span className="block text-xs font-semibold text-emerald-100 uppercase tracking-wider mb-1">
+                                            OUR JOURNEY
+                                        </span>
+                                        <h3 className="text-xl font-bold text-white">
+                                            Building Trust. Creating Landmarks. Shaping Bihar's Future.
+                                        </h3>
+                                    </div>
+                                    <button
+                                        onClick={() => setIsModalOpen(false)}
+                                        className="ml-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors flex-shrink-0"
+                                        aria-label="Close modal"
+                                    >
+                                        <X className="w-5 h-5" />
+                                    </button>
+                                </div>
+
+                                {/* Content */}
+                                <div className="overflow-y-auto px-6 py-6 space-y-5" style={{ maxHeight: 'calc(85vh - 88px)' }}>
+                                    {/* Introduction */}
+                                    <div>
+                                        <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                            Every successful journey begins with a vision. For RD ECO Developers Pvt. Ltd., that vision started in <span className="font-semibold text-emerald-700 dark:text-emerald-400">2013</span> with a commitment to redefine urban living by delivering quality homes, commercial spaces, and lifestyle-driven communities across Bihar.
+                                        </p>
+                                    </div>
+
+                                    {/* Growth Story */}
+                                    <div>
+                                        <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                                            <div className="w-1 h-6 bg-emerald-600 rounded-full" />
+                                            From Dream to Reality
+                                        </h4>
+                                        <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                            What began as a dream has grown into a <span className="font-semibold text-emerald-700 dark:text-emerald-400">trusted real estate brand</span> known for quality construction, transparency, timely delivery, and customer satisfaction. Every project we develop reflects our dedication to excellence, innovation, and long-term value.
+                                        </p>
+                                    </div>
+
+                                    {/* Expansion */}
+                                    <div>
+                                        <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                                            <div className="w-1 h-6 bg-emerald-600 rounded-full" />
+                                            Continuous Growth & Impact
+                                        </h4>
+                                        <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                            Over the years, we have continuously expanded our footprint, successfully delivering residential and commercial developments that have transformed the lives of <span className="font-semibold text-emerald-700 dark:text-emerald-400">thousands of families</span>. From affordable homes to premium apartments and commercial landmarks, our journey is built on trust, integrity, and an unwavering commitment to quality.
+                                        </p>
+                                    </div>
+
+                                    {/* Present & Future */}
+                                    <div className="bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/20 dark:to-gray-800 rounded-xl p-5 border border-emerald-200 dark:border-emerald-500/20">
+                                        <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                                            <div className="w-1 h-6 bg-emerald-600 rounded-full" />
+                                            Today & Tomorrow
+                                        </h4>
+                                        <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                            Today, RD ECO Developers proudly stands among Bihar's growing real estate leaders, dedicated to creating sustainable, modern developments that enhance the quality of life for our residents while contributing to the region's urban transformation.
+                                        </p>
+                                    </div>
+
+                                    {/* Core Pillars */}
+                                    <div>
+                                        <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Our Journey is Built On:</h4>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                            <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                                                <div className="w-2 h-2 rounded-full bg-emerald-600 mt-2 flex-shrink-0" />
+                                                <div>
+                                                    <h5 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Trust & Transparency</h5>
+                                                    <p className="text-xs text-gray-600 dark:text-gray-400">Honest dealings and clear communication</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                                                <div className="w-2 h-2 rounded-full bg-emerald-600 mt-2 flex-shrink-0" />
+                                                <div>
+                                                    <h5 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Quality Construction</h5>
+                                                    <p className="text-xs text-gray-600 dark:text-gray-400">Superior materials and craftsmanship</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                                                <div className="w-2 h-2 rounded-full bg-emerald-600 mt-2 flex-shrink-0" />
+                                                <div>
+                                                    <h5 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Timely Delivery</h5>
+                                                    <p className="text-xs text-gray-600 dark:text-gray-400">Projects completed on schedule</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                                                <div className="w-2 h-2 rounded-full bg-emerald-600 mt-2 flex-shrink-0" />
+                                                <div>
+                                                    <h5 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Customer Satisfaction</h5>
+                                                    <p className="text-xs text-gray-600 dark:text-gray-400">Dedicated support and after-sales service</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    )}
+                </AnimatePresence>
+
+                {/* Timeline Details Modal - Compact Blue Popup */}
+                <AnimatePresence>
+                    {timelineModalOpen && selectedMilestone && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                            {/* Backdrop with blur */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+                                onClick={() => setTimelineModalOpen(false)}
+                            />
+
+                            {/* Compact Modal Card */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.2 }}
+                                className="relative w-full max-w-md max-h-[70vh] rounded-xl shadow-2xl overflow-hidden"
+                                style={{
+                                    background: 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)',
+                                }}
+                            >
+                                {/* Header */}
+                                <div className="px-4 py-3 flex items-center justify-between border-b border-white/10">
+                                    <div>
+                                        <span className="block text-xs font-semibold text-blue-200 uppercase tracking-wider">
+                                            {selectedMilestone.year}
+                                        </span>
+                                        <h3 className="text-base font-bold text-white">
+                                            {selectedMilestone.details.heading}
+                                        </h3>
+                                    </div>
+                                    <button
+                                        onClick={() => setTimelineModalOpen(false)}
+                                        className="w-7 h-7 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0"
+                                        aria-label="Close"
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </button>
+                                </div>
+
+                                {/* Content */}
+                                <div className="overflow-y-auto px-4 py-4 space-y-3" style={{ maxHeight: 'calc(70vh - 70px)' }}>
+                                    {/* Description */}
+                                    <p className="text-xs leading-relaxed text-white/90">
+                                        {selectedMilestone.details.description}
+                                    </p>
+
+                                    {/* Projects List */}
+                                    {selectedMilestone.details.projects.length > 0 && (
+                                        <div>
+                                            <h4 className="text-sm font-bold text-white mb-2">Key Projects:</h4>
+                                            <div className="space-y-1.5">
+                                                {selectedMilestone.details.projects.map((project, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className="flex items-start gap-2 px-2.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-sm"
+                                                    >
+                                                        <div className="w-1 h-1 rounded-full bg-yellow-400 mt-1.5 flex-shrink-0" />
+                                                        <span className="text-xs text-white/90">{project}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </motion.div>
+                        </div>
+                    )}
+                </AnimatePresence>
             </section>
         </>
     );
