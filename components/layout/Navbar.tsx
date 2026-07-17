@@ -153,10 +153,10 @@ export default function Navbar() {
               </div>
               <div className="flex items-baseline leading-none select-none">
                 <span className={`font-display font-bold text-xl tracking-tight transition-colors duration-300 group-hover:text-green-500 ${logoTextClass}`}>
-                  RD
+                  RD Eco
                 </span>
                 <span className={`font-display font-medium text-xl tracking-tight ml-1.5 transition-colors duration-300 group-hover:text-green-400 ${isLightSolid ? 'text-gray-500' : 'text-gray-300'}`}>
-                  Heights
+                  Developers
                 </span>
               </div>
             </Link>

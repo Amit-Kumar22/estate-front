@@ -127,7 +127,7 @@ export default function Hero({
           >
             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
             <span className="text-green-400 text-xs font-semibold tracking-wider uppercase">
-              Premium RD Heights Pvt Ltd. 
+              Premium RD Eco Developers Pvt. Ltd.
             </span>
           </motion.div> */}
 

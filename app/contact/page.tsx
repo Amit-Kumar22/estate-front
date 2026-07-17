@@ -25,9 +25,19 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const contactDetails = [
-  { icon: Phone, label: 'Phone', value: appConfig.site.phone, href: `tel:${appConfig.site.phone}` },
+  {
+    icon: Phone,
+    label: 'Phone',
+    value: `${appConfig.site.phone}\n${appConfig.site.phone2}`,
+    href: `tel:${appConfig.site.phone}`,
+  },
   { icon: Mail, label: 'Email', value: appConfig.site.email, href: `mailto:${appConfig.site.email}` },
-  { icon: MapPin, label: 'Address', value: appConfig.site.address, href: '#map' },
+  {
+    icon: MapPin,
+    label: 'Corporate Office',
+    value: appConfig.site.address,
+    href: '#map',
+  },
 ];
 
 export default function ContactPage() {
@@ -94,7 +104,7 @@ export default function ContactPage() {
                   <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-0.5">
                     {label}
                   </p>
-                  <p className="text-sm font-medium text-gray-800 dark:text-gray-200">{value}</p>
+                  <p className="text-sm font-medium text-gray-800 dark:text-gray-200 whitespace-pre-line">{value}</p>
                 </div>
               </motion.a>
             ))}

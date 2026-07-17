@@ -23,16 +23,17 @@ const appConfig = {
   // ─── Site (all values read from env; fallback used if env not set) ─────────
   site: {
     url:                process.env.NEXT_PUBLIC_SITE_URL   ?? 'http://localhost:3000',
-    name:               process.env.NEXT_PUBLIC_SITE_NAME  ?? 'Real Estate',
+    name:               process.env.NEXT_PUBLIC_SITE_NAME  ?? 'RD Eco Developers',
     tagline:            process.env.NEXT_PUBLIC_SITE_TAGLINE  ?? 'Premium Properties',
-    defaultTitle:       process.env.NEXT_PUBLIC_SITE_TITLE    ?? 'Premium Real Estate',
-    defaultDescription: process.env.NEXT_PUBLIC_SITE_DESC     ?? 'Explore premium residential projects.',
+    defaultTitle:       process.env.NEXT_PUBLIC_SITE_TITLE    ?? 'RD Eco Developers – Premium Real Estate',
+    defaultDescription: process.env.NEXT_PUBLIC_SITE_DESC     ?? 'Explore premium residential projects by RD Eco Developers Pvt. Ltd.',
     locale:   'en_IN',
     currency: 'INR',
     /** Contact details — editable via Admin → Settings in the database */
-    phone:   process.env.NEXT_PUBLIC_SITE_PHONE   ?? '',
-    email:   process.env.NEXT_PUBLIC_SITE_EMAIL   ?? '',
-    address: process.env.NEXT_PUBLIC_SITE_ADDRESS ?? '',
+    phone:   process.env.NEXT_PUBLIC_SITE_PHONE   ?? '+91 9065576888',
+    phone2:  process.env.NEXT_PUBLIC_SITE_PHONE2  ?? '+91 9264495675',
+    email:   process.env.NEXT_PUBLIC_SITE_EMAIL   ?? 'rdecodevelopers@gmail.com',
+    address: process.env.NEXT_PUBLIC_SITE_ADDRESS ?? 'RD Green Resort 1st-Floor, Opp. Durga Mandir, Patliputra, Patna, Bihar – 800001',
   },
 
   // ─── WhatsApp ──────────────────────────────────────────────────────────────

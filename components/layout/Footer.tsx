@@ -37,9 +37,21 @@ export default function Footer() {
   const [reviewOpen, setReviewOpen] = useState(false);
 
   const contactDetails = [
-    { icon: Phone,  text: appConfig.site.phone },
-    { icon: Mail,   text: appConfig.site.email },
-    { icon: MapPin, text: appConfig.site.address },
+    {
+      icon: MapPin,
+      label: 'Corporate Office',
+      lines: [appConfig.site.address],
+    },
+    {
+      icon: Phone,
+      label: 'Phone',
+      lines: [appConfig.site.phone, appConfig.site.phone2],
+    },
+    {
+      icon: Mail,
+      label: 'Email',
+      lines: [appConfig.site.email],
+    },
   ];
 
   return (
@@ -57,10 +69,10 @@ export default function Footer() {
               <div>
                 <div className="flex items-baseline leading-none select-none">
                   <span className="font-display font-bold text-xl tracking-tight text-gray-900 dark:text-white transition-colors duration-300 group-hover:text-green-500">
-                    RD
+                    RD Eco
                   </span>
                   <span className="font-display font-medium text-xl tracking-tight ml-1.5 text-gray-500 dark:text-gray-300 transition-colors duration-300 group-hover:text-green-400">
-                    Heights
+                    Developers
                   </span>
                 </div>
                 <span className="block text-green-600 dark:text-green-400 text-[9px] font-semibold tracking-[0.2em] uppercase leading-none mt-0.5">
@@ -71,13 +83,18 @@ export default function Footer() {
             <p className="text-sm text-gray-500 dark:text-gray-500 leading-relaxed mb-3 max-w-xs">
               {appConfig.site.defaultDescription}
             </p>
-            <div className="space-y-1.5">
-              {contactDetails.map(({ icon: Icon, text }, i) => (
-                <div key={i} className="flex items-center gap-2.5 text-xs text-gray-500 dark:text-gray-500">
-                  <div className="w-6 h-6 rounded-lg bg-green-100 dark:bg-green-500/10 flex items-center justify-center flex-shrink-0">
+            <div className="space-y-2.5">
+              {contactDetails.map(({ icon: Icon, label, lines }, i) => (
+                <div key={i} className="flex items-start gap-2.5 text-xs text-gray-500 dark:text-gray-500">
+                  <div className="w-6 h-6 rounded-lg bg-green-100 dark:bg-green-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Icon className="w-3 h-3 text-green-600 dark:text-green-500" />
                   </div>
-                  <span>{text}</span>
+                  <div>
+                    <span className="block text-[10px] font-semibold text-green-600 dark:text-green-500 uppercase tracking-wide mb-0.5">{label}</span>
+                    {lines.map((line, j) => (
+                      <span key={j} className="block leading-snug">{line}</span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
