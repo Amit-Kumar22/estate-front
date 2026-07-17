@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ChevronRight, Home, Shield, Award, TrendingUp } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, Home, Shield, Award, TrendingUp, X } from 'lucide-react';
 import Link from 'next/link';
 
 export default function WelcomeSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section className="py-10 md:py-14 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,22 +44,23 @@ export default function WelcomeSection() {
               className="space-y-4"
             >
               <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                We are committed to helping individuals and families discover exceptional residential 
-                and commercial properties in prime locations. With a focus on <span className="font-semibold text-emerald-600 dark:text-emerald-400">transparency</span>, 
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400"> trust</span>, and <span className="font-semibold text-emerald-600 dark:text-emerald-400">customer satisfaction</span>, 
-                we make the property-buying experience simple and stress-free.
-              </p>
-              
-              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                Whether you're looking for your dream home, a profitable investment opportunity, or 
-                commercial space for your business, our expert team is here to guide you every step 
-                of the way. We combine local market expertise with innovative technology to deliver 
-                unparalleled service and results.
+                RD ECO Developers Pvt. Ltd. is a professionally managed real estate company headquartered in Patna, Bihar. We develop premium residential apartments, integrated townships, commercial complexes, and mixed-use developments that redefine modern living.
               </p>
 
-              {/* CTA Button */}
-              <div className="pt-2">
-                <Link 
+              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                Our approach goes beyond constructing buildings. We create environments where people experience comfort, security, and a superior lifestyle with contemporary architecture and world-class amenities.
+              </p>
+
+              {/* Buttons */}
+              <div className="flex flex-wrap gap-3 pt-2">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white text-sm font-semibold rounded-lg transition-all duration-300 border border-gray-300 dark:border-gray-600"
+                >
+                  Read More
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+                <Link
                   href="/projects"
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
                 >
@@ -175,6 +177,155 @@ export default function WelcomeSection() {
           </motion.div>
         </div>
       </div>
+
+      {/* About Us Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop with blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+              onClick={() => setIsModalOpen(false)}
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full max-w-3xl max-h-[85vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
+            >
+              {/* Modal Header */}
+              <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-700 dark:to-emerald-800 border-b border-emerald-500/20">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
+                    <Home className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white">
+                    About RD Heights Pvt Ltd.
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors duration-200"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Body with Scroll */}
+              <div className="overflow-y-auto max-h-[calc(85vh-80px)] px-6 py-6">
+                <div className="space-y-5 text-gray-700 dark:text-gray-300">
+                  {/* Introduction */}
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                      Your Trusted Real Estate Partner
+                    </h4>
+                    <p className="text-sm md:text-base leading-relaxed">
+                      RD ECO Developers Pvt. Ltd. is a professionally managed real estate company headquartered in Patna, Bihar. Since its inception, the company has been engaged in developing premium residential apartments, integrated townships, commercial complexes, and mixed-use developments that redefine modern living.
+                    </p>
+                  </div>
+
+                  {/* Vision & Approach */}
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                      Our Vision & Approach
+                    </h4>
+                    <p className="text-sm md:text-base leading-relaxed mb-3">
+                      Our approach goes beyond constructing buildings. We create environments where people experience comfort, security, and a superior lifestyle. Every project is carefully designed with contemporary architecture, intelligent space planning, high-quality materials, landscaped open spaces, and world-class amenities that enhance everyday living.
+                    </p>
+                    <p className="text-sm md:text-base leading-relaxed">
+                      We are committed to delivering projects built on the foundation of{' '}
+                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">transparency</span>,{' '}
+                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">trust</span>, and{' '}
+                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">customer satisfaction</span>.
+                    </p>
+                  </div>
+
+                  {/* Core Values */}
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                      Our Core Values
+                    </h4>
+                    <p className="text-sm md:text-base leading-relaxed">
+                      Transparency, quality, customer satisfaction, and ethical business practices are the pillars of our organization. These values have helped us establish long-lasting relationships with homeowners, investors, financial institutions, and business partners.
+                    </p>
+                  </div>
+
+                  {/* Reputation */}
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                      Trusted Name in Real Estate
+                    </h4>
+                    <p className="text-sm md:text-base leading-relaxed">
+                      With every completed project, RD ECO Developers continues to strengthen its reputation as a trusted name in Bihar's real estate sector. We take pride in delivering homes and commercial spaces that not only meet but exceed expectations.
+                    </p>
+                  </div>
+
+                  {/* Key Highlights */}
+                  <div className="bg-emerald-50 dark:bg-emerald-500/10 rounded-xl p-5 border border-emerald-200 dark:border-emerald-500/20">
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                      Why Choose Us?
+                    </h4>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Shield className="w-3.5 h-3.5 text-white" />
+                        </div>
+                        <span className="text-sm md:text-base">
+                          <strong className="text-gray-900 dark:text-white">Professional Management:</strong> Expert team with years of industry experience
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Award className="w-3.5 h-3.5 text-white" />
+                        </div>
+                        <span className="text-sm md:text-base">
+                          <strong className="text-gray-900 dark:text-white">Award-Winning Projects:</strong> Recognized for excellence and innovation
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Home className="w-3.5 h-3.5 text-white" />
+                        </div>
+                        <span className="text-sm md:text-base">
+                          <strong className="text-gray-900 dark:text-white">Premium Locations:</strong> Strategic locations with excellent connectivity
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <TrendingUp className="w-3.5 h-3.5 text-white" />
+                        </div>
+                        <span className="text-sm md:text-base">
+                          <strong className="text-gray-900 dark:text-white">High Returns:</strong> Properties designed for long-term value appreciation
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Call to Action */}
+                  <div className="pt-2 text-center">
+                    <Link
+                      href="/projects"
+                      onClick={() => setIsModalOpen(false)}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30"
+                    >
+                      Explore Our Projects
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

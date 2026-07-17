@@ -1,10 +1,10 @@
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Hero from '@/components/home/Hero';
-import FeaturedProjects from '@/components/home/FeaturedProjects';
+import CompanyIntroSection from '@/components/home/CompanyIntroSection';
 import GallerySection from '@/components/home/GallerySection';
 import WelcomeSection from '@/components/home/WelcomeSection';
-import FamilyLegacySection from '@/components/home/FamilyLegacySection';
+import VisionMissionSection from '@/components/home/VisionMissionSection';
 import WhyChooseUsSection from '@/components/home/WhyChooseUsSection';
 import BlogSection from '@/components/home/BlogSection';
 import AwardsSection from '@/components/home/AwardsSection';
@@ -14,8 +14,6 @@ import BrochureDownloadButton from '@/components/common/BrochureDownloadButton';
 import Footer from '@/components/layout/Footer';
 import MapSectionWrapper from '@/components/home/MapSectionWrapper';
 import { settingsApi } from '@/lib/api';
-import TestimonialsSection from '@/components/home/TestimonialSection';
-import PublicReviewSection from '@/components/home/PublicReviewSection';
 
 async function getSettings(): Promise<Record<string, string> | null> {
   try {
@@ -58,13 +56,11 @@ export default async function HomePage() {
     stats={buildHeroStats(settings)}
   />
 
+  <CompanyIntroSection />
+
   <WelcomeSection />
 
-  <FamilyLegacySection />
-
-  <FeaturedProjects />
-  <TestimonialsSection />
-  <PublicReviewSection />
+  <VisionMissionSection />
 
   <JourneyTimelineSection />
 
