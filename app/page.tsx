@@ -9,6 +9,8 @@ import WhyChooseUsSection from '@/components/home/WhyChooseUsSection';
 import BlogSection from '@/components/home/BlogSection';
 import AwardsSection from '@/components/home/AwardsSection';
 import JourneyTimelineSection from '@/components/home/JourneyTimelineSection';
+import FamilyLegacySection from '@/components/home/FamilyLegacySection';
+import TeamSection from '@/components/home/TeamSection';
 import WhatsAppButton from '@/components/common/WhatsAppButton';
 import BrochureDownloadButton from '@/components/common/BrochureDownloadButton';
 import Footer from '@/components/layout/Footer';
@@ -63,6 +65,10 @@ export default async function HomePage() {
   <VisionMissionSection />
 
   <JourneyTimelineSection />
+
+  <FamilyLegacySection />
+
+  <TeamSection />
 
   <GallerySection />
 

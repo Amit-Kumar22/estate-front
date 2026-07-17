@@ -16,35 +16,59 @@ import { getImageUrl } from '@/lib/utils/image';
 const FALLBACK_MEMBERS: FamilyMember[] = [
   {
     _id: 'f1', order: 1, isActive: true, createdAt: '', updatedAt: '',
-    image: 'https://randomuser.me/api/portraits/men/61.jpg',
-    name: 'Ram Prasad', designation: 'Founder',
-    description: 'Laid the cornerstone with a vision to build honest, quality homes for every family.',
-    year: '1985',
+    image: '',
+    name: 'Mr. Subodh Kumar Singh', designation: 'Founder & Director',
+    description:
+      'Mr. Subodh Kumar Singh is the visionary Founder & Director of RD ECO Developers Pvt. Ltd. His unwavering dedication, entrepreneurial spirit, and commitment to quality laid the foundation of the company. Under his leadership, the organization has grown into a trusted real estate brand known for integrity, transparency, and customer satisfaction.',
+    year: '2013',
   },
   {
     _id: 'f2', order: 2, isActive: true, createdAt: '', updatedAt: '',
-    image: 'https://randomuser.me/api/portraits/men/46.jpg',
-    name: 'Suresh Kumar', designation: 'Managing Director',
-    description: 'Expanded across regions, bringing modern design and world-class infrastructure.',
-    year: '2000',
+    image: '',
+    name: 'Mrs. Sheelu Devi', designation: 'Founder & Director',
+    description:
+      'Mrs. Sheelu Devi is one of the Founders & Directors of RD ECO Developers Pvt. Ltd. She has been a constant source of inspiration and strength since the company\'s inception. Her values, guidance, and dedication have played a vital role in building a culture of trust, responsibility, and long-term growth.',
+    year: '2013',
   },
-  // {
-  //   _id: 'f3', order: 3, isActive: true, createdAt: '', updatedAt: '',
-  //   image: 'https://randomuser.me/api/portraits/men/32.jpg',
-  //   name: 'Amit Sharma', designation: 'CEO',
-  //   description: 'Pioneered smart homes and sustainable communities for a better tomorrow.',
-  //   year: '2015',
-  // },
-  // {
-  //   _id: 'f4', order: 4, isActive: true, createdAt: '', updatedAt: '',
-  //   image: 'https://randomuser.me/api/portraits/men/22.jpg',
-  //   name: 'Rohan Sharma', designation: 'Next Generation',
-  //   description: 'Driving innovation through technology-first strategies and a global vision.',
-  //   year: '2024',
-  // },
+  {
+    _id: 'f3', order: 3, isActive: true, createdAt: '', updatedAt: '',
+    image: '',
+    name: 'Mr. Pramod Kumar', designation: 'Founder & Managing Director',
+    description:
+      'Mr. Pramod Kumar serves as the Managing Director of RD ECO Developers Pvt. Ltd. and plays a pivotal role in driving the company\'s strategic vision, operational excellence, and sustainable growth. He oversees business operations, project development, financial planning, and organizational management.',
+    year: '2013',
+  },
+  {
+    _id: 'f4', order: 4, isActive: true, createdAt: '', updatedAt: '',
+    image: '',
+    name: 'Mr. Raja Singh', designation: 'Group Chief Executive Officer',
+    description:
+      'Mr. Raja Singh serves as the Group CEO, leading the company\'s strategic direction, business growth, and innovation initiatives. He is focused on strengthening the brand, embracing modern technologies, enhancing customer experiences, and expanding RD ECO Developers into one of the most respected real estate companies in Eastern India.',
+    year: '2013',
+  },
+  {
+    _id: 'f5', order: 5, isActive: true, createdAt: '', updatedAt: '',
+    image: '',
+    name: 'Mr. Prince Kumar Singh', designation: 'Operations Head',
+    description:
+      'Mr. Prince Kumar Singh heads the Operations Department, ensuring the smooth execution of projects and seamless coordination across all business functions. He oversees operational planning, project execution, process optimization, and quality assurance while maintaining the company\'s commitment to timely delivery and operational excellence.',
+    year: '2013',
+  },
+  {
+    _id: 'f6', order: 6, isActive: true, createdAt: '', updatedAt: '',
+    image: '',
+    name: 'Mr. Kuwar Kumar Singh', designation: 'Director',
+    description:
+      'Mr. Kuwar Kumar Singh is committed to strengthening the legacy of RD ECO Developers by embracing innovation, modern thinking, and customer-centric values while preserving the trust and principles established by the founding generation.',
+    year: '2013',
+  },
 ];
 
-const GEN_LABELS = ['Gen 1', 'Gen 2', 'Gen 3', 'Gen 4'];
+// Founding Generation: indices 0-2 | Next Generation: indices 3-5
+const GEN_LABELS = [
+  'Founding Gen', 'Founding Gen', 'Founding Gen',
+  'Next Gen', 'Next Gen', 'Next Gen',
+];
 
 // ─── Statistics ───────────────────────────────────────────────────────────────
 const STATS = [
@@ -132,7 +156,11 @@ function GenerationCard({ member, index }: { member: FamilyMember; index: number
       <div className="group w-full bg-white dark:bg-[#111] rounded-3xl border border-green-100 dark:border-[#1f1f1f] shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-300 p-5 flex flex-col items-center text-center">
 
         {/* Generation badge */}
-        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 text-green-700 dark:text-green-400 text-[10px] font-bold tracking-widest uppercase mb-3">
+        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border text-[10px] font-bold tracking-widest uppercase mb-3 ${
+          index < 3
+            ? 'bg-amber-50 dark:bg-amber-500/10 border-amber-200 dark:border-amber-500/20 text-amber-700 dark:text-amber-400'
+            : 'bg-green-50 dark:bg-green-500/10 border-green-200 dark:border-green-500/20 text-green-700 dark:text-green-400'
+        }`}>
           <Crown className="w-2.5 h-2.5" />
           {GEN_LABELS[index] ?? `Gen ${index + 1}`}
         </span>
@@ -218,36 +246,61 @@ export default function FamilyLegacySection() {
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2">
             Building Trust Across Generations
           </h2>
-          <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            From our founder&apos;s vision to the next generation&apos;s innovation, every milestone has
-            shaped the legacy of RD Heights.
+          <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Every successful journey begins with a strong foundation, and our legacy is built on the values of
+            integrity, hard work, trust, and commitment. The foundation of this legacy was laid by our founding
+            generation, and today the next generation proudly carries this vision forward. At RD ECO Developers,
+            our legacy is not only about constructing buildings — it is about creating homes, building
+            relationships, and delivering lasting value for every family we serve.
+          </p>
+          <p className="mt-3 text-xs font-semibold tracking-wide text-green-700 dark:text-green-400 italic">
+            &ldquo;Built on Trust. Driven by Vision. Carried Forward by Generations.&rdquo;
           </p>
         </motion.div>
 
         {/* ── Timeline + Cards ── */}
         <div className="relative">
 
-          {/* Vertical connector line — mobile single-column */}
-          <div className="lg:hidden absolute left-[9px] top-4 bottom-4 w-px bg-gradient-to-b from-transparent via-green-400 to-transparent dark:via-green-600 z-0" />
-
-          <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
-            {isLoading
-              ? Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="w-full sm:w-[calc(50%-8px)] lg:w-64">
-                    <SkeletonCard />
-                  </div>
-                ))
-              : members.slice(0, 4).map((member, i) => (
-                  <div key={member._id} className="w-full sm:w-[calc(50%-8px)] lg:w-64 flex items-start gap-3 sm:block">
-                    {/* Mobile-only dot */}
-                    <div className="flex-shrink-0 mt-4 sm:hidden">
-                      <div className="w-[18px] h-[18px] rounded-full bg-green-500 border-2 border-white dark:border-black ring-2 ring-green-300 dark:ring-green-700 shadow" />
-                    </div>
-                    <div className="flex-1">
+          {/* Founding Generation */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs font-bold tracking-widest uppercase">
+                <Crown className="w-3 h-3" /> Founding Generation
+              </span>
+              <div className="flex-1 h-px bg-amber-200 dark:bg-amber-700/30" />
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
+              {isLoading
+                ? Array.from({ length: 3 }).map((_, i) => (
+                    <div key={i} className="w-full sm:w-[calc(50%-8px)] lg:w-72"><SkeletonCard /></div>
+                  ))
+                : members.slice(0, 3).map((member, i) => (
+                    <div key={member._id} className="w-full sm:w-[calc(50%-8px)] lg:w-72">
                       <GenerationCard member={member} index={i} />
                     </div>
-                  </div>
-                ))}
+                  ))}
+            </div>
+          </div>
+
+          {/* Next Generation */}
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 text-green-700 dark:text-green-400 text-xs font-bold tracking-widest uppercase">
+                <Crown className="w-3 h-3" /> Next Generation
+              </span>
+              <div className="flex-1 h-px bg-green-200 dark:bg-green-700/30" />
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
+              {isLoading
+                ? Array.from({ length: 3 }).map((_, i) => (
+                    <div key={i} className="w-full sm:w-[calc(50%-8px)] lg:w-72"><SkeletonCard /></div>
+                  ))
+                : members.slice(3, 6).map((member, i) => (
+                    <div key={member._id} className="w-full sm:w-[calc(50%-8px)] lg:w-72">
+                      <GenerationCard member={member} index={i + 3} />
+                    </div>
+                  ))}
+            </div>
           </div>
         </div>
 
