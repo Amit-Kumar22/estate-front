@@ -67,7 +67,7 @@ export default async function HomePage() {
 
   <JourneyTimelineSection />
 
-  <FamilyLegacySection />
+  {/* <FamilyLegacySection /> */}
 
   <TeamSection />
 

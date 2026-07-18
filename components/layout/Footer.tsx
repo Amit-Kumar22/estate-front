@@ -6,24 +6,18 @@ import { Building2, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin,
 import appConfig from '@/config/app.config';
 import ReviewForm from '@/components/home/ReviewForm';
 
-const footerLinks = {
-  Company: [
-    { label: 'About Us', href: '/about' },
-    { label: 'Awards',   href: '/awards' },
-    { label: 'Gallery',  href: '/gallery' },
-    { label: 'Contact',  href: '/contact' },
-  ],
-  Projects: [
-    { label: 'Current Projects',   href: '/projects?status=current' },
-    { label: 'Upcoming Projects',  href: '/projects?status=upcoming' },
-    { label: 'Completed Projects', href: '/projects?status=completed' },
-  ],
-  Legal: [
-    { label: 'Privacy Policy',  href: '/privacy' },
-    { label: 'Terms of Service', href: '/terms' },
-    { label: 'RERA Disclosure', href: '/rera' },
-  ],
-};
+const footerLinks = [
+  { label: 'About Us',           href: '/about' },
+  { label: 'Awards',             href: '/awards' },
+  { label: 'Gallery',            href: '/gallery' },
+  { label: 'Contact',            href: '/contact' },
+  { label: 'Current Projects',   href: '/projects?status=current' },
+  { label: 'Upcoming Projects',  href: '/projects?status=upcoming' },
+  { label: 'Completed Projects', href: '/projects?status=completed' },
+  { label: 'Privacy Policy',     href: '/privacy' },
+  { label: 'Terms of Service',   href: '/terms' },
+  { label: 'RERA Disclosure',    href: '/rera' },
+];
 
 const socialLinks = [
   { icon: Facebook,  href: appConfig.social.facebook  || '#', label: 'Facebook' },
@@ -36,137 +30,104 @@ const socialLinks = [
 export default function Footer() {
   const [reviewOpen, setReviewOpen] = useState(false);
 
-  const contactDetails = [
-    {
-      icon: MapPin,
-      label: 'Corporate Office',
-      lines: [appConfig.site.address],
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      lines: [appConfig.site.phone, appConfig.site.phone2],
-    },
-    {
-      icon: Mail,
-      label: 'Email',
-      lines: [appConfig.site.email],
-    },
-  ];
-
   return (
     <>
-    <footer className="bg-green-50 dark:bg-[#050505] border-t border-green-100 dark:border-[#111]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-3">
+      <footer className="bg-white dark:bg-[#0a0a0a] border-t border-gray-100 dark:border-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-3 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow-btn-green group-hover:shadow-btn-green-lg transition-all duration-300">
-                <Building2 className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <div className="flex items-baseline leading-none select-none">
-                  <span className="font-display font-bold text-xl tracking-tight text-gray-900 dark:text-white transition-colors duration-300 group-hover:text-green-500">
-                    RD Eco
-                  </span>
-                  <span className="font-display font-medium text-xl tracking-tight ml-1.5 text-gray-500 dark:text-gray-300 transition-colors duration-300 group-hover:text-green-400">
-                    Developers
-                  </span>
+          {/* ── Main row ── */}
+          <div className="py-5 flex flex-col lg:flex-row lg:items-start gap-5 border-b border-gray-100 dark:border-[#1a1a1a]">
+
+            {/* Brand + contact */}
+            <div className="flex-shrink-0 min-w-0 lg:w-72">
+              <Link href="/" className="inline-flex items-center gap-2 mb-2.5 group">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
+                  <Building2 className="w-4 h-4 text-white" />
                 </div>
-                <span className="block text-green-600 dark:text-green-400 text-[9px] font-semibold tracking-[0.2em] uppercase leading-none mt-0.5">
-                  {appConfig.site.tagline}
+                <div className="flex items-baseline leading-none select-none">
+                  <span className="font-display font-bold text-base tracking-tight text-gray-900 dark:text-white group-hover:text-green-600 transition-colors">RD Eco</span>
+                  <span className="font-display font-medium text-base tracking-tight ml-1 text-gray-400 dark:text-gray-400 group-hover:text-green-400 transition-colors">Developers</span>
+                </div>
+              </Link>
+
+              {/* Contact inline chips */}
+              <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+                <a href={`tel:${appConfig.site.phone}`} className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                  <Phone className="w-3 h-3 text-green-500 flex-shrink-0" />
+                  {appConfig.site.phone}
+                </a>
+                <a href={`tel:${appConfig.site.phone2}`} className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                  <Phone className="w-3 h-3 text-green-500 flex-shrink-0" />
+                  {appConfig.site.phone2}
+                </a>
+                <a href={`mailto:${appConfig.site.email}`} className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                  <Mail className="w-3 h-3 text-green-500 flex-shrink-0" />
+                  {appConfig.site.email}
+                </a>
+                <span className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400">
+                  <MapPin className="w-3 h-3 text-green-500 flex-shrink-0" />
+                  {appConfig.site.address}
                 </span>
               </div>
-            </Link>
-            <p className="text-sm text-gray-500 dark:text-gray-500 leading-relaxed mb-3 max-w-xs">
-              {appConfig.site.defaultDescription}
-            </p>
-            <div className="space-y-2.5">
-              {contactDetails.map(({ icon: Icon, label, lines }, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs text-gray-500 dark:text-gray-500">
-                  <div className="w-6 h-6 rounded-lg bg-green-100 dark:bg-green-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Icon className="w-3 h-3 text-green-600 dark:text-green-500" />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] font-semibold text-green-600 dark:text-green-500 uppercase tracking-wide mb-0.5">{label}</span>
-                    {lines.map((line, j) => (
-                      <span key={j} className="block leading-snug">{line}</span>
-                    ))}
-                  </div>
-                </div>
+            </div>
+
+            {/* Nav links — wrapping flex */}
+            <div className="flex-1 flex flex-wrap gap-x-5 gap-y-1.5 lg:justify-end lg:pt-0.5">
+              {footerLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-[11px] text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors whitespace-nowrap"
+                >
+                  {link.label}
+                </Link>
               ))}
             </div>
           </div>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([heading, links]) => (
-            <div key={heading}>
-              <h4 className="text-gray-900 dark:text-white font-bold text-sm mb-2 flex items-center gap-2">
-                <span className="w-4 h-0.5 bg-green-500 rounded-full" />
-                {heading}
-              </h4>
-              <ul className="space-y-1.5">
-                {links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-xs text-gray-500 dark:text-gray-500 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200 flex items-center gap-1.5 group"
-                    >
-                      <span className="w-1 h-1 rounded-full bg-green-300 dark:bg-green-700 group-hover:bg-green-500 transition-colors" />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+          {/* ── Bottom bar ── */}
+          <div className="py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
 
-        {/* Review CTA strip */}
-        <div className="py-2 border-t border-green-100 dark:border-[#111] flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-3">
-            <div className="flex gap-0.5">
-              {[1,2,3,4,5].map((s) => <Star key={s} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />)}
-            </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              Had a great experience? <span className="font-semibold text-gray-700 dark:text-gray-300">Let others know.</span>
-            </p>
-          </div>
-          <button
-            onClick={() => setReviewOpen(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-green-200 dark:border-green-800/50 bg-white dark:bg-green-900/10 text-green-700 dark:text-green-400 text-xs font-semibold hover:bg-green-600 hover:text-white hover:border-green-600 dark:hover:bg-green-600 dark:hover:text-white dark:hover:border-green-600 transition-all flex-shrink-0 group"
-          >
-            <PenLine className="w-3.5 h-3.5" />
-            Write a Review
-          </button>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-2 border-t border-green-100 dark:border-[#111] flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-gray-400 dark:text-gray-600">
-            © {new Date().getFullYear()} {appConfig.site.name}. All rights reserved.
-          </p>
-          <div className="flex items-center gap-2">
-            {socialLinks.map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-xl bg-white dark:bg-[#111] border border-green-200 dark:border-[#1f1f1f] flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-white hover:bg-green-600 hover:border-green-600 dark:hover:text-green-400 dark:hover:border-green-500/40 shadow-green-sm dark:shadow-none hover:shadow-green transition-all duration-200"
+            {/* Copyright + review */}
+            <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
+              <p className="text-[11px] text-gray-400 dark:text-gray-600">
+                © {new Date().getFullYear()} {appConfig.site.name}. All rights reserved.
+              </p>
+              <span className="hidden sm:block w-px h-3 bg-gray-200 dark:bg-gray-700" />
+              <div className="flex items-center gap-1.5">
+                {[1,2,3,4,5].map((s) => <Star key={s} className="w-3 h-3 fill-yellow-400 text-yellow-400" />)}
+              </div>
+              <button
+                onClick={() => setReviewOpen(true)}
+                className="inline-flex items-center gap-1 text-[11px] font-semibold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors"
               >
-                <Icon className="w-3.5 h-3.5" />
-              </a>
-            ))}
+                <PenLine className="w-3 h-3" />
+                Write a Review
+              </button>
+            </div>
+
+            {/* Social icons */}
+            <div className="flex items-center gap-1.5">
+              {socialLinks.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-lg border border-gray-200 dark:border-[#222] flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-white hover:bg-green-600 hover:border-green-600 transition-all duration-200"
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                </a>
+              ))}
+            </div>
           </div>
+
         </div>
-      </div>
-    </footer>
+      </footer>
 
       {reviewOpen && <ReviewForm onClose={() => setReviewOpen(false)} />}
     </>
   );
 }
+

@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import {
-  Crown, Calendar, Home, Building2, Users, Star, CheckCircle, User,
+  Crown, Calendar, Home, Building2, Users, Star, CheckCircle,
 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { familyLegacyService } from '@/lib/api';
@@ -16,7 +16,7 @@ import { getImageUrl } from '@/lib/utils/image';
 const FALLBACK_MEMBERS: FamilyMember[] = [
   {
     _id: 'f1', order: 1, isActive: true, createdAt: '', updatedAt: '',
-    image: '',
+    image: 'https://randomuser.me/api/portraits/men/45.jpg',
     name: 'Mr. Subodh Kumar Singh', designation: 'Founder & Director',
     description:
       'Mr. Subodh Kumar Singh is the visionary Founder & Director of RD ECO Developers Pvt. Ltd. His unwavering dedication, entrepreneurial spirit, and commitment to quality laid the foundation of the company. Under his leadership, the organization has grown into a trusted real estate brand known for integrity, transparency, and customer satisfaction.',
@@ -24,7 +24,7 @@ const FALLBACK_MEMBERS: FamilyMember[] = [
   },
   {
     _id: 'f2', order: 2, isActive: true, createdAt: '', updatedAt: '',
-    image: '',
+    image: 'https://randomuser.me/api/portraits/women/44.jpg',
     name: 'Mrs. Sheelu Devi', designation: 'Founder & Director',
     description:
       'Mrs. Sheelu Devi is one of the Founders & Directors of RD ECO Developers Pvt. Ltd. She has been a constant source of inspiration and strength since the company\'s inception. Her values, guidance, and dedication have played a vital role in building a culture of trust, responsibility, and long-term growth.',
@@ -32,7 +32,7 @@ const FALLBACK_MEMBERS: FamilyMember[] = [
   },
   {
     _id: 'f3', order: 3, isActive: true, createdAt: '', updatedAt: '',
-    image: '',
+    image: 'https://randomuser.me/api/portraits/men/32.jpg',
     name: 'Mr. Pramod Kumar', designation: 'Founder & Managing Director',
     description:
       'Mr. Pramod Kumar serves as the Managing Director of RD ECO Developers Pvt. Ltd. and plays a pivotal role in driving the company\'s strategic vision, operational excellence, and sustainable growth. He oversees business operations, project development, financial planning, and organizational management.',
@@ -40,7 +40,7 @@ const FALLBACK_MEMBERS: FamilyMember[] = [
   },
   {
     _id: 'f4', order: 4, isActive: true, createdAt: '', updatedAt: '',
-    image: '',
+    image: 'https://randomuser.me/api/portraits/men/52.jpg',
     name: 'Mr. Raja Singh', designation: 'Group Chief Executive Officer',
     description:
       'Mr. Raja Singh serves as the Group CEO, leading the company\'s strategic direction, business growth, and innovation initiatives. He is focused on strengthening the brand, embracing modern technologies, enhancing customer experiences, and expanding RD ECO Developers into one of the most respected real estate companies in Eastern India.',
@@ -48,7 +48,7 @@ const FALLBACK_MEMBERS: FamilyMember[] = [
   },
   {
     _id: 'f5', order: 5, isActive: true, createdAt: '', updatedAt: '',
-    image: '',
+    image: 'https://randomuser.me/api/portraits/men/61.jpg',
     name: 'Mr. Prince Kumar Singh', designation: 'Operations Head',
     description:
       'Mr. Prince Kumar Singh heads the Operations Department, ensuring the smooth execution of projects and seamless coordination across all business functions. He oversees operational planning, project execution, process optimization, and quality assurance while maintaining the company\'s commitment to timely delivery and operational excellence.',
@@ -56,8 +56,8 @@ const FALLBACK_MEMBERS: FamilyMember[] = [
   },
   {
     _id: 'f6', order: 6, isActive: true, createdAt: '', updatedAt: '',
-    image: '',
-    name: 'Mr. Kuwar Kumar Singh', designation: 'Director',
+    image: 'https://randomuser.me/api/portraits/men/74.jpg',
+    name: 'Mr. Kuwar Kumar Singh', designation: '',
     description:
       'Mr. Kuwar Kumar Singh is committed to strengthening the legacy of RD ECO Developers by embracing innovation, modern thinking, and customer-centric values while preserving the trust and principles established by the founding generation.',
     year: '2013',
@@ -166,7 +166,7 @@ function GenerationCard({ member, index }: { member: FamilyMember; index: number
         </span>
 
         {/* Avatar */}
-        <div className="relative w-[72px] h-[72px] rounded-full ring-2 ring-green-400 dark:ring-green-600 ring-offset-2 ring-offset-white dark:ring-offset-[#111] overflow-hidden mb-3 flex-shrink-0 bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/30 dark:to-green-800/10">
+        <div className="relative w-[72px] h-[72px] rounded-full ring-2 ring-green-400 dark:ring-green-600 ring-offset-2 ring-offset-white dark:ring-offset-[#111] overflow-hidden mb-3 flex-shrink-0 bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/40 dark:to-green-800/30">
           {member.image ? (
             <Image
               src={getImageUrl(member.image)}
@@ -176,9 +176,9 @@ function GenerationCard({ member, index }: { member: FamilyMember; index: number
               className="object-cover"
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-end bg-gradient-to-b from-green-100 to-green-200 dark:from-green-900/40 dark:to-green-800/30 overflow-hidden">
-              <User className="w-10 h-10 text-green-400 dark:text-green-600 translate-y-1.5" />
-            </div>
+            <span className="absolute inset-0 flex items-center justify-center text-lg font-bold text-green-700 dark:text-green-300 select-none">
+              {member.name.replace(/^(Mr\.|Mrs\.|Ms\.|Dr\.)\s*/i, '').trim().split(/\s+/).filter(Boolean).reduce((acc, w, i, arr) => i === 0 || i === arr.length - 1 ? acc + w[0].toUpperCase() : acc, '')}
+            </span>
           )}
         </div>
 
