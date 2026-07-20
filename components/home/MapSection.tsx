@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
@@ -9,17 +9,11 @@ import { projectApi } from '@/lib/api';
 import { Project } from '@/types';
 import { getImageUrl } from '@/lib/utils';
 import appConfig from '@/config/app.config';
-import Modal from '@/components/common/Modal';
-import LeadForm from '@/components/common/LeadForm';
-
-const GATE_KEY = 'project_detail_gate_passed';
 
 export default function MapSection() {
   const router = useRouter();
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<unknown>(null);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [gateOpen, setGateOpen] = useState(false);
 
   const { data } = useQuery({
     queryKey: ['projects-map'],
@@ -30,16 +24,6 @@ export default function MapSection() {
   });
 
   const projects = data || [];
-
-  const handleGateSuccess = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(GATE_KEY, '1');
-    }
-    setGateOpen(false);
-    if (selectedProject) {
-      router.push(`/projects/${selectedProject.slug}`);
-    }
-  }, [router, selectedProject]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !mapRef.current || !projects.length) return;
@@ -172,12 +156,7 @@ export default function MapSection() {
       const slug = btn.getAttribute('data-slug');
       const project = projects.find((p) => p.slug === slug);
       if (!project) return;
-      setSelectedProject(project);
-      if (typeof window !== 'undefined' && localStorage.getItem(GATE_KEY)) {
-        router.push(`/projects/${slug}`);
-      } else {
-        setGateOpen(true);
-      }
+      router.push(`/projects/${slug}`);
     };
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
@@ -239,26 +218,6 @@ export default function MapSection() {
           ))}
         </div>
       </div>
-
-      {/* Lead Gate Modal */}
-      <Modal
-        isOpen={gateOpen}
-        onClose={() => setGateOpen(false)}
-        title="Get Project Details"
-        size="sm"
-      >
-        <div className="px-5 pb-5">
-          <LeadForm
-            source="project_detail"
-            projectId={selectedProject?._id}
-            projectName={selectedProject?.name}
-            title=""
-            subtitle="Please share your details to view full project information."
-            submitLabel="View Project Details"
-            onSuccess={handleGateSuccess}
-          />
-        </div>
-      </Modal>
     </section>
   );
 }

@@ -26,8 +26,8 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
   {
     id: 'tm1',
     name: 'Mr. Pramod Kumar',
-    role: 'Founder & Managing Director',
-    designation: 'Founder & Managing Director',
+    role: 'Founder',
+    designation: 'Founder',
     image: 'https://randomuser.me/api/portraits/men/32.jpg',
     description:
       'Mr. Pramod Kumar serves as the Managing Director of RD ECO Developers Pvt. Ltd. and plays a pivotal role in driving the company\'s strategic vision, operational excellence, and sustainable growth. With extensive experience in the real estate sector, he oversees business operations, project development, financial planning, and organizational management. Under his leadership, RD ECO Developers has strengthened its reputation for quality construction, transparent business practices, and customer-centric development. His commitment to innovation, professionalism, and long-term value continues to guide the company toward new milestones while ensuring every project reflects the highest standards of excellence.',
@@ -35,8 +35,8 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
   {
     id: 'tm2',
     name: 'Mr. Subodh Kumar Singh',
-    role: 'Founder & Director',
-    designation: 'Founder & Director',
+    role: 'Founder',
+    designation: 'Founder',
     image: 'https://randomuser.me/api/portraits/men/45.jpg',
     description:
       'Mr. Subodh Kumar Singh is the visionary Founder & Director of RD ECO Developers Pvt. Ltd. His unwavering dedication, entrepreneurial spirit, and commitment to quality laid the foundation of the company. Under his leadership, the organization has grown into a trusted real estate brand known for integrity, transparency, and customer satisfaction.',
@@ -44,8 +44,8 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
   {
     id: 'tm3',
     name: 'Mrs. Sheelu Devi',
-    role: 'Founder & Director',
-    designation: 'Founder & Director',
+    role: 'Founder',
+    designation: 'Founder',
     image: 'https://randomuser.me/api/portraits/women/44.jpg',
     description:
       'Mrs. Sheelu Devi is one of the Founders & Directors of RD ECO Developers Pvt. Ltd. She has been a constant source of inspiration and strength since the company\'s inception. Her values, guidance, and dedication have played a vital role in building a culture of trust, responsibility, and long-term growth.',
