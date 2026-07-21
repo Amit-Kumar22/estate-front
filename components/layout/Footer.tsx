@@ -2,9 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useQuery } from '@tanstack/react-query';
 import { Building2, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin, Youtube, Star, PenLine } from 'lucide-react';
 import appConfig from '@/config/app.config';
+import { settingsApi } from '@/lib/api';
 import ReviewForm from '@/components/home/ReviewForm';
+import type { SiteSettings } from '@/types';
 
 const footerLinks = [
   { label: 'About Us',           href: '/about' },
@@ -19,16 +22,30 @@ const footerLinks = [
   { label: 'RERA Disclosure',    href: '/rera' },
 ];
 
-const socialLinks = [
-  { icon: Facebook,  href: appConfig.social.facebook  || '#', label: 'Facebook' },
-  { icon: Instagram, href: appConfig.social.instagram || '#', label: 'Instagram' },
-  { icon: Twitter,   href: appConfig.social.twitter   || '#', label: 'Twitter' },
-  { icon: Linkedin,  href: appConfig.social.linkedin  || '#', label: 'LinkedIn' },
-  { icon: Youtube,   href: appConfig.social.youtube   || '#', label: 'YouTube' },
-];
-
 export default function Footer() {
   const [reviewOpen, setReviewOpen] = useState(false);
+
+  const { data: settings } = useQuery({
+    queryKey: ['settings'],
+    queryFn: async () => {
+      const res = await settingsApi.get();
+      return (res.data?.data?.settings ?? null) as Partial<SiteSettings> | null;
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const companyName    = settings?.companyName    || appConfig.site.name;
+  const companyPhone   = settings?.companyPhone   || appConfig.site.phone;
+  const companyEmail   = settings?.companyEmail   || appConfig.site.email;
+  const companyAddress = settings?.companyAddress || appConfig.site.address;
+
+  const socialLinks = [
+    { icon: Facebook,  href: settings?.socialLinks?.facebook,  label: 'Facebook' },
+    { icon: Instagram, href: settings?.socialLinks?.instagram, label: 'Instagram' },
+    { icon: Twitter,   href: settings?.socialLinks?.twitter,   label: 'Twitter' },
+    { icon: Linkedin,  href: settings?.socialLinks?.linkedin,  label: 'LinkedIn' },
+    { icon: Youtube,   href: settings?.socialLinks?.youtube,   label: 'YouTube' },
+  ].filter((s): s is { icon: typeof Facebook; href: string; label: string } => !!s.href);
 
   return (
     <>
@@ -44,29 +61,24 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
                   <Building2 className="w-4 h-4 text-white" />
                 </div>
-                <div className="flex items-baseline leading-none select-none">
-                  <span className="font-display font-bold text-base tracking-tight text-gray-900 dark:text-white group-hover:text-green-600 transition-colors">RD Eco</span>
-                  <span className="font-display font-medium text-base tracking-tight ml-1 text-gray-400 dark:text-gray-400 group-hover:text-green-400 transition-colors">Developers</span>
-                </div>
+                <span className="font-display font-bold text-base tracking-tight text-gray-900 dark:text-white group-hover:text-green-600 transition-colors">
+                  {companyName}
+                </span>
               </Link>
 
               {/* Contact inline chips */}
               <div className="flex flex-wrap gap-x-4 gap-y-1.5">
-                <a href={`tel:${appConfig.site.phone}`} className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                <a href={`tel:${companyPhone}`} className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   <Phone className="w-3 h-3 text-green-500 flex-shrink-0" />
-                  {appConfig.site.phone}
+                  {companyPhone}
                 </a>
-                <a href={`tel:${appConfig.site.phone2}`} className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
-                  <Phone className="w-3 h-3 text-green-500 flex-shrink-0" />
-                  {appConfig.site.phone2}
-                </a>
-                <a href={`mailto:${appConfig.site.email}`} className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                <a href={`mailto:${companyEmail}`} className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   <Mail className="w-3 h-3 text-green-500 flex-shrink-0" />
-                  {appConfig.site.email}
+                  {companyEmail}
                 </a>
                 <span className="inline-flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400">
                   <MapPin className="w-3 h-3 text-green-500 flex-shrink-0" />
-                  {appConfig.site.address}
+                  {companyAddress}
                 </span>
               </div>
             </div>
@@ -91,7 +103,7 @@ export default function Footer() {
             {/* Copyright + review */}
             <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
               <p className="text-[11px] text-gray-400 dark:text-gray-600">
-                © {new Date().getFullYear()} {appConfig.site.name}. All rights reserved.
+                © {new Date().getFullYear()} {companyName}. All rights reserved.
               </p>
               <span className="hidden sm:block w-px h-3 bg-gray-200 dark:bg-gray-700" />
               <div className="flex items-center gap-1.5">
@@ -106,21 +118,23 @@ export default function Footer() {
               </button>
             </div>
 
-            {/* Social icons */}
-            <div className="flex items-center gap-1.5">
-              {socialLinks.map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-lg border border-gray-200 dark:border-[#222] flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-white hover:bg-green-600 hover:border-green-600 transition-all duration-200"
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                </a>
-              ))}
-            </div>
+            {/* Social icons — only rendered for links actually configured in settings */}
+            {socialLinks.length > 0 && (
+              <div className="flex items-center gap-1.5">
+                {socialLinks.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-7 h-7 rounded-lg border border-gray-200 dark:border-[#222] flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-white hover:bg-green-600 hover:border-green-600 transition-all duration-200"
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
         </div>
@@ -130,4 +144,3 @@ export default function Footer() {
     </>
   );
 }
-

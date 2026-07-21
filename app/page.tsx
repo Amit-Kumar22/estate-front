@@ -17,18 +17,19 @@ import BrochureDownloadButton from '@/components/common/BrochureDownloadButton';
 import Footer from '@/components/layout/Footer';
 import MapSectionWrapper from '@/components/home/MapSectionWrapper';
 import { settingsApi } from '@/lib/api';
+import type { SiteSettings } from '@/types';
 
-async function getSettings(): Promise<Record<string, string> | null> {
+async function getSettings(): Promise<Partial<SiteSettings> | null> {
   try {
     const res = await settingsApi.get();
-    return (res.data?.data?.settings ?? null) as Record<string, string> | null;
+    return (res.data?.data?.settings ?? null) as Partial<SiteSettings> | null;
   } catch {
     return null;
   }
 }
 
 /** Build the hero stats array from settings fields stored in MongoDB */
-function buildHeroStats(settings: Record<string, string> | null) {
+function buildHeroStats(settings: Partial<SiteSettings> | null) {
   if (!settings) return undefined;
 
   const stats: { value: string; label: string }[] = [];
@@ -54,8 +55,8 @@ export default async function HomePage() {
   <Hero
     headline={settings?.heroHeadline ?? undefined}
     subheadline={settings?.heroSubheadline ?? undefined}
-    videoUrl={settings?.heroVideoUrl ?? undefined}
-    backgroundImage={settings?.heroBackgroundImage ?? undefined}
+    videoUrls={settings?.heroVideoUrls ?? undefined}
+    backgroundImages={settings?.heroBackgroundImages ?? undefined}
     stats={buildHeroStats(settings)}
   />
 

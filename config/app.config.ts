@@ -85,7 +85,10 @@ const appConfig = {
   upload: {
     maxImageSizeMB:    10,
     maxImageSizeBytes: 10 * 1024 * 1024,
+    maxVideoSizeMB:    100,
+    maxVideoSizeBytes: 100 * 1024 * 1024,
     acceptedImages:    'image/jpeg,image/jpg,image/png,image/webp',
+    acceptedVideos:    'video/mp4,video/webm,video/ogg,video/quicktime',
     acceptedDocs:      'application/pdf',
   },
 

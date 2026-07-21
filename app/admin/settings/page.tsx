@@ -3,13 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { settingsApi } from '@/lib/api';
+import { getImageUrl } from '@/lib/utils';
+import appConfig from '@/config/app.config';
 import {
   Settings, Loader2, Save, Globe, Phone, Mail, MapPin,
   Building2, MessageSquare, Image, BarChart2, Film, AlignLeft,
+  Upload, X,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-type SettingsMap = Record<string, string>;
+type SettingsMap = Record<string, unknown>;
 
 interface SettingField {
   key: string;
@@ -19,6 +22,33 @@ interface SettingField {
   placeholder?: string;
   section: string;
 }
+
+interface MediaListField {
+  key: string;
+  formField: string;
+  label: string;
+  icon: React.ElementType;
+  accept: string;
+  maxSizeBytes: number;
+  maxSizeLabel: string;
+  section: string;
+}
+
+/** Hero fields that hold multiple uploaded files, rendered as a carousel on the frontend */
+const MEDIA_LIST_FIELDS: MediaListField[] = [
+  {
+    section: 'Hero', key: 'heroVideoUrls', formField: 'heroVideos',
+    label: 'Background Videos', icon: Film,
+    accept: appConfig.upload.acceptedVideos, maxSizeBytes: appConfig.upload.maxVideoSizeBytes,
+    maxSizeLabel: `${appConfig.upload.maxVideoSizeMB}MB`,
+  },
+  {
+    section: 'Hero', key: 'heroBackgroundImages', formField: 'heroImages',
+    label: 'Background Images', icon: Image,
+    accept: appConfig.upload.acceptedImages, maxSizeBytes: appConfig.upload.maxImageSizeBytes,
+    maxSizeLabel: `${appConfig.upload.maxImageSizeMB}MB`,
+  },
+];
 
 const SETTING_FIELDS: SettingField[] = [
   // ── Company info ──────────────────────────────────────────────────────────
@@ -33,8 +63,6 @@ const SETTING_FIELDS: SettingField[] = [
   // ── Hero section ──────────────────────────────────────────────────────────
   { section: 'Hero',       key: 'heroHeadline',        label: 'Headline',           icon: AlignLeft, placeholder: 'e.g. Luxury Living Redefined' },
   { section: 'Hero',       key: 'heroSubheadline',     label: 'Subheadline',        icon: AlignLeft, placeholder: 'A short compelling description' },
-  { section: 'Hero',       key: 'heroVideoUrl',        label: 'Background Video URL', icon: Film,    placeholder: 'https://... (mp4)' },
-  { section: 'Hero',       key: 'heroBackgroundImage', label: 'Background Image URL', icon: Image,   placeholder: 'https://... (jpg/png)' },
   // ── Hero stats ────────────────────────────────────────────────────────────
   { section: 'Hero Stats', key: 'heroStat1Value', label: 'Stat 1 Value', icon: BarChart2, placeholder: 'e.g. 50+' },
   { section: 'Hero Stats', key: 'heroStat1Label', label: 'Stat 1 Label', icon: BarChart2, placeholder: 'e.g. Projects Delivered' },
@@ -54,6 +82,8 @@ const SECTIONS = Array.from(new Set(SETTING_FIELDS.map((f) => f.section)));
 
 export default function AdminSettingsPage() {
   const [values, setValues] = useState<SettingsMap>({});
+  // Files picked but not yet uploaded, keyed by MediaListField.key
+  const [pendingFiles, setPendingFiles] = useState<Record<string, File[]>>({});
 
   const { data, isLoading } = useQuery({
     queryKey: ['settings'],
@@ -68,13 +98,61 @@ export default function AdminSettingsPage() {
   }, [data]);
 
   const saveMutation = useMutation({
-    mutationFn: () => settingsApi.update(values),
-    onSuccess: () => toast.success('Settings saved'),
+    mutationFn: () => {
+      const formData = new FormData();
+
+      Object.entries(values).forEach(([key, val]) => {
+        if (val !== null && typeof val === 'object') {
+          // Arrays (heroVideoUrls, heroBackgroundImages) and nested objects
+          // (socialLinks) can't go into FormData as-is — the backend JSON-parses them back.
+          formData.append(key, JSON.stringify(val));
+        } else {
+          formData.append(key, (val as string) ?? '');
+        }
+      });
+
+      MEDIA_LIST_FIELDS.forEach(({ formField, key }) => {
+        (pendingFiles[key] ?? []).forEach((file) => formData.append(formField, file));
+      });
+
+      return settingsApi.update(formData);
+    },
+    onSuccess: (res) => {
+      toast.success('Settings saved');
+      setValues(res.data.data.settings as SettingsMap);
+      setPendingFiles({});
+    },
     onError: () => toast.error('Failed to save settings'),
   });
 
   const handleChange = (key: string, value: string) => {
     setValues((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const getList = (key: string): string[] => {
+    const value = values[key];
+    return Array.isArray(value) ? value : [];
+  };
+
+  const removeExistingMedia = (key: string, index: number) => {
+    setValues((prev) => ({ ...prev, [key]: getList(key).filter((_, i) => i !== index) }));
+  };
+
+  const addPendingFiles = (field: MediaListField, fileList: FileList | null) => {
+    if (!fileList?.length) return;
+
+    const files = Array.from(fileList);
+    const tooLarge = files.find((f) => f.size > field.maxSizeBytes);
+    if (tooLarge) {
+      toast.error(`"${tooLarge.name}" exceeds the ${field.maxSizeLabel} limit`);
+      return;
+    }
+
+    setPendingFiles((prev) => ({ ...prev, [field.key]: [...(prev[field.key] ?? []), ...files] }));
+  };
+
+  const removePendingFile = (key: string, index: number) => {
+    setPendingFiles((prev) => ({ ...prev, [key]: (prev[key] ?? []).filter((_, i) => i !== index) }));
   };
 
   return (
@@ -125,7 +203,7 @@ export default function AdminSettingsPage() {
                       </label>
                       <input
                         type={type}
-                        value={values[key] ?? ''}
+                        value={(values[key] as string) ?? ''}
                         onChange={(e) => handleChange(key, e.target.value)}
                         placeholder={placeholder}
                         className="w-full bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none"
@@ -134,6 +212,92 @@ export default function AdminSettingsPage() {
                   </div>
                 ))}
               </div>
+
+              {/* Media upload fields — hero carousel videos/images */}
+              {MEDIA_LIST_FIELDS.filter((f) => f.section === section).length > 0 && (
+                <div className="divide-y divide-gray-100 dark:divide-[#1a1a1a] border-t border-gray-100 dark:border-[#1a1a1a]">
+                  {MEDIA_LIST_FIELDS.filter((f) => f.section === section).map((field) => {
+                    const { key, label, icon: Icon, accept } = field;
+                    const existing = getList(key);
+                    const pending = pendingFiles[key] ?? [];
+                    const isVideo = field.formField === 'heroVideos';
+
+                    return (
+                      <div key={key} className="px-4 py-3.5">
+                        <div className="flex items-center gap-4 mb-3">
+                          <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-[#1a1a1a] flex items-center justify-center flex-shrink-0">
+                            <Icon className="w-3.5 h-3.5 text-gray-400" />
+                          </div>
+                          <label className="flex-1 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                            {label}
+                          </label>
+                          <label className="flex items-center gap-1.5 text-[11px] font-semibold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors cursor-pointer">
+                            <Upload className="w-3.5 h-3.5" />
+                            Upload
+                            <input
+                              type="file"
+                              multiple
+                              accept={accept}
+                              onChange={(e) => {
+                                addPendingFiles(field, e.target.files);
+                                e.target.value = '';
+                              }}
+                              className="hidden"
+                            />
+                          </label>
+                        </div>
+
+                        {existing.length === 0 && pending.length === 0 && (
+                          <p className="text-xs text-gray-400 pl-12">No files uploaded yet.</p>
+                        )}
+
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5 pl-12">
+                          {existing.map((url, index) => (
+                            <div key={`existing-${index}`} className="relative group aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#222]">
+                              {isVideo ? (
+                                <video src={getImageUrl(url)} muted className="w-full h-full object-cover" />
+                              ) : (
+                                <div
+                                  className="w-full h-full bg-cover bg-center"
+                                  style={{ backgroundImage: `url(${getImageUrl(url)})` }}
+                                />
+                              )}
+                              <button
+                                type="button"
+                                onClick={() => removeExistingMedia(key, index)}
+                                aria-label={`Remove ${label} entry`}
+                                className="absolute top-1 right-1 w-6 h-6 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500"
+                              >
+                                <X className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          ))}
+                          {pending.map((file, index) => (
+                            <div key={`pending-${index}`} className="relative group aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-[#1a1a1a] border border-dashed border-green-400">
+                              {isVideo ? (
+                                <video src={URL.createObjectURL(file)} muted className="w-full h-full object-cover" />
+                              ) : (
+                                <img src={URL.createObjectURL(file)} alt={file.name} className="w-full h-full object-cover" />
+                              )}
+                              <span className="absolute bottom-0 inset-x-0 px-1 py-0.5 bg-black/60 text-white text-[9px] truncate">
+                                {file.name}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => removePendingFile(key, index)}
+                                aria-label={`Remove pending ${label} file`}
+                                className="absolute top-1 right-1 w-6 h-6 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500"
+                              >
+                                <X className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           ))}
         </div>
