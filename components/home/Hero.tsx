@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
@@ -30,7 +30,20 @@ export default function Hero({
   // because third-party CDNs (Mixkit, Pexels, etc.) block cross-origin embedding.
   // When neither videoUrl nor backgroundImage is set, a rich animated green
   // gradient renders as the background instead.
-  const activeVideoUrl = videoUrl || appConfig.hero.fallbackVideoUrl || '';
+  const rawVideoUrl = videoUrl || appConfig.hero.fallbackVideoUrl || '';
+  // Strip any media-fragment (e.g. "#t=5,15") so playback always covers the
+  // video's full duration instead of a clipped segment.
+  const activeVideoUrl = rawVideoUrl.split('#')[0];
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // Native `loop` already replays the video, but this is a safety net so the
+  // loop is seamless even if a browser drops the attribute mid-playback.
+  const handleVideoEnded = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.currentTime = 0;
+    void el.play();
+  };
 
   const hasMedia = !!(activeVideoUrl || backgroundImage);
   const displayHeadline    = headline    || '';
@@ -52,6 +65,7 @@ export default function Hero({
             {/* Poster/gradient shown while video buffers */}
             <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-green-800 to-emerald-900" />
             <video
+              ref={videoRef}
               src={activeVideoUrl}
               autoPlay
               muted
@@ -59,6 +73,7 @@ export default function Hero({
               playsInline
               disablePictureInPicture
               preload="auto"
+              onEnded={handleVideoEnded}
               className="absolute inset-0 w-full h-full object-cover"
             />
           </>
