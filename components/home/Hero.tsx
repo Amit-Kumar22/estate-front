@@ -31,11 +31,43 @@ export default function Hero({
   backgroundImages,
   stats,
 }: HeroProps) {
+  const slides: Slide[] = React.useMemo(() => {
+    const videoSlides: Slide[] = (videoUrls || []).map((src) => ({ type: 'video', src }));
+    const imageSlides: Slide[] = (backgroundImages || []).map((src) => ({
+      type: 'image',
+      src: getImageUrl(src),
+    }));
+    return [...videoSlides, ...imageSlides];
+  }, [videoUrls, backgroundImages]);
+
+  const total = slides.length;
+  const [current, setCurrent] = React.useState(0);
+
+  const next = React.useCallback(() => {
+    setCurrent((i) => (i + 1) % total);
+  }, [total]);
+
+  const prev = React.useCallback(() => {
+    setCurrent((i) => (i - 1 + total) % total);
+  }, [total]);
+
+  React.useEffect(() => {
+    if (total <= 1) return;
+    const id = setInterval(next, SLIDE_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [total, next]);
+
+  const activeSlide = total > 0 ? slides[current % total] : undefined;
+
   // Only use a video URL if it is actually configured — no external CDN fallback
   // because third-party CDNs (Mixkit, Pexels, etc.) block cross-origin embedding.
   // When neither videoUrl nor backgroundImage is set, a rich animated green
   // gradient renders as the background instead.
-  const activeVideoUrl = videoUrl || appConfig.hero.fallbackVideoUrl || '';
+  const activeVideoUrl =
+    (activeSlide?.type === 'video' ? activeSlide.src : '') ||
+    (total === 0 ? appConfig.hero.fallbackVideoUrl : '') ||
+    '';
+  const backgroundImage = activeSlide?.type === 'image' ? activeSlide.src : '';
 
   const hasMedia = !!(activeVideoUrl || backgroundImage);
   const displayHeadline    = headline    || '';
@@ -57,6 +89,7 @@ export default function Hero({
             {/* Poster/gradient shown while video buffers */}
             <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-green-800 to-emerald-900" />
             <video
+              key={activeVideoUrl}
               src={activeVideoUrl}
               autoPlay
               muted

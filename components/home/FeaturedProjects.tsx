@@ -1,19 +1,19 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { projectApi } from '@/lib/api';
 import ProjectCard from '@/components/project/ProjectCard';
 import { Project } from '@/types';
 
-const GATE_KEY = 'project_detail_gate_passed';
+const INITIAL_VISIBLE_COUNT = 4;
 
 export default function FeaturedProjects() {
   const router = useRouter();
-  const [gateOpen, setGateOpen] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const { data, isLoading } = useQuery({
     queryKey: ['featured-projects'],
@@ -80,7 +80,19 @@ export default function FeaturedProjects() {
             {/* View More / View Less */}
             {hasMore && (
               <div className="mt-8 text-center">
-                
+                {/* <button onClick={handleToggleShowAll} className="btn-outline">
+                  {showAll ? (
+                    <>
+                      View Less
+                      <ChevronUp className="w-4 h-4" />
+                    </>
+                  ) : (
+                    <>
+                      View More
+                      <ChevronDown className="w-4 h-4" />
+                    </>
+                  )}
+                </button> */}
               </div>
             )}
           </>
