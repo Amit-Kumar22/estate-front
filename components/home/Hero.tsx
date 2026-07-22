@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import appConfig from '@/config/app.config';
+import { getImageUrl } from '@/lib/utils';
 
 interface HeroStat {
   value: string;
@@ -14,36 +15,27 @@ interface HeroStat {
 interface HeroProps {
   headline?: string;
   subheadline?: string;
-  videoUrl?: string;
-  backgroundImage?: string;
+  videoUrls?: string[];
+  backgroundImages?: string[];
   stats?: HeroStat[];
 }
+
+type Slide = { type: 'video'; src: string } | { type: 'image'; src: string };
+
+const SLIDE_INTERVAL_MS = 7000;
 
 export default function Hero({
   headline,
   subheadline,
-  videoUrl,
-  backgroundImage,
+  videoUrls,
+  backgroundImages,
   stats,
 }: HeroProps) {
   // Only use a video URL if it is actually configured — no external CDN fallback
   // because third-party CDNs (Mixkit, Pexels, etc.) block cross-origin embedding.
   // When neither videoUrl nor backgroundImage is set, a rich animated green
   // gradient renders as the background instead.
-  const rawVideoUrl = videoUrl || appConfig.hero.fallbackVideoUrl || '';
-  // Strip any media-fragment (e.g. "#t=5,15") so playback always covers the
-  // video's full duration instead of a clipped segment.
-  const activeVideoUrl = rawVideoUrl.split('#')[0];
-
-  const videoRef = useRef<HTMLVideoElement>(null);
-  // Native `loop` already replays the video, but this is a safety net so the
-  // loop is seamless even if a browser drops the attribute mid-playback.
-  const handleVideoEnded = () => {
-    const el = videoRef.current;
-    if (!el) return;
-    el.currentTime = 0;
-    void el.play();
-  };
+  const activeVideoUrl = videoUrl || appConfig.hero.fallbackVideoUrl || '';
 
   const hasMedia = !!(activeVideoUrl || backgroundImage);
   const displayHeadline    = headline    || '';
@@ -65,7 +57,6 @@ export default function Hero({
             {/* Poster/gradient shown while video buffers */}
             <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-green-800 to-emerald-900" />
             <video
-              ref={videoRef}
               src={activeVideoUrl}
               autoPlay
               muted
@@ -73,7 +64,6 @@ export default function Hero({
               playsInline
               disablePictureInPicture
               preload="auto"
-              onEnded={handleVideoEnded}
               className="absolute inset-0 w-full h-full object-cover"
             />
           </>
@@ -126,6 +116,38 @@ export default function Hero({
         )}
       </div>
 
+      {/* Carousel controls — only shown when there's more than one slide */}
+      {total > 1 && (
+        <>
+          <button
+            onClick={prev}
+            aria-label="Previous slide"
+            className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition-all flex items-center justify-center"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={next}
+            aria-label="Next slide"
+            className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition-all flex items-center justify-center"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === current ? 'w-6 bg-white' : 'w-1.5 bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
@@ -133,19 +155,6 @@ export default function Hero({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          {/* Eyebrow */}
-          {/* <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 mb-6"
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-green-400 text-xs font-semibold tracking-wider uppercase">
-              Premium RD Eco Developers Pvt. Ltd.
-            </span>
-          </motion.div> */}
-
           {/* Headline — from settings API */}
           {displayHeadline && (
             <motion.h1
@@ -215,23 +224,6 @@ export default function Hero({
           )}
         </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      {/* <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-xs text-gray-400 tracking-wider uppercase">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center pt-1.5"
-        >
-          <div className="w-1 h-2 rounded-full bg-green-400" />
-        </motion.div>
-      </motion.div> */}
     </section>
   );
 }

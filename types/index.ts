@@ -157,9 +157,16 @@ export interface SiteSettings {
   companyAddress: string;
   whatsappNumber: string;
   whatsappMessage: string;
-  heroVideoUrl: string;
+  heroVideoUrls: string[];
+  heroBackgroundImages: string[];
   heroHeadline: string;
   heroSubheadline: string;
+  heroStat1Value?: string;
+  heroStat1Label?: string;
+  heroStat2Value?: string;
+  heroStat2Label?: string;
+  heroStat3Value?: string;
+  heroStat3Label?: string;
   metaTitle: string;
   metaDescription: string;
   logoUrl: string;

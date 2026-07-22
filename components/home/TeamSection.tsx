@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Users, ArrowRight, User } from 'lucide-react';
+import { Users, ArrowRight } from 'lucide-react';
 
 export interface TeamMember {
   id: string;
@@ -11,30 +12,41 @@ export interface TeamMember {
   role: string;
   designation: string;
   description: string;
+  image?: string;
+}
+
+/** Returns 1–2 capital initials from a name like "Mr. Pramod Kumar" → "PK" */
+function getInitials(name: string): string {
+  const words = name.replace(/^(Mr\.|Mrs\.|Ms\.|Dr\.)\s*/i, '').trim().split(/\s+/);
+  if (words.length === 1) return words[0][0].toUpperCase();
+  return (words[0][0] + words[words.length - 1][0]).toUpperCase();
 }
 
 export const ALL_TEAM_MEMBERS: TeamMember[] = [
   {
     id: 'tm1',
     name: 'Mr. Pramod Kumar',
-    role: 'Founder & Managing Director',
-    designation: 'Founder & Managing Director',
+    role: 'Founder',
+    designation: 'Founder',
+    image: 'https://randomuser.me/api/portraits/men/32.jpg',
     description:
       'Mr. Pramod Kumar serves as the Managing Director of RD ECO Developers Pvt. Ltd. and plays a pivotal role in driving the company\'s strategic vision, operational excellence, and sustainable growth. With extensive experience in the real estate sector, he oversees business operations, project development, financial planning, and organizational management. Under his leadership, RD ECO Developers has strengthened its reputation for quality construction, transparent business practices, and customer-centric development. His commitment to innovation, professionalism, and long-term value continues to guide the company toward new milestones while ensuring every project reflects the highest standards of excellence.',
   },
   {
     id: 'tm2',
     name: 'Mr. Subodh Kumar Singh',
-    role: 'Founder & Director',
-    designation: 'Founder & Director',
+    role: 'Founder',
+    designation: 'Founder',
+    image: 'https://randomuser.me/api/portraits/men/45.jpg',
     description:
       'Mr. Subodh Kumar Singh is the visionary Founder & Director of RD ECO Developers Pvt. Ltd. His unwavering dedication, entrepreneurial spirit, and commitment to quality laid the foundation of the company. Under his leadership, the organization has grown into a trusted real estate brand known for integrity, transparency, and customer satisfaction.',
   },
   {
     id: 'tm3',
     name: 'Mrs. Sheelu Devi',
-    role: 'Founder & Director',
-    designation: 'Founder & Director',
+    role: 'Founder',
+    designation: 'Founder',
+    image: 'https://randomuser.me/api/portraits/women/44.jpg',
     description:
       'Mrs. Sheelu Devi is one of the Founders & Directors of RD ECO Developers Pvt. Ltd. She has been a constant source of inspiration and strength since the company\'s inception. Her values, guidance, and dedication have played a vital role in building a culture of trust, responsibility, and long-term growth.',
   },
@@ -43,6 +55,7 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
     name: 'Mr. Raja Singh',
     role: 'Group Chief Executive Officer (Group CEO)',
     designation: 'Group CEO',
+    image: 'https://randomuser.me/api/portraits/men/52.jpg',
     description:
       'Mr. Raja Singh serves as the Group Chief Executive Officer (Group CEO), leading the company\'s strategic direction, business growth, and innovation initiatives. He is focused on strengthening the brand, embracing modern technologies, enhancing customer experiences, and expanding RD ECO Developers into one of the most respected real estate companies in Eastern India.',
   },
@@ -51,6 +64,7 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
     name: 'Mr. Prince Kumar Singh',
     role: 'Operations Head',
     designation: 'Operations Head',
+    image: 'https://randomuser.me/api/portraits/men/61.jpg',
     description:
       'Mr. Prince Kumar Singh heads the Operations Department, ensuring the smooth execution of projects and seamless coordination across all business functions. He oversees operational planning, project execution, process optimization, and quality assurance while maintaining the company\'s commitment to timely delivery and operational excellence.',
   },
@@ -59,6 +73,7 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
     name: 'Ms. Chetna Kumari',
     role: 'Head – Human Resources & Development (HR&D)',
     designation: 'Head – HR&D',
+    image: 'https://randomuser.me/api/portraits/women/68.jpg',
     description:
       'Ms. Chetna Kumari heads the Human Resources & Development (HR&D) department. She oversees talent acquisition, employee engagement, training and development, organizational culture, and performance management. Her leadership helps build a motivated workforce that drives the company\'s continued growth and success.',
   },
@@ -67,6 +82,7 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
     name: 'Mr. Anil Kumar',
     role: 'Head – Projects & Planning',
     designation: 'Head – Projects & Planning',
+    image: 'https://randomuser.me/api/portraits/men/74.jpg',
     description:
       'Mr. Anil Kumar leads the Projects & Planning division, overseeing project execution from concept to completion. He is responsible for project planning, construction management, quality control, engineering coordination, and timely delivery. His strategic approach ensures that every development meets the highest standards of quality and efficiency.',
   },
@@ -75,6 +91,7 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
     name: 'Mr. Manoranjan Kumar',
     role: 'Head – Post Sales & Finance',
     designation: 'Head – Post Sales & Finance',
+    image: 'https://randomuser.me/api/portraits/men/83.jpg',
     description:
       'Mr. Manoranjan Kumar manages the Post Sales & Finance department, ensuring a seamless customer experience after booking while overseeing financial operations. His responsibilities include customer support, payment management, documentation, financial planning, and maintaining long-term relationships with homeowners and investors.',
   },
@@ -83,6 +100,7 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
     name: 'Mr. Sunil Kumar',
     role: 'Head – Legal',
     designation: 'Head – Legal',
+    image: 'https://randomuser.me/api/portraits/men/91.jpg',
     description:
       'Mr. Sunil Kumar heads the Legal Department and is responsible for ensuring legal compliance across all company operations. He oversees property documentation, regulatory approvals, contract management, statutory compliance, and legal due diligence, ensuring every project adheres to applicable laws and regulations.',
   },
@@ -91,6 +109,7 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
     name: 'Mr. Alexender Tirkey',
     role: 'Head – Sales & CRM',
     designation: 'Head – Sales & CRM',
+    image: 'https://randomuser.me/api/portraits/men/27.jpg',
     description:
       'Mr. Alexender Tirkey leads the Sales & Customer Relationship Management (CRM) team. He is responsible for business development, sales strategy, customer engagement, lead management, and after-sales coordination. His customer-first approach helps build lasting relationships and ensures a smooth home-buying experience.',
   },
@@ -108,9 +127,15 @@ function MemberCard({ member, index }: { member: TeamMember; index: number }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group bg-white dark:bg-[#111] rounded-2xl border border-gray-100 dark:border-[#1f1f1f] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 p-6 flex flex-col items-center text-center"
     >
-      {/* Avatar placeholder */}
-      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/40 dark:to-green-800/30 flex items-center justify-center mb-4 ring-2 ring-green-400 dark:ring-green-600 ring-offset-2 ring-offset-white dark:ring-offset-[#111]">
-        <User className="w-10 h-10 text-green-600 dark:text-green-400" />
+      {/* Avatar */}
+      <div className="relative w-20 h-20 rounded-full ring-2 ring-green-400 dark:ring-green-600 ring-offset-2 ring-offset-white dark:ring-offset-[#111] overflow-hidden mb-4 flex-shrink-0 bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/40 dark:to-green-800/30">
+        {member.image ? (
+          <Image src={member.image} alt={member.name} fill sizes="80px" className="object-cover" />
+        ) : (
+          <span className="absolute inset-0 flex items-center justify-center text-lg font-bold text-green-700 dark:text-green-300 select-none">
+            {getInitials(member.name)}
+          </span>
+        )}
       </div>
 
       <h3 className="font-display font-bold text-base text-gray-900 dark:text-white leading-tight mb-1 group-hover:text-green-700 dark:group-hover:text-green-400 transition-colors">
