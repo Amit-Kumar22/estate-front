@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import DOMPurify from 'isomorphic-dompurify';
 import { Project } from '@/types';
 import { MapPin, Calendar, CheckCircle2, IndianRupee } from 'lucide-react';
 import { getStatusColor, getStatusLabel } from '@/lib/utils';
@@ -59,9 +60,10 @@ export default function ProjectOverview({ project, hideConfiguration = false }: 
         <h2 className="font-display text-lg font-bold text-gray-900 dark:text-white mb-3">
           About the Project
         </h2>
-        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-          {project.description}
-        </p>
+        <div
+          className="rich-text-content text-sm text-gray-600 dark:text-gray-400 leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(project.description) }}
+        />
       </div>
 
       {/* Highlights */}

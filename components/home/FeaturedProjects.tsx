@@ -1,16 +1,23 @@
 'use client';
 
-import React, { useCallback } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import React, { useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { projectApi } from '@/lib/api';
 import ProjectCard from '@/components/project/ProjectCard';
+import Modal from '@/components/common/Modal';
+import LeadForm from '@/components/common/LeadForm';
 import { Project } from '@/types';
+
+const GATE_KEY = 'project_detail_gate_passed';
+const INITIAL_VISIBLE_COUNT = 4;
 
 export default function FeaturedProjects() {
   const router = useRouter();
+  const [gateOpen, setGateOpen] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const { data, isLoading } = useQuery({
     queryKey: ['featured-projects'],
@@ -21,8 +28,26 @@ export default function FeaturedProjects() {
   });
 
   const projects = data || [];
+  const visibleProjects = showAll ? projects : projects.slice(0, INITIAL_VISIBLE_COUNT);
+  const hasMore = projects.length > INITIAL_VISIBLE_COUNT;
+
+  const handleToggleShowAll = useCallback(() => {
+    setShowAll((prev) => !prev);
+  }, []);
 
   const handleViewAll = useCallback(() => {
+    if (typeof window !== 'undefined' && localStorage.getItem(GATE_KEY)) {
+      router.push('/projects');
+    } else {
+      setGateOpen(true);
+    }
+  }, [router]);
+
+  const handleGateSuccess = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(GATE_KEY, '1');
+    }
+    setGateOpen(false);
     router.push('/projects');
   }, [router]);
 
@@ -53,17 +78,28 @@ export default function FeaturedProjects() {
 
         {/* Projects Grid */}
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="bg-green-50 dark:bg-[#111] rounded-2xl h-72 skeleton border border-green-100 dark:border-[#1f1f1f]" />
+              <div key={i} className="bg-green-50 dark:bg-[#111] rounded-2xl h-64 skeleton border border-green-100 dark:border-[#1f1f1f]" />
             ))}
           </div>
         ) : projects.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {projects.map((project, i) => (
-              <ProjectCard key={project._id} project={project} index={i} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+              <AnimatePresence initial={false}>
+                {visibleProjects.map((project, i) => (
+                  <ProjectCard key={project._id} project={project} index={i % INITIAL_VISIBLE_COUNT} />
+                ))}
+              </AnimatePresence>
+            </div>
+
+            {/* View More / View Less */}
+            {hasMore && (
+              <div className="mt-8 text-center">
+                
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-center py-16 text-gray-400">
             <p>No featured projects available at the moment.</p>
@@ -71,13 +107,31 @@ export default function FeaturedProjects() {
         )}
 
         {/* View All */}
-        <div className="mt-10 text-center">
+        <div className="mt-6 text-center">
           <button onClick={handleViewAll} className="btn-outline">
             View All Projects
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </div>
+
+      {/* Lead Gate Modal */}
+      <Modal
+        isOpen={gateOpen}
+        onClose={() => setGateOpen(false)}
+        title="Get Project Details"
+        size="sm"
+      >
+        <div className="px-5 pb-5">
+          <LeadForm
+            source="project_detail"
+            title=""
+            subtitle="Please share your details to explore all our projects."
+            submitLabel="View All Projects"
+            onSuccess={handleGateSuccess}
+          />
+        </div>
+      </Modal>
     </section>
   );
 }

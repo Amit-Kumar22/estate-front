@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { getImageUrl } from '@/lib/utils';
 import { queryKeys } from '@/lib/constants/query-keys';
 import toast from 'react-hot-toast';
+import RichTextEditor from '@/components/admin/RichTextEditor';
 
 const LocationPickerModal = dynamic(
   () => import('@/components/admin/LocationPickerModal'),
@@ -274,7 +275,7 @@ export default function EditProjectPage() {
           </Field>
           <div className="mt-4">
             <Field label="Full Description">
-              <textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} rows={4} className={`${inputCls} resize-none`} />
+              <RichTextEditor value={form.description} onChange={(html) => setForm((f) => ({ ...f, description: html }))} />
             </Field>
           </div>
         </Section>

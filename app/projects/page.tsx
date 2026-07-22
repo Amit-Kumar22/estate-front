@@ -129,13 +129,13 @@ function ProjectsContent() {
 
       {/* Grid */}
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="rounded-2xl h-72 skeleton" />
+            <div key={i} className="rounded-2xl h-64 skeleton" />
           ))}
         </div>
       ) : projects.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {projects.map((project, i) => (
             <ProjectCard key={project._id} project={project} index={i} />
           ))}
@@ -201,9 +201,9 @@ export default function ProjectsPage() {
         <Suspense
           fallback={
             <div className="container-custom pt-16">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-8">
                 {Array.from({ length: 8 }).map((_, i) => (
-                  <div key={i} className="rounded-2xl h-72 skeleton" />
+                  <div key={i} className="rounded-2xl h-64 skeleton" />
                 ))}
               </div>
             </div>
