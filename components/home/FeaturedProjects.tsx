@@ -7,16 +7,12 @@ import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { projectApi } from '@/lib/api';
 import ProjectCard from '@/components/project/ProjectCard';
-import Modal from '@/components/common/Modal';
-import LeadForm from '@/components/common/LeadForm';
 import { Project } from '@/types';
 
-const GATE_KEY = 'project_detail_gate_passed';
 const INITIAL_VISIBLE_COUNT = 4;
 
 export default function FeaturedProjects() {
   const router = useRouter();
-  const [gateOpen, setGateOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
 
   const { data, isLoading } = useQuery({
@@ -36,18 +32,6 @@ export default function FeaturedProjects() {
   }, []);
 
   const handleViewAll = useCallback(() => {
-    if (typeof window !== 'undefined' && localStorage.getItem(GATE_KEY)) {
-      router.push('/projects');
-    } else {
-      setGateOpen(true);
-    }
-  }, [router]);
-
-  const handleGateSuccess = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(GATE_KEY, '1');
-    }
-    setGateOpen(false);
     router.push('/projects');
   }, [router]);
 
@@ -96,7 +80,19 @@ export default function FeaturedProjects() {
             {/* View More / View Less */}
             {hasMore && (
               <div className="mt-8 text-center">
-                
+                {/* <button onClick={handleToggleShowAll} className="btn-outline">
+                  {showAll ? (
+                    <>
+                      View Less
+                      <ChevronUp className="w-4 h-4" />
+                    </>
+                  ) : (
+                    <>
+                      View More
+                      <ChevronDown className="w-4 h-4" />
+                    </>
+                  )}
+                </button> */}
               </div>
             )}
           </>
@@ -114,24 +110,6 @@ export default function FeaturedProjects() {
           </button>
         </div>
       </div>
-
-      {/* Lead Gate Modal */}
-      <Modal
-        isOpen={gateOpen}
-        onClose={() => setGateOpen(false)}
-        title="Get Project Details"
-        size="sm"
-      >
-        <div className="px-5 pb-5">
-          <LeadForm
-            source="project_detail"
-            title=""
-            subtitle="Please share your details to explore all our projects."
-            submitLabel="View All Projects"
-            onSuccess={handleGateSuccess}
-          />
-        </div>
-      </Modal>
     </section>
   );
 }
