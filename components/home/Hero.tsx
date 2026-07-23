@@ -32,7 +32,7 @@ export default function Hero({
   stats,
 }: HeroProps) {
   const slides: Slide[] = React.useMemo(() => {
-    const videoSlides: Slide[] = (videoUrls || []).map((src) => ({ type: 'video', src }));
+    const videoSlides: Slide[] = (videoUrls || []).map((src) => ({ type: 'video', src: getImageUrl(src) }));
     const imageSlides: Slide[] = (backgroundImages || []).map((src) => ({
       type: 'image',
       src: getImageUrl(src),
