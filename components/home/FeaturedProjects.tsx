@@ -53,7 +53,7 @@ export default function FeaturedProjects() {
             </span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-            Featured Residences
+            Feature Residences
           </h2>
           <p className="text-gray-500 dark:text-gray-400 text-sm max-w-xl mx-auto">
             Explore our handpicked selection of premium properties designed for exceptional living.
