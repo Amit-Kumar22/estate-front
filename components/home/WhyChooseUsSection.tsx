@@ -123,6 +123,7 @@ export default function WhyChooseUsSection() {
                       src={getImageUrl(item.icon)}
                       alt={item.title}
                       fill
+                      sizes="56px"
                       className="object-contain p-2.5 group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>

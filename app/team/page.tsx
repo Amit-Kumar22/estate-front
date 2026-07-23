@@ -149,29 +149,6 @@ export default function TeamPage() {
       <Navbar />
       <main className="min-h-screen bg-gray-50 dark:bg-[#050505]">
 
-        {/* Hero Banner */}
-        <div className="bg-gradient-to-br from-green-800 via-green-700 to-green-900 dark:from-green-950 dark:via-green-900 dark:to-black py-12 px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 mb-3">
-              <Users className="w-3.5 h-3.5 text-green-200" />
-              <span className="text-green-100 text-xs font-bold tracking-widest uppercase">Our Leadership Team</span>
-            </div>
-            <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3">
-              Meet Our Team
-            </h1>
-            <p className="text-green-100 text-sm max-w-xl mx-auto leading-relaxed">
-              A perfect blend of vision, experience, and innovation — committed to delivering excellence in every project across Bihar.
-            </p>
-            <p className="mt-3 text-xs font-semibold text-green-200 italic">
-              &ldquo;Leadership Built on Trust • Powered by Innovation • Committed to Excellence.&rdquo;
-            </p>
-          </motion.div>
-        </div>
-
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
           {/* Founders */}
