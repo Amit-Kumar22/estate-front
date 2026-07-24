@@ -132,49 +132,6 @@ export default function WelcomeSection() {
             </motion.div>
           </div>
 
-          {/* Stats Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800"
-          >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
-                  500+
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400">
-                  Happy Families
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
-                  50+
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400">
-                  Premium Projects
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
-                  15+
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400">
-                  Years Experience
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
-                  98%
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400">
-                  Satisfaction Rate
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
 

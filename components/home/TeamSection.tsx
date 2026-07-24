@@ -23,50 +23,50 @@ function getInitials(name: string): string {
 }
 
 export const ALL_TEAM_MEMBERS: TeamMember[] = [
+  // {
+  //   id: 'tm1',
+  //   name: 'Mr. Pramod Kumar',
+  //   role: 'Founder',
+  //   designation: 'Founder',
+  //   image: 'https://randomuser.me/api/portraits/men/32.jpg',
+  //   description:
+  //     'Mr. Pramod Kumar serves as the Managing Director of RD ECO Developers Pvt. Ltd. and plays a pivotal role in driving the company\'s strategic vision, operational excellence, and sustainable growth. With extensive experience in the real estate sector, he oversees business operations, project development, financial planning, and organizational management. Under his leadership, RD ECO Developers has strengthened its reputation for quality construction, transparent business practices, and customer-centric development. His commitment to innovation, professionalism, and long-term value continues to guide the company toward new milestones while ensuring every project reflects the highest standards of excellence.',
+  // },
+  // {
+  //   id: 'tm2',
+  //   name: 'Mr. Subodh Kumar Singh',
+  //   role: 'Founder',
+  //   designation: 'Founder',
+  //   image: 'https://randomuser.me/api/portraits/men/45.jpg',
+  //   description:
+  //     'Mr. Subodh Kumar Singh is the visionary Founder & Director of RD ECO Developers Pvt. Ltd. His unwavering dedication, entrepreneurial spirit, and commitment to quality laid the foundation of the company. Under his leadership, the organization has grown into a trusted real estate brand known for integrity, transparency, and customer satisfaction.',
+  // },
+  // {
+  //   id: 'tm3',
+  //   name: 'Mrs. Sheelu Devi',
+  //   role: 'Founder',
+  //   designation: 'Founder',
+  //   image: 'https://randomuser.me/api/portraits/women/44.jpg',
+  //   description:
+  //     'Mrs. Sheelu Devi is one of the Founders & Directors of RD ECO Developers Pvt. Ltd. She has been a constant source of inspiration and strength since the company\'s inception. Her values, guidance, and dedication have played a vital role in building a culture of trust, responsibility, and long-term growth.',
+  // },
+  // {
+  //   id: 'tm4',
+  //   name: 'Mr. Raja Singh',
+  //   role: 'Group Chief Executive Officer (Group CEO)',
+  //   designation: 'Group CEO',
+  //   image: 'https://randomuser.me/api/portraits/men/52.jpg',
+  //   description:
+  //     'Mr. Raja Singh serves as the Group Chief Executive Officer (Group CEO), leading the company\'s strategic direction, business growth, and innovation initiatives. He is focused on strengthening the brand, embracing modern technologies, enhancing customer experiences, and expanding RD ECO Developers into one of the most respected real estate companies in Eastern India.',
+  // },
   {
-    id: 'tm1',
-    name: 'Mr. Pramod Kumar',
-    role: 'Founder',
-    designation: 'Founder',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
-    description:
-      'Mr. Pramod Kumar serves as the Managing Director of RD ECO Developers Pvt. Ltd. and plays a pivotal role in driving the company\'s strategic vision, operational excellence, and sustainable growth. With extensive experience in the real estate sector, he oversees business operations, project development, financial planning, and organizational management. Under his leadership, RD ECO Developers has strengthened its reputation for quality construction, transparent business practices, and customer-centric development. His commitment to innovation, professionalism, and long-term value continues to guide the company toward new milestones while ensuring every project reflects the highest standards of excellence.',
-  },
-  {
-    id: 'tm2',
-    name: 'Mr. Subodh Kumar Singh',
-    role: 'Founder',
-    designation: 'Founder',
-    image: 'https://randomuser.me/api/portraits/men/45.jpg',
-    description:
-      'Mr. Subodh Kumar Singh is the visionary Founder & Director of RD ECO Developers Pvt. Ltd. His unwavering dedication, entrepreneurial spirit, and commitment to quality laid the foundation of the company. Under his leadership, the organization has grown into a trusted real estate brand known for integrity, transparency, and customer satisfaction.',
-  },
-  {
-    id: 'tm3',
-    name: 'Mrs. Sheelu Devi',
-    role: 'Founder',
-    designation: 'Founder',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
-    description:
-      'Mrs. Sheelu Devi is one of the Founders & Directors of RD ECO Developers Pvt. Ltd. She has been a constant source of inspiration and strength since the company\'s inception. Her values, guidance, and dedication have played a vital role in building a culture of trust, responsibility, and long-term growth.',
-  },
-  {
-    id: 'tm4',
-    name: 'Mr. Raja Singh',
-    role: 'Group Chief Executive Officer (Group CEO)',
-    designation: 'Group CEO',
-    image: 'https://randomuser.me/api/portraits/men/52.jpg',
-    description:
-      'Mr. Raja Singh serves as the Group Chief Executive Officer (Group CEO), leading the company\'s strategic direction, business growth, and innovation initiatives. He is focused on strengthening the brand, embracing modern technologies, enhancing customer experiences, and expanding RD ECO Developers into one of the most respected real estate companies in Eastern India.',
-  },
-  {
-    id: 'tm5',
-    name: 'Mr. Prince Kumar Singh',
-    role: 'Operations Head',
-    designation: 'Operations Head',
+    id: 'tm10',
+    name: 'Mr. Alexender Tirkey',
+    role: 'Head – Sales & CRM',
+    designation: 'Head – Sales & CRM',
     image: 'https://randomuser.me/api/portraits/men/61.jpg',
     description:
-      'Mr. Prince Kumar Singh heads the Operations Department, ensuring the smooth execution of projects and seamless coordination across all business functions. He oversees operational planning, project execution, process optimization, and quality assurance while maintaining the company\'s commitment to timely delivery and operational excellence.',
+      'Mr. Alexender Tirkey leads the Sales & Customer Relationship Management (CRM) team. He is responsible for business development, sales strategy, customer engagement, lead management, and after-sales coordination. His customer-first approach helps build lasting relationships and ensures a smooth home-buying experience.',
   },
   {
     id: 'tm6',
@@ -105,13 +105,13 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
       'Mr. Sunil Kumar heads the Legal Department and is responsible for ensuring legal compliance across all company operations. He oversees property documentation, regulatory approvals, contract management, statutory compliance, and legal due diligence, ensuring every project adheres to applicable laws and regulations.',
   },
   {
-    id: 'tm10',
-    name: 'Mr. Alexender Tirkey',
-    role: 'Head – Sales & CRM',
-    designation: 'Head – Sales & CRM',
+    id: 'tm5',
+    name: 'Mr. Prince Kumar Singh',
+    role: 'Operations Head',
+    designation: 'Operations Head',
     image: 'https://randomuser.me/api/portraits/men/27.jpg',
     description:
-      'Mr. Alexender Tirkey leads the Sales & Customer Relationship Management (CRM) team. He is responsible for business development, sales strategy, customer engagement, lead management, and after-sales coordination. His customer-first approach helps build lasting relationships and ensures a smooth home-buying experience.',
+      'Mr. Prince Kumar Singh heads the Operations Department, ensuring the smooth execution of projects and seamless coordination across all business functions. He oversees operational planning, project execution, process optimization, and quality assurance while maintaining the company\'s commitment to timely delivery and operational excellence.',
   },
 ];
 
