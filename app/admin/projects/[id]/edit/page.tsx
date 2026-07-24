@@ -41,7 +41,7 @@ export default function EditProjectPage() {
   });
 
   const [form, setForm] = useState({
-    name: '', location: '', status: 'current', price: '', shortDescription: '',
+    name: '', location: '', status: 'current', priority: '0', price: '', shortDescription: '',
     description: '', possessionDate: '', latitude: '', longitude: '',
     virtualTourUrl: '', metaTitle: '', metaDescription: '',
     featured: false, isActive: true,
@@ -60,6 +60,7 @@ export default function EditProjectPage() {
       name: project.name,
       location: project.location,
       status: project.status,
+      priority: String(project.priority ?? 0),
       price: project.price,
       shortDescription: project.shortDescription ?? '',
       description: project.description ?? '',
@@ -212,6 +213,15 @@ export default function EditProjectPage() {
               <select value={form.status} onChange={(e) => setForm((f) => ({ ...f, status: e.target.value }))} className={inputCls}>
                 {STATUS_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
               </select>
+            </Field>
+            <Field label="Priority">
+              <input
+                type="number"
+                value={form.priority}
+                onChange={(e) => setForm((f) => ({ ...f, priority: e.target.value }))}
+                placeholder="e.g. 1 (1 = highest priority)"
+                className={inputCls}
+              />
             </Field>
             <Field label="Starting Price *">
               <input value={form.price} onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))} className={inputCls} />

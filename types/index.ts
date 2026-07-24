@@ -16,6 +16,7 @@ export interface Project {
   name: string;
   slug: string;
   status: 'current' | 'upcoming' | 'completed';
+  priority: number;
   location: string;
   latitude: number;
   longitude: number;
@@ -211,11 +212,24 @@ export interface ProjectLead {
   count: number;
 }
 
+export interface ProjectPriorityItem {
+  _id: string;
+  name: string;
+  slug: string;
+  status: 'current' | 'upcoming' | 'completed';
+  priority: number;
+  featured: boolean;
+  price: string;
+  location: string;
+  heroImages: string[];
+}
+
 export interface DashboardData {
   stats: DashboardStats;
   monthlyLeads: MonthlyLead[];
   projectWiseLeads: ProjectLead[];
   recentLeads: Lead[];
+  projectsByPriority: ProjectPriorityItem[];
 }
 
 // ─── Family Legacy Types ──────────────────────────────────────────────────────

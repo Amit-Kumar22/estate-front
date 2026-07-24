@@ -4,10 +4,10 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { dashboardApi } from '@/lib/api';
 import { DashboardData } from '@/types';
-import { formatRelativeDate } from '@/lib/utils';
+import { formatRelativeDate, getStatusColor, getStatusLabel, getImageUrl } from '@/lib/utils';
 import {
   Building2, Users2, TrendingUp, Download,
-  MessageSquare, Unlock, ArrowUpRight,
+  MessageSquare, Unlock, ArrowUpRight, ListOrdered,
 } from 'lucide-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -109,6 +109,73 @@ export default function AdminDashboardPage() {
                 />
               </PieChart>
             </ResponsiveContainer>
+          )}
+        </div>
+      </div>
+
+      {/* Projects by Priority */}
+      <div className="bg-white dark:bg-[#111] rounded-xl border border-gray-200 dark:border-[#1f1f1f] overflow-hidden shadow-sm dark:shadow-none">
+        <div className="px-5 py-4 border-b border-gray-200 dark:border-[#1f1f1f] flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <ListOrdered className="w-4 h-4 text-gold-500" />
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Projects by Priority</h3>
+          </div>
+          <span className="text-[11px] text-gray-500">Lower number = higher priority</span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-gray-50 dark:bg-[#1a1a1a]">
+                {['Priority', 'Project', 'Location', 'Status', 'Price'].map((h) => (
+                  <th key={h} className="text-left px-4 py-2.5 text-[11px] font-semibold text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {isLoading
+                ? Array.from({ length: 5 }).map((_, i) => (
+                    <tr key={i} className="border-t border-gray-100 dark:border-[#1a1a1a]">
+                      {Array.from({ length: 5 }).map((_, j) => (
+                        <td key={j} className="px-4 py-3">
+                          <div className="h-3 skeleton rounded w-20" />
+                        </td>
+                      ))}
+                    </tr>
+                  ))
+                : (data?.projectsByPriority || []).map((project) => (
+                    <tr key={project._id} className="border-t border-gray-100 dark:border-[#1a1a1a] hover:bg-gray-50 dark:hover:bg-[#1a1a1a] transition-colors">
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gold-500/10 text-gold-500 text-[11px] font-bold">
+                          {project.priority}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          {project.heroImages?.[0] && (
+                            <div
+                              className="w-8 h-8 rounded-lg bg-cover bg-center flex-shrink-0"
+                              style={{ backgroundImage: `url(${getImageUrl(project.heroImages[0])})` }}
+                            />
+                          )}
+                          <span className="font-medium text-gray-900 dark:text-white text-xs">{project.name}</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">{project.location}</td>
+                      <td className="px-4 py-3">
+                        <span className={`badge text-[10px] ${getStatusColor(project.status)}`}>
+                          {getStatusLabel(project.status)}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-green-400 font-medium text-xs whitespace-nowrap">{project.price}</td>
+                    </tr>
+                  ))}
+            </tbody>
+          </table>
+
+          {!isLoading && (data?.projectsByPriority || []).length === 0 && (
+            <div className="py-10 text-center text-gray-500 text-sm">No active projects yet</div>
           )}
         </div>
       </div>

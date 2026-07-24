@@ -12,9 +12,9 @@ export const PROJECT_STATUS_LABELS: Record<ProjectStatus, string> = {
 };
 
 export const PROJECT_STATUS_COLORS: Record<ProjectStatus, string> = {
-  current:   'bg-crimson-500/10 text-crimson-400 border-crimson-500/20',
-  upcoming:  'bg-gold-500/10  text-gold-500  border-gold-500/20',
-  completed: 'bg-gray-500/10  text-gray-400  border-gray-500/20',
+  current:   'bg-white text-crimson-400 border-crimson-700/20',
+  upcoming:  'bg-white text-gold-500 border-gold-500/20',
+  completed: 'bg-white text-gray-400 border-gray-600/20',
 };
 
 export const PROJECT_STATUS_DOT_COLORS: Record<ProjectStatus, string> = {
@@ -33,7 +33,7 @@ export const getStatusLabel = (status: string): string =>
   PROJECT_STATUS_LABELS[status as ProjectStatus] ?? status;
 
 export const getStatusColor = (status: string): string =>
-  PROJECT_STATUS_COLORS[status as ProjectStatus] ?? 'bg-gray-500/10 text-gray-400';
+  PROJECT_STATUS_COLORS[status as ProjectStatus] ?? 'bg-white/10 text-black';
 
 export const getStatusDotColor = (status: string): string =>
-  PROJECT_STATUS_DOT_COLORS[status as ProjectStatus] ?? '#6b7280';
+  PROJECT_STATUS_DOT_COLORS[status as ProjectStatus] ?? '#730707ff';
