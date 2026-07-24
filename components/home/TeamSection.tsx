@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Users, ArrowRight } from 'lucide-react';
+import { Users } from 'lucide-react';
+import AutoCarousel from './AutoCarousel';
 
 export interface TeamMember {
   id: string;
@@ -59,15 +59,15 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
   //   description:
   //     'Mr. Raja Singh serves as the Group Chief Executive Officer (Group CEO), leading the company\'s strategic direction, business growth, and innovation initiatives. He is focused on strengthening the brand, embracing modern technologies, enhancing customer experiences, and expanding RD ECO Developers into one of the most respected real estate companies in Eastern India.',
   // },
-  {
-    id: 'tm10',
-    name: 'Mr. Alexender Tirkey',
-    role: 'Head – Sales & CRM',
-    designation: 'Head – Sales & CRM',
-    image: 'https://randomuser.me/api/portraits/men/61.jpg',
-    description:
-      'Mr. Alexender Tirkey leads the Sales & Customer Relationship Management (CRM) team. He is responsible for business development, sales strategy, customer engagement, lead management, and after-sales coordination. His customer-first approach helps build lasting relationships and ensures a smooth home-buying experience.',
-  },
+  // {
+  //   id: 'tm10',
+  //   name: 'Mr. Alexender Tirkey',
+  //   role: 'Head – Sales & CRM',
+  //   designation: 'Head – Sales & CRM',
+  //   image: 'https://randomuser.me/api/portraits/men/61.jpg',
+  //   description:
+  //     'Mr. Alexender Tirkey leads the Sales & Customer Relationship Management (CRM) team. He is responsible for business development, sales strategy, customer engagement, lead management, and after-sales coordination. His customer-first approach helps build lasting relationships and ensures a smooth home-buying experience.',
+  // },
   {
     id: 'tm6',
     name: 'Ms. Chetna Kumari',
@@ -104,19 +104,17 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = [
     description:
       'Mr. Sunil Kumar heads the Legal Department and is responsible for ensuring legal compliance across all company operations. He oversees property documentation, regulatory approvals, contract management, statutory compliance, and legal due diligence, ensuring every project adheres to applicable laws and regulations.',
   },
-  {
-    id: 'tm5',
-    name: 'Mr. Prince Kumar Singh',
-    role: 'Operations Head',
-    designation: 'Operations Head',
-    image: 'https://randomuser.me/api/portraits/men/27.jpg',
+{
+    id: 'tm10',
+    name: 'Mr. Alexender Tirkey',
+    role: 'Head – Sales & CRM',
+    designation: 'Head – Sales & CRM',
+    image: 'https://randomuser.me/api/portraits/men/61.jpg',
     description:
-      'Mr. Prince Kumar Singh heads the Operations Department, ensuring the smooth execution of projects and seamless coordination across all business functions. He oversees operational planning, project execution, process optimization, and quality assurance while maintaining the company\'s commitment to timely delivery and operational excellence.',
+      'Mr. Alexender Tirkey leads the Sales & Customer Relationship Management (CRM) team. He is responsible for business development, sales strategy, customer engagement, lead management, and after-sales coordination. His customer-first approach helps build lasting relationships and ensures a smooth home-buying experience.',
   },
+  
 ];
-
-// Show first 4 on home page
-const PREVIEW_MEMBERS = ALL_TEAM_MEMBERS.slice(0, 4);
 
 function MemberCard({ member, index }: { member: TeamMember; index: number }) {
   return (
@@ -183,29 +181,16 @@ export default function TeamSection() {
           </p>
         </motion.div>
 
-        {/* Preview Grid – 4 members */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-          {PREVIEW_MEMBERS.map((member, i) => (
+        {/* Team Carousel – all members */}
+        <AutoCarousel
+          items={ALL_TEAM_MEMBERS.map((member, i) => (
             <MemberCard key={member.id} member={member} index={i} />
           ))}
-        </div>
-
-        {/* View All Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex justify-center"
-        >
-          <Link
-            href="/team"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-600 hover:bg-green-700 text-white text-sm font-semibold transition-colors duration-200 shadow-md hover:shadow-lg"
-          >
-            Meet Our Full Team
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </motion.div>
+          autoPlayInterval={4500}
+          showArrows
+          showDots
+          itemsPerView={{ mobile: 1, tablet: 2, desktop: 4 }}
+        />
 
       </div>
     </section>
