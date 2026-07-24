@@ -21,7 +21,7 @@ export default function ProjectOverview({ project, hideConfiguration = false }: 
             {getStatusLabel(project.status)}
           </span>
           {project.featured && (
-            <span className="badge bg-gold-500/10 text-gold-500 border-gold-500/20">
+            <span className="badge bg-crimson-500/10 text-crimson-500 border-crimson-500/20">
               ★ Featured
             </span>
           )}

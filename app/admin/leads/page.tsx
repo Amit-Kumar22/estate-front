@@ -136,7 +136,7 @@ export default function AdminLeadsPage() {
                       <td className="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">{lead.email}</td>
                       <td className="px-4 py-3">
                         <span className={`badge text-[10px] capitalize ${
-                          lead.source === 'contact' ? 'badge-green' :
+                          lead.source === 'contact' ? 'badge-red' :
                           lead.source === 'brochure' ? 'badge-yellow' :
                           lead.source === 'project_detail' ? 'badge-gray' :
                           'bg-green-700/10 text-green-800 dark:text-green-300 border-green-700/20'

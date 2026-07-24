@@ -62,7 +62,7 @@ const milestones = [
     },
 ];
 
-/* ── Milestone icon SVGs (green / gold) ────────────────────────── */
+/* ── Milestone icon SVGs (gold) ────────────────────────── */
 const MilestoneIcons = [
     /* 2013 – flag / founding */
     <svg key="flag" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
@@ -165,7 +165,7 @@ export default function JourneyTimelineSection() {
                 .journey-line-fill {
                     position: absolute;
                     inset: 0;
-                    background: linear-gradient(90deg, #F5C542 0%, #008c3d 100%);
+                    background: linear-gradient(90deg, #F5C542 0%, #ad7a00 100%);
                     transform: scaleX(0);
                     transform-origin: left;
                     transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -192,12 +192,12 @@ export default function JourneyTimelineSection() {
                 }
                 .journey-milestone-card:hover {
                     transform: translateY(-6px) scale(1.04);
-                    box-shadow: 0 12px 40px rgba(0, 140, 61, 0.3);
+                    box-shadow: 0 12px 40px rgba(240, 180, 0, 0.3);
                 }
 
-                /* gold glow on first node icon */
-                .journey-icon-gold {
-                    filter: drop-shadow(0 0 8px rgba(245, 197, 66, 0.7));
+                /* red accent glow on first (highlighted) node icon */
+                .journey-icon-crimson {
+                    filter: drop-shadow(0 0 8px rgba(200, 30, 58, 0.7));
                 }
             `}</style>
 
@@ -228,7 +228,7 @@ export default function JourneyTimelineSection() {
                         <div
                             className="w-full flex flex-col md:flex-row items-center gap-4 px-5 py-4 rounded-[16px]"
                             style={{
-                                background: 'rgba(4, 23, 15, 0.65)',
+                                background: 'rgba(10, 10, 10, 0.65)',
                                 backdropFilter: 'blur(15px)',
                                 WebkitBackdropFilter: 'blur(15px)',
                                 border: '1px solid rgba(255,255,255,0.15)',
@@ -262,7 +262,7 @@ export default function JourneyTimelineSection() {
                                     }}
                                     onMouseEnter={e => {
                                         (e.currentTarget as HTMLElement).style.background = '#F5C542';
-                                        (e.currentTarget as HTMLElement).style.color = '#04170F';
+                                        (e.currentTarget as HTMLElement).style.color = '#1a1200';
                                     }}
                                     onMouseLeave={e => {
                                         (e.currentTarget as HTMLElement).style.background = 'transparent';
@@ -315,7 +315,7 @@ export default function JourneyTimelineSection() {
                         <div
                             className="w-full px-5 py-4 rounded-[20px]"
                             style={{
-                                background: 'linear-gradient(135deg, #04170F 0%, #0B4025 60%, #04170F 100%)',
+                                background: 'linear-gradient(135deg, #0a0a0a 0%, #161616 60%, #0a0a0a 100%)',
                                 backdropFilter: 'blur(12px)',
                                 WebkitBackdropFilter: 'blur(12px)',
                                 border: '1px solid rgba(255,255,255,0.08)',
@@ -368,16 +368,16 @@ export default function JourneyTimelineSection() {
                                                     width: '36px',
                                                     height: '36px',
                                                     background: m.highlighted
-                                                        ? 'linear-gradient(135deg, #F5C542, #e0a800)'
+                                                        ? 'linear-gradient(135deg, #e26478, #a8152f)'
                                                         : '#FFFFFF',
-                                                    color: m.highlighted ? '#04170F' : '#008c3d',
+                                                    color: m.highlighted ? '#ffffff' : '#ad7a00',
                                                     boxShadow: m.highlighted
-                                                        ? '0 0 0 3px rgba(245,197,66,0.35), 0 6px 20px rgba(245,197,66,0.3)'
+                                                        ? '0 0 0 3px rgba(200,30,58,0.35), 0 6px 20px rgba(200,30,58,0.3)'
                                                         : '0 4px 16px rgba(0,0,0,0.25)',
-                                                    border: m.highlighted ? 'none' : '2px solid rgba(0,140,61,0.25)',
+                                                    border: m.highlighted ? 'none' : '2px solid rgba(214,153,0,0.25)',
                                                 }}
                                             >
-                                                <span className={m.highlighted ? 'journey-icon-gold' : ''}>
+                                                <span className={m.highlighted ? 'journey-icon-crimson' : ''}>
                                                     {MilestoneIcons[i]}
                                                 </span>
                                             </div>
@@ -385,7 +385,7 @@ export default function JourneyTimelineSection() {
                                             {/* Year */}
                                             <span
                                                 className="font-bold text-xs mb-0.5"
-                                                style={{ color: m.highlighted ? '#F5C542' : '#FFFFFF' }}
+                                                style={{ color: m.highlighted ? '#e26478' : '#FFFFFF' }}
                                             >
                                                 {m.year}
                                             </span>
@@ -393,7 +393,7 @@ export default function JourneyTimelineSection() {
                                             {/* Title */}
                                             <span
                                                 className="text-center font-semibold leading-tight mb-0.5"
-                                                style={{ fontSize: '10px', color: m.highlighted ? '#F5C542' : 'rgba(255,255,255,0.9)' }}
+                                                style={{ fontSize: '10px', color: m.highlighted ? '#e26478' : 'rgba(255,255,255,0.9)' }}
                                             >
                                                 {m.title}
                                             </span>
@@ -414,15 +414,15 @@ export default function JourneyTimelineSection() {
                                                 }}
                                                 className="text-[8px] font-semibold transition-all duration-300 px-2 py-0.5 rounded-full"
                                                 style={{
-                                                    color: '#3ddc84',
-                                                    background: 'rgba(0, 140, 61, 0.15)',
-                                                    border: '1px solid rgba(0, 140, 61, 0.35)',
+                                                    color: '#F5C542',
+                                                    background: 'rgba(240, 180, 0, 0.15)',
+                                                    border: '1px solid rgba(240, 180, 0, 0.35)',
                                                 }}
                                                 onMouseEnter={e => {
-                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(0, 140, 61, 0.28)';
+                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(240, 180, 0, 0.28)';
                                                 }}
                                                 onMouseLeave={e => {
-                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(0, 140, 61, 0.15)';
+                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(240, 180, 0, 0.15)';
                                                 }}
                                             >
                                                 Read More
@@ -581,7 +581,7 @@ export default function JourneyTimelineSection() {
                                 transition={{ duration: 0.2 }}
                                 className="relative w-full max-w-md max-h-[70vh] rounded-xl shadow-2xl overflow-hidden"
                                 style={{
-                                    background: 'linear-gradient(135deg, #008c3d 0%, #04170F 100%)',
+                                    background: 'linear-gradient(135deg, #ad7a00 0%, #0a0a0a 100%)',
                                 }}
                             >
                                 {/* Header */}

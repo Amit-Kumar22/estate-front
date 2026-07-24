@@ -178,7 +178,7 @@ export default function FAQSection() {
           transition={{ duration: 0.5 }}
           className="relative overflow-hidden rounded-xl bg-gradient-to-br from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 p-4 md:p-6"
           style={{
-            boxShadow: '0 8px 32px rgba(22, 163, 74, 0.25)',
+            boxShadow: '0 8px 32px rgba(240, 180, 0, 0.25)',
           }}
         >
           {/* Decorative Background Pattern */}

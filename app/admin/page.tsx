@@ -27,15 +27,15 @@ export default function AdminDashboardPage() {
   const stats = data?.stats;
 
   const statCards = [
-    { label: 'Total Projects', value: stats?.totalProjects ?? '-', icon: Building2, color: 'text-green-500', bg: 'bg-green-500/10' },
-    { label: 'Total Leads', value: stats?.totalLeads ?? '-', icon: Users2, color: 'text-gold-500', bg: 'bg-gold-500/10' },
-    { label: "Today's Leads", value: stats?.todayLeads ?? '-', icon: TrendingUp, color: 'text-green-400', bg: 'bg-green-400/10' },
-    { label: 'Brochure Downloads', value: stats?.brochureDownloads ?? '-', icon: Download, color: 'text-gold-400', bg: 'bg-gold-400/10' },
-    { label: 'Contact Requests', value: stats?.contactRequests ?? '-', icon: MessageSquare, color: 'text-green-700', bg: 'bg-green-700/10' },
-    { label: 'Content Unlocks', value: stats?.unlockLeads ?? '-', icon: Unlock, color: 'text-gold-700', bg: 'bg-gold-700/10' },
+    { label: 'Total Projects', value: stats?.totalProjects ?? '-', icon: Building2, color: 'text-gold-500', bg: 'bg-gold-500/10' },
+    { label: 'Total Leads', value: stats?.totalLeads ?? '-', icon: Users2, color: 'text-crimson-500', bg: 'bg-crimson-500/10' },
+    { label: "Today's Leads", value: stats?.todayLeads ?? '-', icon: TrendingUp, color: 'text-gold-400', bg: 'bg-gold-400/10' },
+    { label: 'Brochure Downloads', value: stats?.brochureDownloads ?? '-', icon: Download, color: 'text-crimson-400', bg: 'bg-crimson-400/10' },
+    { label: 'Contact Requests', value: stats?.contactRequests ?? '-', icon: MessageSquare, color: 'text-gold-700', bg: 'bg-gold-700/10' },
+    { label: 'Content Unlocks', value: stats?.unlockLeads ?? '-', icon: Unlock, color: 'text-crimson-700', bg: 'bg-crimson-700/10' },
   ];
 
-  const COLORS = ['#16a34a', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6', '#f97316'];
+  const COLORS = ['#ad7a00', '#c81e3a', '#3b82f6', '#f59e0b', '#8b5cf6', '#ec4899'];
 
   return (
     <div className="space-y-6 max-w-7xl">
@@ -75,7 +75,7 @@ export default function AdminDashboardPage() {
                 <Tooltip
                   contentStyle={{ background: '#1a1a1a', border: '1px solid #2a2a2a', borderRadius: 8, color: '#f1f5f9', fontSize: 12 }}
                 />
-                <Bar dataKey="count" fill="#16a34a" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="count" fill="#f0b400" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           )}
@@ -150,7 +150,7 @@ export default function AdminDashboardPage() {
                       <td className="px-4 py-3 text-gray-400 whitespace-nowrap">{lead.email}</td>
                       <td className="px-4 py-3">
                         <span className={`badge text-[10px] capitalize ${
-                          lead.source === 'contact' ? 'badge-green' :
+                          lead.source === 'contact' ? 'badge-red' :
                           lead.source === 'brochure' ? 'badge-yellow' : 'badge-gray'
                         }`}>
                           {lead.source.replace('_', ' ')}

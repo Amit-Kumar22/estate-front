@@ -109,7 +109,7 @@ function ReviewCard({ item, featured, onClick }: { item: PublicReview; featured?
 
       {featured && (
         <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
-          <span className="px-2.5 py-0.5 rounded-full bg-green-600 text-white text-[10px] font-semibold tracking-wide shadow-sm whitespace-nowrap">
+          <span className="px-2.5 py-0.5 rounded-full bg-crimson-600 text-white text-[10px] font-semibold tracking-wide shadow-sm whitespace-nowrap">
             Featured
           </span>
         </div>

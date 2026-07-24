@@ -75,11 +75,11 @@ export default function MapSection() {
 
           const imageUrl = getImageUrl(project.heroImages?.[0]);
           const statusColors: Record<string, string> = {
-            current: '#008c3d',
+            current: '#ad7a00',
             upcoming: '#f0b400',
             completed: '#6b7280',
           };
-          const color = statusColors[project.status] || '#008c3d';
+          const color = statusColors[project.status] || '#ad7a00';
 
           const customIcon = L.divIcon({
             className: '',

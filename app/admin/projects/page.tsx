@@ -135,7 +135,7 @@ export default function AdminProjectsPage() {
                       </td>
                       <td className="px-4 py-3">
                         {project.featured && (
-                          <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+                          <Star className="w-3.5 h-3.5 text-crimson-400 fill-crimson-400" />
                         )}
                       </td>
                       <td className="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">

@@ -47,11 +47,11 @@ export default function ProjectMap({ lat, lng, name, location }: ProjectMapProps
           html: `
             <div style="
               width: 36px; height: 36px;
-              background: #008c3d;
+              background: #f0b400;
               border-radius: 50% 50% 50% 0;
               transform: rotate(-45deg);
               border: 3px solid white;
-              box-shadow: 0 4px 12px rgba(0, 140, 61, 0.4);
+              box-shadow: 0 4px 12px rgba(240, 180, 0, 0.4);
             "></div>
           `,
           iconSize: [36, 36],

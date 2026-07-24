@@ -6,30 +6,32 @@
 
 /* ─── CSS Variables ─────────────────────────────────────────────────────────── */
 :root {
-  --color-primary:       #008c3d;
-  --color-primary-light: #00cc58;
-  --color-primary-dark:  #007031;
-  --gradient-primary:    linear-gradient(135deg, #008c3d 0%, #007031 100%);
+  /* Brand gold — the sole brand color, sampled from the logo's roof */
+  --color-primary:       #f0b400;
+  --color-primary-light: #f7c325;
+  --color-primary-dark:  #ad7a00;
+  --gradient-primary:    linear-gradient(135deg, #f0b400 0%, #ad7a00 100%);
   --gradient-hero:       linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.75));
 
-  /* Gold/amber accent — from the logo's house colour, for highlights only */
-  --color-accent:        #f0b400;
-  --color-accent-light:  #f7c325;
-  --color-accent-dark:   #ad7a00;
-  --gradient-accent:     linear-gradient(135deg, #f7c325 0%, #f0b400 50%, #ad7a00 100%);
+  /* Brand red accent — from the logo's "ECO" text, used sparingly for
+     highlights/CTAs alongside primary gold */
+  --color-accent:        #c81e3a;
+  --color-accent-light:  #e26478;
+  --color-accent-dark:   #861028;
+  --gradient-accent:     linear-gradient(135deg, #e26478 0%, #c81e3a 50%, #861028 100%);
 
   /* ── Light Mode ── */
   --bg-primary:    #ffffff;
-  --bg-secondary:  #eefcf4;
+  --bg-secondary:  #fffbeb;
   --bg-card:       #ffffff;
   --text-primary:  #0f172a;
   --text-secondary:#374151;
   --text-muted:    #6b7280;
-  --border-color:  #b3efcd;
-  --shadow:        0 4px 20px rgba(0, 140, 61, 0.10);
-  --shadow-green:  0 4px 20px rgba(0, 140, 61, 0.16);
-  --shadow-hover:  0 8px 32px rgba(0, 140, 61, 0.26);
-  --shadow-navbar: 0 2px 20px rgba(0, 140, 61, 0.15);
+  --border-color:  #fde68a;
+  --shadow:        0 4px 20px rgba(240, 180, 0, 0.10);
+  --shadow-green:  0 4px 20px rgba(240, 180, 0, 0.16);
+  --shadow-hover:  0 8px 32px rgba(240, 180, 0, 0.26);
+  --shadow-navbar: 0 2px 20px rgba(240, 180, 0, 0.15);
 }
 
 .dark {
@@ -41,8 +43,8 @@
   --text-muted:    #475569;
   --border-color:  #1f1f1f;
   --shadow:        0 4px 24px rgba(0, 0, 0, 0.4);
-  --shadow-green:  0 4px 20px rgba(0, 140, 61, 0.10);
-  --shadow-hover:  0 8px 32px rgba(0, 140, 61, 0.15);
+  --shadow-green:  0 4px 20px rgba(240, 180, 0, 0.10);
+  --shadow-hover:  0 8px 32px rgba(240, 180, 0, 0.15);
   --shadow-navbar: 0 2px 20px rgba(0, 0, 0, 0.40);
 }
 
@@ -65,8 +67,8 @@ body {
 /* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar        { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track  { background: transparent; }
-::-webkit-scrollbar-thumb  { background: #008c3d; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #007031; }
+::-webkit-scrollbar-thumb  { background: #f0b400; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #ad7a00; }
 
 /* ─── Typography ─────────────────────────────────────────────────────────────── */
 .font-display { font-family: 'Playfair Display', Georgia, serif; }
@@ -78,7 +80,7 @@ body {
   background-clip: text;
 }
 
-.text-gradient-gold {
+.text-gradient-accent {
   background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -102,7 +104,7 @@ body {
   background: rgba(255,255,255,0.90);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0,140,61,0.12);
+  border: 1px solid rgba(240,180,0,0.12);
 }
 
 /* ─── Buttons ────────────────────────────────────────────────────────────────── */
@@ -134,14 +136,14 @@ body {
     transition-all duration-200;
 }
 
-/* Gold accent button — for secondary highlights (e.g. reviews/awards), used
-   sparingly alongside the primary green so it reads as an accent, not a
+/* Red accent button — for secondary highlights (e.g. reviews/awards), used
+   sparingly alongside the primary gold so it reads as an accent, not a
    second primary. */
 .btn-accent {
   @apply inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm
-    bg-gradient-to-r from-gold-500 to-gold-600 text-white
-    hover:from-gold-400 hover:to-gold-500
-    shadow-btn-gold hover:shadow-btn-gold-lg
+    bg-gradient-to-r from-crimson-500 to-crimson-600 text-white
+    hover:from-crimson-400 hover:to-crimson-500
+    shadow-btn-crimson hover:shadow-btn-crimson-lg
     hover:-translate-y-0.5 active:translate-y-0
     transition-all duration-300 ease-out;
 }
@@ -205,10 +207,10 @@ body {
 .badge {
   @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border;
 }
-.badge-green {
-  @apply bg-green-100 dark:bg-green-500/10
-    text-green-700 dark:text-green-400
-    border-green-300 dark:border-green-500/20;
+.badge-red {
+  @apply bg-crimson-100 dark:bg-crimson-500/10
+    text-crimson-700 dark:text-crimson-400
+    border-crimson-300 dark:border-crimson-500/20;
 }
 .badge-blue {
   @apply bg-blue-100 dark:bg-blue-500/10
@@ -232,7 +234,7 @@ body {
   100% { background-position:  200% 0; }
 }
 .skeleton {
-  background: linear-gradient(90deg, #eefcf4 25%, #d9f7e6 50%, #eefcf4 75%);
+  background: linear-gradient(90deg, #fffbeb 25%, #fef3c7 50%, #fffbeb 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -243,7 +245,7 @@ body {
 
 /* ─── Map ────────────────────────────────────────────────────────────────────── */
 .leaflet-container {
-  background: #eefcf4;
+  background: #fffbeb;
   border-radius: 16px;
   z-index: 1;
 }
@@ -251,9 +253,9 @@ body {
 
 .leaflet-popup-content-wrapper {
   background: #ffffff !important;
-  border: 1px solid #b3efcd !important;
+  border: 1px solid #fde68a !important;
   border-radius: 14px !important;
-  box-shadow: 0 8px 32px rgba(0, 140, 61, 0.18) !important;
+  box-shadow: 0 8px 32px rgba(240, 180, 0, 0.18) !important;
   color: #0f172a !important;
 }
 .dark .leaflet-popup-content-wrapper {

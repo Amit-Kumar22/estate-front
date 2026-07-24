@@ -20,8 +20,8 @@ const STAR_COLORS = [
   'fill-red-400 text-red-400',
   'fill-orange-400 text-orange-400',
   'fill-yellow-400 text-yellow-400',
-  'fill-lime-400 text-lime-400',
-  'fill-green-500 text-green-500',
+  'fill-amber-400 text-amber-400',
+  'fill-gold-500 text-gold-500',
 ];
 
 export default function ReviewForm({ onClose }: ReviewFormProps) {

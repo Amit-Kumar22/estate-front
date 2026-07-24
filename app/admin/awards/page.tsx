@@ -193,7 +193,7 @@ export default function AdminAwardsPage() {
                 style={{ backgroundImage: award.image ? `url(${getImageUrl(award.image)})` : undefined }}
               />
               <div className="p-3">
-                <span className="text-[10px] font-bold text-yellow-500 bg-yellow-500/10 px-1.5 py-0.5 rounded">
+                <span className="text-[10px] font-bold text-gold-500 bg-gold-500/10 px-1.5 py-0.5 rounded">
                   {award.year}
                 </span>
                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white mt-1.5 mb-0.5 line-clamp-2 leading-snug">

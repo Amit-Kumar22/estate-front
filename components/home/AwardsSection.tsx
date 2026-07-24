@@ -23,7 +23,7 @@ export default function AwardsSection() {
   if (!isLoading && awards.length === 0) return null;
 
   return (
-    <section className="py-3 md:py-5 bg-gradient-to-br from-green-50 via-green-100 to-gold-50 dark:from-[#0d2210] dark:via-[#0f1f0f] dark:to-[#111]">
+    <section className="py-3 md:py-5 bg-gradient-to-br from-green-50 via-green-100 to-gold-50 dark:from-[#1f1706] dark:via-[#1a1509] dark:to-[#111]">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

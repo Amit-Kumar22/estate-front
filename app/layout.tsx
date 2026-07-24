@@ -75,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     fontSize: '14px',
                   },
                   success: {
-                    iconTheme: { primary: '#008c3d', secondary: '#fff' },
+                    iconTheme: { primary: '#f0b400', secondary: '#fff' },
                   },
                   error: {
                     iconTheme: { primary: '#ef4444', secondary: '#fff' },

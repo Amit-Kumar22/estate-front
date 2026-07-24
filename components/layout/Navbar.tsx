@@ -105,7 +105,7 @@ export default function Navbar() {
     }`;
 
   const dropdownMenuClass = isLightSolid
-    ? 'bg-white border border-green-100 shadow-[0_8px_32px_rgba(22,163,74,0.14)]'
+    ? 'bg-white border border-green-100 shadow-[0_8px_32px_rgba(240,180,0,0.14)]'
     : 'bg-[#111] border border-[#1f1f1f] shadow-2xl';
 
   const dropdownItemClass = isLightSolid
@@ -114,7 +114,7 @@ export default function Navbar() {
 
   const mobileMenuClass = isDark
     ? 'bg-[#0a0a0a]/98 backdrop-blur-xl border-b border-white/5'
-    : 'bg-white border-b border-green-100 shadow-[0_8px_40px_rgba(22,163,74,0.18)]';
+    : 'bg-white border-b border-green-100 shadow-[0_8px_40px_rgba(240,180,0,0.18)]';
 
   const getMobileLinkClass = (active: boolean) =>
     `flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
@@ -158,12 +158,12 @@ export default function Navbar() {
                 className="h-9 w-9 sm:h-11 sm:w-11 object-contain shrink-0 transition-transform duration-300 group-hover:scale-105"
               />
               <div className="flex items-baseline leading-none select-none">
-                <span className={`font-display font-bold text-lg sm:text-xl tracking-tight transition-colors duration-300 group-hover:text-green-500 ${logoTextClass}`}>
+                {/* <span className={`font-display font-bold text-lg sm:text-xl tracking-tight transition-colors duration-300 group-hover:text-green-500 ${logoTextClass}`}>
                   RD Eco
-                </span>
-                <span className={`font-display font-medium text-lg sm:text-xl tracking-tight ml-1.5 transition-colors duration-300 group-hover:text-green-400 ${isLightSolid ? 'text-gray-500' : 'text-gray-300'}`}>
+                </span> */}
+                {/* <span className={`font-display font-medium text-lg sm:text-xl tracking-tight ml-1.5 transition-colors duration-300 group-hover:text-green-400 ${isLightSolid ? 'text-gray-500' : 'text-gray-300'}`}>
                   Developers
-                </span>
+                </span> */}
               </div>
             </Link>
 
@@ -229,11 +229,11 @@ export default function Navbar() {
                 onClick={() => setReviewOpen(true)}
                 className={`hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium border transition-all group ${
                   isLightSolid
-                    ? 'border-gold-200 text-gold-700 hover:bg-gold-500 hover:text-white hover:border-gold-500'
-                    : 'border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-white hover:border-gold-500'
+                    ? 'border-crimson-200 text-crimson-700 hover:bg-crimson-500 hover:text-white hover:border-crimson-500'
+                    : 'border-crimson-500/40 text-crimson-400 hover:bg-crimson-500 hover:text-white hover:border-crimson-500'
                 }`}
               >
-                <Star className="w-3.5 h-3.5 fill-gold-400 text-gold-400 group-hover:fill-white group-hover:text-white transition-colors" />
+                <Star className="w-3.5 h-3.5 fill-crimson-400 text-crimson-400 group-hover:fill-white group-hover:text-white transition-colors" />
                 Review
               </button>
               {/* Desktop: Login or Dashboard based on auth state */}
@@ -334,7 +334,7 @@ export default function Navbar() {
                   onClick={() => { setMobileOpen(false); setReviewOpen(true); }}
                   className={`flex items-center gap-2.5 w-full px-4 py-3 rounded-xl text-sm font-medium transition-all ${getMobileLinkClass(false)}`}
                 >
-                  <Star className="w-4 h-4 fill-gold-400 text-gold-400" />
+                  <Star className="w-4 h-4 fill-crimson-400 text-crimson-400" />
                   Write a Review
                 </button>
                 {isAuthenticated ? (

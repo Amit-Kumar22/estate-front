@@ -61,7 +61,7 @@ export default function Hero({
 
   // Only use a video URL if it is actually configured — no external CDN fallback
   // because third-party CDNs (Mixkit, Pexels, etc.) block cross-origin embedding.
-  // When neither videoUrl nor backgroundImage is set, a rich animated green
+  // When neither videoUrl nor backgroundImage is set, a rich animated gold
   // gradient renders as the background instead.
   const activeVideoUrl =
     (activeSlide?.type === 'video' ? activeSlide.src : '') ||
@@ -108,8 +108,8 @@ export default function Hero({
           />
         ) : (
           /* ── Animated gradient — used when no media is configured ── */
-          /* Base: clearly dark green (NOT black). */
-          <div className="absolute inset-0 bg-[#0b1f12]">
+          /* Base: clearly dark warm brown (NOT black). */
+          <div className="absolute inset-0 bg-[#1a1200]">
             {/* Slow-moving gradient sweep */}
             <div className="absolute inset-0 bg-gradient-to-br from-green-800/50 via-transparent to-green-900/40" />
             {/* Animated glow orb — top right */}
@@ -129,14 +129,14 @@ export default function Hero({
               className="absolute inset-0 opacity-10"
               style={{
                 backgroundImage:
-                  'linear-gradient(rgba(34,197,94,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.15) 1px, transparent 1px)',
+                  'linear-gradient(rgba(240,180,0,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(240,180,0,0.15) 1px, transparent 1px)',
                 backgroundSize: '60px 60px',
               }}
             />
           </div>
         )}
 
-        {/* Dark overlay — lightened when using the gradient fallback so green shows through */}
+        {/* Dark overlay — lightened when using the gradient fallback so gold shows through */}
         <div
           className={`absolute inset-0 bg-gradient-to-b ${
             hasMedia

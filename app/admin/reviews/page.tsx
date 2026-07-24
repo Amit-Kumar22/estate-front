@@ -10,9 +10,9 @@ import { reviewService, AdminReview } from '@/lib/api/review.service';
 import toast from 'react-hot-toast';
 
 const STATUS_COLORS = {
-  pending:  'bg-yellow-100 text-yellow-700 dark:bg-yellow-500/10 dark:text-yellow-400',
-  approved: 'bg-green-100  text-green-700  dark:bg-green-500/10  dark:text-green-400',
-  rejected: 'bg-red-100    text-red-700    dark:bg-red-500/10    dark:text-red-400',
+  pending:  'bg-gold-100 text-gold-700 dark:bg-gold-500/10 dark:text-gold-400',
+  approved: 'bg-gray-100 text-gray-700 dark:bg-gray-500/10 dark:text-gray-400',
+  rejected: 'bg-red-100  text-red-700  dark:bg-red-500/10  dark:text-red-400',
 };
 
 const STATUS_ICONS = {
@@ -28,7 +28,7 @@ function StarRating({ rating }: { rating: number }) {
         <Star
           key={s}
           className={`w-3.5 h-3.5 ${
-            s <= rating ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200 dark:fill-gray-700 dark:text-gray-700'
+            s <= rating ? 'fill-gold-400 text-gold-400' : 'fill-gray-200 text-gray-200 dark:fill-gray-700 dark:text-gray-700'
           }`}
         />
       ))}
