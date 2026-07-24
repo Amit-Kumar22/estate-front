@@ -355,19 +355,19 @@ export default function VisionMissionSection() {
                     </div>
 
                     {/* Services Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 items-stretch">
                         {/* Residential Development */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.1 }}
-                            className="group"
+                            className="group h-full"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative h-full flex flex-col bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
-                                
+
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
                                     <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
@@ -392,12 +392,12 @@ export default function VisionMissionSection() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.2 }}
-                            className="group"
+                            className="group h-full"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative h-full flex flex-col bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
-                                
+
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
                                     <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
@@ -422,12 +422,12 @@ export default function VisionMissionSection() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.3 }}
-                            className="group"
+                            className="group h-full"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative h-full flex flex-col bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
-                                
+
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
                                     <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
@@ -452,12 +452,12 @@ export default function VisionMissionSection() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.4 }}
-                            className="group"
+                            className="group h-full"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative h-full flex flex-col bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
-                                
+
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
                                     <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
@@ -482,12 +482,12 @@ export default function VisionMissionSection() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.5 }}
-                            className="group"
+                            className="group h-full"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative h-full flex flex-col bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
-                                
+
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
                                     <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
@@ -512,12 +512,12 @@ export default function VisionMissionSection() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.6 }}
-                            className="group"
+                            className="group h-full"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative h-full flex flex-col bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
-                                
+
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
                                     <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />

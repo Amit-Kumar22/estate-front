@@ -19,6 +19,12 @@ import MapSectionWrapper from '@/components/home/MapSectionWrapper';
 import { settingsApi } from '@/lib/api';
 import type { SiteSettings } from '@/types';
 
+// Hero video/settings are managed live from the admin panel and must never be
+// served from a stale build-time snapshot, so this route is opted out of
+// static rendering/caching and re-fetches settings on every request.
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 async function getSettings(): Promise<Partial<SiteSettings> | null> {
   try {
     const res = await settingsApi.get();
