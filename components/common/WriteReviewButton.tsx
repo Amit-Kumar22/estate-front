@@ -14,11 +14,11 @@ export default function WriteReviewButton({ variant = 'navbar' }: WriteReviewBut
   if (variant === 'sidebar') {
     return (
       <>
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/10 rounded-xl border border-green-100 dark:border-green-800/30 p-5">
+        <div className="bg-gradient-to-br from-green-50 to-green-50 dark:from-green-900/20 dark:to-green-900/10 rounded-xl border border-green-100 dark:border-green-800/30 p-5">
           <div className="flex items-center gap-2 mb-2">
             <div className="flex gap-0.5">
               {[1,2,3,4,5].map((s) => (
-                <Star key={s} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                <Star key={s} className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
               ))}
             </div>
             <span className="text-xs font-semibold text-green-700 dark:text-green-400">Share Your Experience</span>
@@ -46,7 +46,7 @@ export default function WriteReviewButton({ variant = 'navbar' }: WriteReviewBut
           onClick={() => setOpen(true)}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-green-200 dark:border-green-800/50 bg-white dark:bg-green-900/10 text-green-700 dark:text-green-400 text-xs font-semibold hover:bg-green-600 hover:text-white hover:border-green-600 dark:hover:bg-green-600 dark:hover:text-white dark:hover:border-green-600 transition-all group"
         >
-          <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400 group-hover:fill-white group-hover:text-white transition-colors" />
+          <Star className="w-3.5 h-3.5 fill-gold-400 text-gold-400 group-hover:fill-white group-hover:text-white transition-colors" />
           Write a Review
         </button>
         {open && <ReviewForm onClose={() => setOpen(false)} />}
@@ -61,7 +61,7 @@ export default function WriteReviewButton({ variant = 'navbar' }: WriteReviewBut
         onClick={() => setOpen(true)}
         className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium border border-green-200 dark:border-green-700/40 text-green-700 dark:text-green-400 hover:bg-green-600 hover:text-white hover:border-green-600 dark:hover:bg-green-600 dark:hover:text-white dark:hover:border-green-600 transition-all group"
       >
-        <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400 group-hover:fill-white group-hover:text-white transition-colors" />
+        <Star className="w-3.5 h-3.5 fill-gold-400 text-gold-400 group-hover:fill-white group-hover:text-white transition-colors" />
         Review
       </button>
       {open && <ReviewForm onClose={() => setOpen(false)} />}

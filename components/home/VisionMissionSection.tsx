@@ -15,8 +15,8 @@ export default function VisionMissionSection() {
         <section className="py-10 md:py-12 bg-white dark:bg-black relative overflow-hidden">
             {/* Decorative Background Pattern */}
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]">
-                <div className="absolute top-10 left-10 w-72 h-72 bg-emerald-500 rounded-full blur-3xl" />
-                <div className="absolute bottom-10 right-10 w-72 h-72 bg-emerald-600 rounded-full blur-3xl" />
+                <div className="absolute top-10 left-10 w-72 h-72 bg-green-500 rounded-full blur-3xl" />
+                <div className="absolute bottom-10 right-10 w-72 h-72 bg-green-600 rounded-full blur-3xl" />
             </div>
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -28,9 +28,9 @@ export default function VisionMissionSection() {
                     transition={{ duration: 0.5 }}
                     className="text-center mb-8"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 mb-2">
-                        <Sparkles className="w-3 h-3 text-emerald-600 dark:text-emerald-500" />
-                        <span className="text-emerald-700 dark:text-emerald-400 text-xs font-bold tracking-wider uppercase">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 mb-2">
+                        <Sparkles className="w-3 h-3 text-green-600 dark:text-green-500" />
+                        <span className="text-green-700 dark:text-green-400 text-xs font-bold tracking-wider uppercase">
                             Our Purpose
                         </span>
                     </div>
@@ -49,23 +49,23 @@ export default function VisionMissionSection() {
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="group relative h-full"
                     >
-                        <div className="relative h-full bg-gradient-to-br from-white via-emerald-50/30 to-white dark:from-gray-900 dark:via-emerald-950/20 dark:to-gray-900 rounded-xl p-5 md:p-6 shadow-md shadow-gray-200/60 dark:shadow-black/40 border border-emerald-100/50 dark:border-gray-800 hover:shadow-lg hover:shadow-emerald-500/20 hover:border-emerald-200 dark:hover:border-emerald-500/30 transition-all duration-400 overflow-hidden">
+                        <div className="relative h-full bg-gradient-to-br from-white via-green-50/30 to-white dark:from-gray-900 dark:via-green-950/20 dark:to-gray-900 rounded-xl p-5 md:p-6 shadow-md shadow-gray-200/60 dark:shadow-black/40 border border-green-100/50 dark:border-gray-800 hover:shadow-lg hover:shadow-green-500/20 hover:border-green-200 dark:hover:border-green-500/30 transition-all duration-400 overflow-hidden">
 
                             {/* Animated Corner Accent */}
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-bl-full group-hover:scale-150 transition-transform duration-500" />
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-green-500/10 to-transparent rounded-bl-full group-hover:scale-150 transition-transform duration-500" />
 
                             {/* Floating Dots Pattern */}
                             <div className="absolute top-3 right-3 flex gap-1 opacity-20 dark:opacity-10">
-                                <div className="w-1 h-1 rounded-full bg-emerald-600" />
-                                <div className="w-1 h-1 rounded-full bg-emerald-600" />
-                                <div className="w-1 h-1 rounded-full bg-emerald-600" />
+                                <div className="w-1 h-1 rounded-full bg-green-600" />
+                                <div className="w-1 h-1 rounded-full bg-green-600" />
+                                <div className="w-1 h-1 rounded-full bg-green-600" />
                             </div>
 
                             {/* Compact Icon Badge */}
                             <div className="relative mb-3 flex items-center gap-3">
                                 <div className="relative">
-                                    <div className="absolute inset-0 bg-emerald-500 rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity" />
-                                    <div className="relative w-11 h-11 bg-gradient-to-br from-emerald-600 via-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                                    <div className="absolute inset-0 bg-green-500 rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity" />
+                                    <div className="relative w-11 h-11 bg-gradient-to-br from-green-600 via-green-600 to-green-700 dark:from-green-500 dark:to-green-600 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
                                         <Eye className="w-5 h-5 text-white" />
                                     </div>
                                 </div>
@@ -73,17 +73,17 @@ export default function VisionMissionSection() {
                                     <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                                         Our Vision
                                     </h3>
-                                    <div className="h-0.5 w-12 bg-gradient-to-r from-emerald-600 to-transparent rounded" />
+                                    <div className="h-0.5 w-12 bg-gradient-to-r from-green-600 to-transparent rounded" />
                                 </div>
                             </div>
 
                             {/* Compact Content */}
                             <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed relative z-10">
-                                To become Eastern India's most <span className="font-semibold text-emerald-700 dark:text-emerald-400">respected and trusted real estate developer</span> by creating sustainable, innovative, and high-quality residential and commercial developments that inspire better living and contribute to the growth of future-ready communities.
+                                To become Eastern India's most <span className="font-semibold text-green-700 dark:text-green-400">respected and trusted real estate developer</span> by creating sustainable, innovative, and high-quality residential and commercial developments that inspire better living and contribute to the growth of future-ready communities.
                             </p>
 
                             {/* Bottom Shine Effect */}
-                            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+                            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/50 to-transparent" />
                         </div>
                     </motion.div>
 
@@ -95,23 +95,23 @@ export default function VisionMissionSection() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="group relative h-full"
                     >
-                        <div className="relative h-full flex flex-col bg-gradient-to-br from-white via-emerald-50/30 to-white dark:from-gray-900 dark:via-emerald-950/20 dark:to-gray-900 rounded-xl p-5 md:p-6 shadow-md shadow-gray-200/60 dark:shadow-black/40 border border-emerald-100/50 dark:border-gray-800 hover:shadow-lg hover:shadow-emerald-500/20 hover:border-emerald-200 dark:hover:border-emerald-500/30 transition-all duration-400 overflow-hidden">
+                        <div className="relative h-full flex flex-col bg-gradient-to-br from-white via-green-50/30 to-white dark:from-gray-900 dark:via-green-950/20 dark:to-gray-900 rounded-xl p-5 md:p-6 shadow-md shadow-gray-200/60 dark:shadow-black/40 border border-green-100/50 dark:border-gray-800 hover:shadow-lg hover:shadow-green-500/20 hover:border-green-200 dark:hover:border-green-500/30 transition-all duration-400 overflow-hidden">
 
                             {/* Animated Corner Accent */}
-                            <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-bl from-emerald-500/10 to-transparent rounded-br-full group-hover:scale-150 transition-transform duration-500" />
+                            <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-bl from-green-500/10 to-transparent rounded-br-full group-hover:scale-150 transition-transform duration-500" />
 
                             {/* Floating Dots Pattern */}
                             <div className="absolute top-3 left-3 flex gap-1 opacity-20 dark:opacity-10">
-                                <div className="w-1 h-1 rounded-full bg-emerald-600" />
-                                <div className="w-1 h-1 rounded-full bg-emerald-600" />
-                                <div className="w-1 h-1 rounded-full bg-emerald-600" />
+                                <div className="w-1 h-1 rounded-full bg-green-600" />
+                                <div className="w-1 h-1 rounded-full bg-green-600" />
+                                <div className="w-1 h-1 rounded-full bg-green-600" />
                             </div>
 
                             {/* Compact Icon Badge */}
                             <div className="relative mb-3 flex items-center gap-3">
                                 <div className="relative">
-                                    <div className="absolute inset-0 bg-emerald-500 rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity" />
-                                    <div className="relative w-11 h-11 bg-gradient-to-br from-emerald-600 via-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                                    <div className="absolute inset-0 bg-green-500 rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity" />
+                                    <div className="relative w-11 h-11 bg-gradient-to-br from-green-600 via-green-600 to-green-700 dark:from-green-500 dark:to-green-600 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
                                         <Target className="w-5 h-5 text-white" />
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@ export default function VisionMissionSection() {
                                     <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                                         Our Mission
                                     </h3>
-                                    <div className="h-0.5 w-12 bg-gradient-to-r from-emerald-600 to-transparent rounded" />
+                                    <div className="h-0.5 w-12 bg-gradient-to-r from-green-600 to-transparent rounded" />
                                 </div>
                             </div>
 
@@ -127,15 +127,15 @@ export default function VisionMissionSection() {
                             <div className="space-y-2 relative z-10 flex-grow">
                                 <ul className="space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
                                     <li className="flex items-start gap-2">
-                                        <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <Zap className="w-3.5 h-3.5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                         <span>Deliver premium developments that exceed expectations</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <Zap className="w-3.5 h-3.5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                         <span>Maintain highest quality and construction standards</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <Zap className="w-3.5 h-3.5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                         <span>Uphold transparency and ethical practices</span>
                                     </li>
                                 </ul>
@@ -145,7 +145,7 @@ export default function VisionMissionSection() {
                             <div className="relative z-10 mt-3">
                                 <button
                                     onClick={() => setIsModalOpen(true)}
-                                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors"
                                 >
                                     Read More
                                     <ChevronRight className="w-3.5 h-3.5" />
@@ -153,7 +153,7 @@ export default function VisionMissionSection() {
                             </div>
 
                             {/* Bottom Shine Effect */}
-                            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+                            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/50 to-transparent" />
                         </div>
                     </motion.div>
                 </div>
@@ -176,7 +176,7 @@ export default function VisionMissionSection() {
                         <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             Our Core Values
                         </h3>
-                        <div className="h-1 w-16 bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-full mx-auto" />
+                        <div className="h-1 w-16 bg-gradient-to-r from-green-600 to-green-500 rounded-full mx-auto" />
                     </div>
 
                     {/* Core Values Grid */}
@@ -189,9 +189,9 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.1 }}
                             className="group h-full"
                         >
-                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
                                 <div className="flex items-start gap-3">
-                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                         <Shield className="w-4.5 h-4.5 text-white" />
                                     </div>
                                     <div>
@@ -214,9 +214,9 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.15 }}
                             className="group h-full"
                         >
-                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
                                 <div className="flex items-start gap-3">
-                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                         <Award className="w-4.5 h-4.5 text-white" />
                                     </div>
                                     <div>
@@ -239,9 +239,9 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.2 }}
                             className="group h-full"
                         >
-                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
                                 <div className="flex items-start gap-3">
-                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                         <Heart className="w-4.5 h-4.5 text-white" />
                                     </div>
                                     <div>
@@ -264,9 +264,9 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.25 }}
                             className="group h-full"
                         >
-                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
                                 <div className="flex items-start gap-3">
-                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                         <Lightbulb className="w-4.5 h-4.5 text-white" />
                                     </div>
                                     <div>
@@ -289,9 +289,9 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.3 }}
                             className="group h-full"
                         >
-                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
                                 <div className="flex items-start gap-3">
-                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                         <Star className="w-4.5 h-4.5 text-white" />
                                     </div>
                                     <div>
@@ -314,9 +314,9 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.35 }}
                             className="group h-full"
                         >
-                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div className="relative h-full bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
                                 <div className="flex items-start gap-3">
-                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                         <Leaf className="w-4.5 h-4.5 text-white" />
                                     </div>
                                     <div>
@@ -351,7 +351,7 @@ export default function VisionMissionSection() {
                         <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             Our Services
                         </h3>
-                        <div className="h-1 w-16 bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-full mx-auto" />
+                        <div className="h-1 w-16 bg-gradient-to-r from-green-600 to-green-500 rounded-full mx-auto" />
                     </div>
 
                     {/* Services Grid */}
@@ -364,14 +364,14 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.1 }}
                             className="group"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-emerald-50/30 dark:from-gray-900 dark:to-emerald-950/10 rounded-xl p-5 border border-emerald-100 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-md hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
-                                <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-bl-full" />
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
                                 
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
-                                    <div className="absolute inset-0 bg-emerald-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
-                                    <div className="relative w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
+                                    <div className="relative w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                         <Home className="w-6 h-6 text-white" />
                                     </div>
                                 </div>
@@ -394,14 +394,14 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.2 }}
                             className="group"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-emerald-50/30 dark:from-gray-900 dark:to-emerald-950/10 rounded-xl p-5 border border-emerald-100 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-md hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
-                                <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-bl-full" />
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
                                 
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
-                                    <div className="absolute inset-0 bg-emerald-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
-                                    <div className="relative w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
+                                    <div className="relative w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                         <Building2 className="w-6 h-6 text-white" />
                                     </div>
                                 </div>
@@ -424,14 +424,14 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.3 }}
                             className="group"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-emerald-50/30 dark:from-gray-900 dark:to-emerald-950/10 rounded-xl p-5 border border-emerald-100 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-md hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
-                                <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-bl-full" />
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
                                 
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
-                                    <div className="absolute inset-0 bg-emerald-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
-                                    <div className="relative w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
+                                    <div className="relative w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                         <Briefcase className="w-6 h-6 text-white" />
                                     </div>
                                 </div>
@@ -454,14 +454,14 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.4 }}
                             className="group"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-emerald-50/30 dark:from-gray-900 dark:to-emerald-950/10 rounded-xl p-5 border border-emerald-100 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-md hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
-                                <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-bl-full" />
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
                                 
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
-                                    <div className="absolute inset-0 bg-emerald-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
-                                    <div className="relative w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
+                                    <div className="relative w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                         <Users className="w-6 h-6 text-white" />
                                     </div>
                                 </div>
@@ -484,14 +484,14 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.5 }}
                             className="group"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-emerald-50/30 dark:from-gray-900 dark:to-emerald-950/10 rounded-xl p-5 border border-emerald-100 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-md hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
-                                <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-bl-full" />
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
                                 
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
-                                    <div className="absolute inset-0 bg-emerald-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
-                                    <div className="relative w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
+                                    <div className="relative w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                         <TrendingUp className="w-6 h-6 text-white" />
                                     </div>
                                 </div>
@@ -514,14 +514,14 @@ export default function VisionMissionSection() {
                             transition={{ duration: 0.4, delay: 0.6 }}
                             className="group"
                         >
-                            <div className="relative bg-gradient-to-br from-white to-emerald-50/30 dark:from-gray-900 dark:to-emerald-950/10 rounded-xl p-5 border border-emerald-100 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-md hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 overflow-hidden">
+                            <div className="relative bg-gradient-to-br from-white to-green-50/30 dark:from-gray-900 dark:to-green-950/10 rounded-xl p-5 border border-green-100 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-md hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
                                 {/* Top Accent */}
-                                <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-bl-full" />
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 dark:bg-green-500/10 rounded-bl-full" />
                                 
                                 {/* Icon */}
                                 <div className="relative mb-4 inline-block">
-                                    <div className="absolute inset-0 bg-emerald-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
-                                    <div className="relative w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <div className="absolute inset-0 bg-green-500 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity" />
+                                    <div className="relative w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                         <MapPin className="w-6 h-6 text-white" />
                                     </div>
                                 </div>
@@ -551,7 +551,7 @@ export default function VisionMissionSection() {
                         <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             Our Unique Strength
                         </h3>
-                        <div className="h-1 w-16 bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-full mx-auto" />
+                        <div className="h-1 w-16 bg-gradient-to-r from-green-600 to-green-500 rounded-full mx-auto" />
                     </div>
 
                     {/* Strength Cards */}
@@ -563,8 +563,8 @@ export default function VisionMissionSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.1 }}
                         >
-                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0">
                                     <Award className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
@@ -585,8 +585,8 @@ export default function VisionMissionSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.15 }}
                         >
-                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0">
                                     <Target className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
@@ -607,8 +607,8 @@ export default function VisionMissionSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.2 }}
                         >
-                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0">
                                     <MapPin className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
@@ -629,8 +629,8 @@ export default function VisionMissionSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.25 }}
                         >
-                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0">
                                     <Building2 className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
@@ -651,8 +651,8 @@ export default function VisionMissionSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.3 }}
                         >
-                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0">
                                     <FileCheck className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
@@ -673,8 +673,8 @@ export default function VisionMissionSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.35 }}
                         >
-                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0">
                                     <Home className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
@@ -695,8 +695,8 @@ export default function VisionMissionSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.4 }}
                         >
-                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0">
                                     <ThumbsUp className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
@@ -717,8 +717,8 @@ export default function VisionMissionSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.45 }}
                         >
-                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-100/50 dark:border-gray-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 shadow-sm hover:shadow-md transition-all duration-300">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-100/50 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-500/40 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-600 to-green-700 dark:from-green-500 dark:to-green-600 flex items-center justify-center flex-shrink-0">
                                     <Leaf className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
@@ -757,7 +757,7 @@ export default function VisionMissionSection() {
                         <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             Our Promise to You
                         </h3>
-                        <div className="h-1 w-16 bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-full mx-auto" />
+                        <div className="h-1 w-16 bg-gradient-to-r from-green-600 to-green-500 rounded-full mx-auto" />
                     </div>
 
                     {/* Promise Card */}
@@ -767,10 +767,10 @@ export default function VisionMissionSection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        <div className="relative bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/20 dark:to-gray-900 rounded-2xl p-6 md:p-8 border border-emerald-200 dark:border-emerald-500/20 shadow-lg overflow-hidden">
+                        <div className="relative bg-gradient-to-br from-green-50 to-white dark:from-green-950/20 dark:to-gray-900 rounded-2xl p-6 md:p-8 border border-green-200 dark:border-green-500/20 shadow-lg overflow-hidden">
                             {/* Decorative Elements */}
-                            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-3xl" />
-                            <div className="absolute bottom-0 left-0 w-40 h-40 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-3xl" />
+                            <div className="absolute top-0 right-0 w-40 h-40 bg-green-500/5 dark:bg-green-500/10 rounded-full blur-3xl" />
+                            <div className="absolute bottom-0 left-0 w-40 h-40 bg-green-500/5 dark:bg-green-500/10 rounded-full blur-3xl" />
                             
                             {/* Promise Introduction Text */}
                             <div className="relative text-center mb-6 max-w-4xl mx-auto">
@@ -785,7 +785,7 @@ export default function VisionMissionSection() {
                             <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {/* Timely Delivery */}
                                 <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0">
                                         <Clock className="w-4 h-4 text-white" />
                                     </div>
                                     <div>
@@ -800,7 +800,7 @@ export default function VisionMissionSection() {
 
                                 {/* Transparency */}
                                 <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0">
                                         <CheckCircle className="w-4 h-4 text-white" />
                                     </div>
                                     <div>
@@ -815,7 +815,7 @@ export default function VisionMissionSection() {
 
                                 {/* Quality Assurance */}
                                 <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0">
                                         <FileCheck className="w-4 h-4 text-white" />
                                     </div>
                                     <div>
@@ -830,7 +830,7 @@ export default function VisionMissionSection() {
 
                                 {/* Legal Compliance */}
                                 <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0">
                                         <Shield className="w-4 h-4 text-white" />
                                     </div>
                                     <div>
@@ -845,7 +845,7 @@ export default function VisionMissionSection() {
 
                                 {/* Customer Support */}
                                 <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0">
                                         <UserCheck className="w-4 h-4 text-white" />
                                     </div>
                                     <div>
@@ -860,7 +860,7 @@ export default function VisionMissionSection() {
 
                                 {/* Value for Money */}
                                 <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0">
                                         <TrendingUp className="w-4 h-4 text-white" />
                                     </div>
                                     <div>
@@ -901,7 +901,7 @@ export default function VisionMissionSection() {
                             className="relative w-full max-w-2xl max-h-[80vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
                         >
                             {/* Modal Header */}
-                            <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-700 dark:to-emerald-800 border-b border-emerald-500/20">
+                            <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-gradient-to-r from-green-600 to-green-700 dark:from-green-700 dark:to-green-800 border-b border-green-500/20">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
                                         <Target className="w-5 h-5 text-white" />
@@ -927,8 +927,8 @@ export default function VisionMissionSection() {
                                     </p>
                                     
                                     <ul className="space-y-3">
-                                        <li className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
-                                            <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <li className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                                            <Zap className="w-5 h-5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                             <div>
                                                 <strong className="text-gray-900 dark:text-white block mb-1">Premium Developments</strong>
                                                 <span className="text-sm text-gray-700 dark:text-gray-300">
@@ -936,8 +936,8 @@ export default function VisionMissionSection() {
                                                 </span>
                                             </div>
                                         </li>
-                                        <li className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
-                                            <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <li className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                                            <Zap className="w-5 h-5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                             <div>
                                                 <strong className="text-gray-900 dark:text-white block mb-1">Quality Standards</strong>
                                                 <span className="text-sm text-gray-700 dark:text-gray-300">
@@ -945,8 +945,8 @@ export default function VisionMissionSection() {
                                                 </span>
                                             </div>
                                         </li>
-                                        <li className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
-                                            <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <li className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                                            <Zap className="w-5 h-5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                             <div>
                                                 <strong className="text-gray-900 dark:text-white block mb-1">Transparency</strong>
                                                 <span className="text-sm text-gray-700 dark:text-gray-300">
@@ -954,8 +954,8 @@ export default function VisionMissionSection() {
                                                 </span>
                                             </div>
                                         </li>
-                                        <li className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
-                                            <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <li className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                                            <Zap className="w-5 h-5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                             <div>
                                                 <strong className="text-gray-900 dark:text-white block mb-1">Timely Delivery</strong>
                                                 <span className="text-sm text-gray-700 dark:text-gray-300">
@@ -963,8 +963,8 @@ export default function VisionMissionSection() {
                                                 </span>
                                             </div>
                                         </li>
-                                        <li className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
-                                            <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <li className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                                            <Zap className="w-5 h-5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                             <div>
                                                 <strong className="text-gray-900 dark:text-white block mb-1">Innovation</strong>
                                                 <span className="text-sm text-gray-700 dark:text-gray-300">
@@ -972,8 +972,8 @@ export default function VisionMissionSection() {
                                                 </span>
                                             </div>
                                         </li>
-                                        <li className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
-                                            <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <li className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                                            <Zap className="w-5 h-5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                             <div>
                                                 <strong className="text-gray-900 dark:text-white block mb-1">Long-term Value</strong>
                                                 <span className="text-sm text-gray-700 dark:text-gray-300">
@@ -981,8 +981,8 @@ export default function VisionMissionSection() {
                                                 </span>
                                             </div>
                                         </li>
-                                        <li className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
-                                            <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-500 mt-0.5 flex-shrink-0" />
+                                        <li className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                                            <Zap className="w-5 h-5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
                                             <div>
                                                 <strong className="text-gray-900 dark:text-white block mb-1">Lasting Relationships</strong>
                                                 <span className="text-sm text-gray-700 dark:text-gray-300">

@@ -27,12 +27,12 @@ export default function AdminDashboardPage() {
   const stats = data?.stats;
 
   const statCards = [
-    { label: 'Total Projects', value: stats?.totalProjects ?? '-', icon: Building2, color: 'text-blue-400', bg: 'bg-blue-500/10' },
-    { label: 'Total Leads', value: stats?.totalLeads ?? '-', icon: Users2, color: 'text-green-400', bg: 'bg-green-500/10' },
-    { label: "Today's Leads", value: stats?.todayLeads ?? '-', icon: TrendingUp, color: 'text-yellow-400', bg: 'bg-yellow-500/10' },
-    { label: 'Brochure Downloads', value: stats?.brochureDownloads ?? '-', icon: Download, color: 'text-purple-400', bg: 'bg-purple-500/10' },
-    { label: 'Contact Requests', value: stats?.contactRequests ?? '-', icon: MessageSquare, color: 'text-pink-400', bg: 'bg-pink-500/10' },
-    { label: 'Content Unlocks', value: stats?.unlockLeads ?? '-', icon: Unlock, color: 'text-orange-400', bg: 'bg-orange-500/10' },
+    { label: 'Total Projects', value: stats?.totalProjects ?? '-', icon: Building2, color: 'text-green-500', bg: 'bg-green-500/10' },
+    { label: 'Total Leads', value: stats?.totalLeads ?? '-', icon: Users2, color: 'text-gold-500', bg: 'bg-gold-500/10' },
+    { label: "Today's Leads", value: stats?.todayLeads ?? '-', icon: TrendingUp, color: 'text-green-400', bg: 'bg-green-400/10' },
+    { label: 'Brochure Downloads', value: stats?.brochureDownloads ?? '-', icon: Download, color: 'text-gold-400', bg: 'bg-gold-400/10' },
+    { label: 'Contact Requests', value: stats?.contactRequests ?? '-', icon: MessageSquare, color: 'text-green-700', bg: 'bg-green-700/10' },
+    { label: 'Content Unlocks', value: stats?.unlockLeads ?? '-', icon: Unlock, color: 'text-gold-700', bg: 'bg-gold-700/10' },
   ];
 
   const COLORS = ['#16a34a', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6', '#f97316'];
@@ -151,7 +151,7 @@ export default function AdminDashboardPage() {
                       <td className="px-4 py-3">
                         <span className={`badge text-[10px] capitalize ${
                           lead.source === 'contact' ? 'badge-green' :
-                          lead.source === 'brochure' ? 'badge-blue' : 'bg-orange-500/10 text-orange-400 border-orange-500/20'
+                          lead.source === 'brochure' ? 'badge-yellow' : 'badge-gray'
                         }`}>
                           {lead.source.replace('_', ' ')}
                         </span>

@@ -81,12 +81,12 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-8 md:py-10 bg-gradient-to-b from-white to-emerald-50/30 dark:from-black dark:to-emerald-950/10">
+    <section className="py-8 md:py-10 bg-gradient-to-b from-white to-green-50/30 dark:from-black dark:to-green-950/10">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         
         {/* ── Section Header ─────────────────────────────────────── */}
         <div className="text-center mb-6 md:mb-8">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[10px] font-medium mb-2">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-400 text-[10px] font-medium mb-2">
             <HelpCircle className="w-3 h-3" />
             Expert Guidance
           </div>
@@ -114,9 +114,9 @@ export default function FAQSection() {
                   'relative overflow-hidden rounded-xl transition-all duration-300',
                   'bg-white dark:bg-gray-900/50',
                   'border border-gray-200 dark:border-gray-800',
-                  'hover:border-emerald-300 dark:hover:border-emerald-700',
+                  'hover:border-green-300 dark:hover:border-green-700',
                   openId === faq.id
-                    ? 'shadow-lg shadow-emerald-500/10 dark:shadow-emerald-500/5'
+                    ? 'shadow-lg shadow-green-500/10 dark:shadow-green-500/5'
                     : 'shadow-sm hover:shadow-md',
                 ].join(' ')}
               >
@@ -126,15 +126,15 @@ export default function FAQSection() {
                   className="w-full text-left p-3.5 flex items-start justify-between gap-2.5 group/btn"
                   aria-expanded={openId === faq.id}
                 >
-                  <span className="flex-1 text-xs md:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                  <span className="flex-1 text-xs md:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                     {faq.question}
                   </span>
                   <span
                     className={[
                       'flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-all duration-300',
                       openId === faq.id
-                        ? 'bg-emerald-500 text-white rotate-180'
-                        : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 group-hover/btn:bg-emerald-200 dark:group-hover/btn:bg-emerald-900/50',
+                        ? 'bg-green-500 text-white rotate-180'
+                        : 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 group-hover/btn:bg-green-200 dark:group-hover/btn:bg-green-900/50',
                     ].join(' ')}
                   >
                     {openId === faq.id ? (
@@ -176,7 +176,7 @@ export default function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 p-4 md:p-6"
+          className="relative overflow-hidden rounded-xl bg-gradient-to-br from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 p-4 md:p-6"
           style={{
             boxShadow: '0 8px 32px rgba(22, 163, 74, 0.25)',
           }}
@@ -194,7 +194,7 @@ export default function FAQSection() {
             <h3 className="text-base md:text-lg font-bold text-white mb-1.5">
               Stay Updated with the Latest Real Estate Insights
             </h3>
-            <p className="text-xs md:text-sm text-emerald-50 max-w-3xl mx-auto mb-3">
+            <p className="text-xs md:text-sm text-green-50 max-w-3xl mx-auto mb-3">
               From market trends and investment opportunities to home-buying guides and construction innovations, our content is created to keep you informed and empowered throughout your real estate journey.
             </p>
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">

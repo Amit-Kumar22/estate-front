@@ -53,7 +53,7 @@ export default function WhyChooseUsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-medium mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-400 text-xs font-medium mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             Our Advantages
           </div>
@@ -68,7 +68,7 @@ export default function WhyChooseUsSection() {
         {/* Loading State */}
         {isLoading && (
           <div className="flex justify-center items-center py-12">
-            <Loader2 className="w-7 h-7 animate-spin text-emerald-500" />
+            <Loader2 className="w-7 h-7 animate-spin text-green-500" />
           </div>
         )}
 
@@ -84,7 +84,7 @@ export default function WhyChooseUsSection() {
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium rounded-lg transition-colors"
+              className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-medium rounded-lg transition-colors"
             >
               Retry
             </button>
@@ -110,14 +110,14 @@ export default function WhyChooseUsSection() {
             {items.map((item, index) => (
               <div
                 key={item._id}
-                className="group relative bg-white dark:bg-[#111] rounded-xl p-4 md:p-5 border border-gray-200 dark:border-[#1f1f1f] hover:border-emerald-200 dark:hover:border-emerald-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/5 hover:-translate-y-0.5"
+                className="group relative bg-white dark:bg-[#111] rounded-xl p-4 md:p-5 border border-gray-200 dark:border-[#1f1f1f] hover:border-green-200 dark:hover:border-green-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/5 hover:-translate-y-0.5"
                 style={{
                   animationDelay: `${index * 100}ms`,
                 }}
               >
                 {/* Icon/Image */}
                 <div className="relative w-12 h-12 md:w-14 md:h-14 mb-3 md:mb-4">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-emerald-600/20 dark:from-emerald-500/10 dark:to-emerald-700/10 rounded-xl transform group-hover:scale-110 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-green-600/20 dark:from-green-500/10 dark:to-green-700/10 rounded-xl transform group-hover:scale-110 transition-transform duration-300" />
                   <div className="relative w-full h-full rounded-xl overflow-hidden">
                     <Image
                       src={getImageUrl(item.icon)}
@@ -130,7 +130,7 @@ export default function WhyChooseUsSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                   {item.title}
                 </h3>
 
@@ -140,7 +140,7 @@ export default function WhyChooseUsSection() {
                 </p>
 
                 {/* Decorative Element */}
-                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-emerald-500/5 to-transparent dark:from-emerald-500/10 rounded-bl-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-green-500/5 to-transparent dark:from-green-500/10 rounded-bl-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             ))}
           </div>

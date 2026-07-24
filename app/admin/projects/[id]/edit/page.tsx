@@ -229,7 +229,7 @@ export default function EditProjectPage() {
               type="button"
               onClick={handleGetCurrentLocation}
               disabled={gettingLocation}
-              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg border border-blue-200 dark:border-blue-500/20 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/5 hover:bg-blue-100 dark:hover:bg-blue-500/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg border border-gold-200 dark:border-gold-500/20 text-gold-600 dark:text-gold-400 bg-gold-50 dark:bg-gold-500/5 hover:bg-gold-100 dark:hover:bg-gold-500/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
               {gettingLocation ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />

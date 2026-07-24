@@ -6,24 +6,30 @@
 
 /* ─── CSS Variables ─────────────────────────────────────────────────────────── */
 :root {
-  --color-primary:       #16a34a;
-  --color-primary-light: #22c55e;
-  --color-primary-dark:  #15803d;
-  --gradient-primary:    linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  --color-primary:       #008c3d;
+  --color-primary-light: #00cc58;
+  --color-primary-dark:  #007031;
+  --gradient-primary:    linear-gradient(135deg, #008c3d 0%, #007031 100%);
   --gradient-hero:       linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.75));
+
+  /* Gold/amber accent — from the logo's house colour, for highlights only */
+  --color-accent:        #f0b400;
+  --color-accent-light:  #f7c325;
+  --color-accent-dark:   #ad7a00;
+  --gradient-accent:     linear-gradient(135deg, #f7c325 0%, #f0b400 50%, #ad7a00 100%);
 
   /* ── Light Mode ── */
   --bg-primary:    #ffffff;
-  --bg-secondary:  #f0fdf4;
+  --bg-secondary:  #eefcf4;
   --bg-card:       #ffffff;
   --text-primary:  #0f172a;
   --text-secondary:#374151;
   --text-muted:    #6b7280;
-  --border-color:  #bbf7d0;
-  --shadow:        0 4px 20px rgba(22, 163, 74, 0.10);
-  --shadow-green:  0 4px 20px rgba(22, 163, 74, 0.16);
-  --shadow-hover:  0 8px 32px rgba(22, 163, 74, 0.26);
-  --shadow-navbar: 0 2px 20px rgba(22, 163, 74, 0.15);
+  --border-color:  #b3efcd;
+  --shadow:        0 4px 20px rgba(0, 140, 61, 0.10);
+  --shadow-green:  0 4px 20px rgba(0, 140, 61, 0.16);
+  --shadow-hover:  0 8px 32px rgba(0, 140, 61, 0.26);
+  --shadow-navbar: 0 2px 20px rgba(0, 140, 61, 0.15);
 }
 
 .dark {
@@ -35,8 +41,8 @@
   --text-muted:    #475569;
   --border-color:  #1f1f1f;
   --shadow:        0 4px 24px rgba(0, 0, 0, 0.4);
-  --shadow-green:  0 4px 20px rgba(22, 163, 74, 0.10);
-  --shadow-hover:  0 8px 32px rgba(22, 163, 74, 0.15);
+  --shadow-green:  0 4px 20px rgba(0, 140, 61, 0.10);
+  --shadow-hover:  0 8px 32px rgba(0, 140, 61, 0.15);
   --shadow-navbar: 0 2px 20px rgba(0, 0, 0, 0.40);
 }
 
@@ -59,14 +65,21 @@ body {
 /* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar        { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track  { background: transparent; }
-::-webkit-scrollbar-thumb  { background: #16a34a; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #15803d; }
+::-webkit-scrollbar-thumb  { background: #008c3d; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #007031; }
 
 /* ─── Typography ─────────────────────────────────────────────────────────────── */
 .font-display { font-family: 'Playfair Display', Georgia, serif; }
 
 .text-gradient {
   background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -89,7 +102,7 @@ body {
   background: rgba(255,255,255,0.90);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(22,163,74,0.12);
+  border: 1px solid rgba(0,140,61,0.12);
 }
 
 /* ─── Buttons ────────────────────────────────────────────────────────────────── */
@@ -119,6 +132,18 @@ body {
     hover:text-green-600 hover:bg-green-50
     dark:hover:text-white dark:hover:bg-white/5
     transition-all duration-200;
+}
+
+/* Gold accent button — for secondary highlights (e.g. reviews/awards), used
+   sparingly alongside the primary green so it reads as an accent, not a
+   second primary. */
+.btn-accent {
+  @apply inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm
+    bg-gradient-to-r from-gold-500 to-gold-600 text-white
+    hover:from-gold-400 hover:to-gold-500
+    shadow-btn-gold hover:shadow-btn-gold-lg
+    hover:-translate-y-0.5 active:translate-y-0
+    transition-all duration-300 ease-out;
 }
 
 /* ─── Cards ──────────────────────────────────────────────────────────────────── */
@@ -191,9 +216,9 @@ body {
     border-blue-300 dark:border-blue-500/20;
 }
 .badge-yellow {
-  @apply bg-yellow-100 dark:bg-yellow-500/10
-    text-yellow-700 dark:text-yellow-400
-    border-yellow-300 dark:border-yellow-500/20;
+  @apply bg-gold-100 dark:bg-gold-500/10
+    text-gold-800 dark:text-gold-400
+    border-gold-300 dark:border-gold-500/20;
 }
 .badge-gray {
   @apply bg-gray-100 dark:bg-gray-500/10
@@ -207,7 +232,7 @@ body {
   100% { background-position:  200% 0; }
 }
 .skeleton {
-  background: linear-gradient(90deg, #e8faf0 25%, #d1f7e0 50%, #e8faf0 75%);
+  background: linear-gradient(90deg, #eefcf4 25%, #d9f7e6 50%, #eefcf4 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -218,7 +243,7 @@ body {
 
 /* ─── Map ────────────────────────────────────────────────────────────────────── */
 .leaflet-container {
-  background: #f0fdf4;
+  background: #eefcf4;
   border-radius: 16px;
   z-index: 1;
 }
@@ -226,9 +251,9 @@ body {
 
 .leaflet-popup-content-wrapper {
   background: #ffffff !important;
-  border: 1px solid #bbf7d0 !important;
+  border: 1px solid #b3efcd !important;
   border-radius: 14px !important;
-  box-shadow: 0 8px 32px rgba(22, 163, 74, 0.18) !important;
+  box-shadow: 0 8px 32px rgba(0, 140, 61, 0.18) !important;
   color: #0f172a !important;
 }
 .dark .leaflet-popup-content-wrapper {

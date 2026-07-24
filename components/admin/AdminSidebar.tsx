@@ -64,12 +64,12 @@ export default function AdminSidebar() {
 
       {/* ── Logo ───────────────────────────────────────── */}
       <div className="flex items-center gap-3 px-5 py-5">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-md shadow-emerald-200 dark:shadow-emerald-900/30 flex-shrink-0">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-md shadow-green-200 dark:shadow-green-900/30 flex-shrink-0">
           <Leaf className="w-5 h-5 text-white" />
         </div>
         <div>
           <p className="text-sm font-bold text-gray-900 dark:text-white leading-tight">Real Estate</p>
-          <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">Admin Panel</p>
+          <p className="text-[11px] text-green-600 dark:text-green-400 font-medium">Admin Panel</p>
         </div>
       </div>
 
@@ -90,14 +90,14 @@ export default function AdminSidebar() {
                     onClick={() => setMobileOpen(false)}
                     className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
                       active
-                        ? 'bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-emerald-50 dark:hover:bg-white/5 hover:text-emerald-700 dark:hover:text-white'
+                        ? 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-400'
+                        : 'text-gray-600 dark:text-gray-400 hover:bg-green-50 dark:hover:bg-white/5 hover:text-green-700 dark:hover:text-white'
                     }`}
                   >
                     <item.icon className="w-4 h-4 flex-shrink-0" />
                     <span className="flex-1">{item.label}</span>
                     {active && (
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 flex-shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-green-500 dark:bg-green-400 flex-shrink-0" />
                     )}
                   </Link>
                 );
@@ -123,14 +123,14 @@ export default function AdminSidebar() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex w-56 bg-emerald-50/80 dark:bg-[#0d0d0d] border-r border-emerald-100 dark:border-[#1f1f1f] flex-col fixed inset-y-0 left-0 z-30">
+      <aside className="hidden md:flex w-56 bg-green-50/80 dark:bg-[#0d0d0d] border-r border-green-100 dark:border-[#1f1f1f] flex-col fixed inset-y-0 left-0 z-30">
         <SidebarContent />
       </aside>
 
       {/* Mobile Toggle */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-xl bg-white dark:bg-[#111] border border-emerald-100 dark:border-[#1f1f1f] text-gray-600 dark:text-gray-400 shadow-sm"
+        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-xl bg-white dark:bg-[#111] border border-green-100 dark:border-[#1f1f1f] text-gray-600 dark:text-gray-400 shadow-sm"
       >
         <Menu className="w-5 h-5" />
       </button>
@@ -142,7 +142,7 @@ export default function AdminSidebar() {
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
-          <aside className="relative w-56 bg-emerald-50/80 dark:bg-[#0d0d0d] border-r border-emerald-100 dark:border-[#1f1f1f] flex flex-col shadow-xl">
+          <aside className="relative w-56 bg-green-50/80 dark:bg-[#0d0d0d] border-r border-green-100 dark:border-[#1f1f1f] flex flex-col shadow-xl">
             <button
               onClick={() => setMobileOpen(false)}
               className="absolute top-4 right-4 p-1.5 rounded-lg bg-white dark:bg-[#1a1a1a] text-gray-500 hover:text-gray-700 dark:hover:text-white shadow-sm"

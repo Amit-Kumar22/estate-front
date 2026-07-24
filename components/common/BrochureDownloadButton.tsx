@@ -48,7 +48,7 @@ export default function BrochureDownloadButton({
     <>
       <motion.button
         onClick={() => setModalOpen(true)}
-        className="fixed bottom-20 right-5 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-amber-500 text-white font-medium text-sm shadow-xl shadow-amber-500/30 hover:bg-amber-400 hover:shadow-amber-500/50 hover:scale-105 transition-all duration-300"
+        className="fixed bottom-20 right-5 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-gold-500 text-white font-medium text-sm shadow-xl shadow-gold-500/30 hover:bg-gold-400 hover:shadow-gold-500/50 hover:scale-105 transition-all duration-300"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.4 }}

@@ -51,7 +51,7 @@ export default function AdminHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-20 bg-gradient-to-r from-emerald-100 via-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:via-[#0a0a0a] dark:to-[#0a0a0a] backdrop-blur-md border-b border-emerald-200 dark:border-[#1f1f1f] px-6 py-1">
+    <header className="sticky top-0 z-20 bg-gradient-to-r from-green-100 via-green-50 to-gold-50 dark:from-green-950/30 dark:via-[#0a0a0a] dark:to-[#0a0a0a] backdrop-blur-md border-b border-green-200 dark:border-[#1f1f1f] px-6 py-1">
       <div className="flex items-center justify-between">
 
         {/* Left — Page title + subtitle */}
@@ -71,7 +71,7 @@ export default function AdminHeader() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setOpen((v) => !v)}
-              className="flex items-center gap-2.5 rounded-xl px-2 py-1.5 hover:bg-emerald-50 dark:hover:bg-white/5 transition-all"
+              className="flex items-center gap-2.5 rounded-xl px-2 py-1.5 hover:bg-green-50 dark:hover:bg-white/5 transition-all"
             >
               {/* Name + role */}
               <div className="hidden sm:block text-right">
@@ -83,7 +83,7 @@ export default function AdminHeader() {
                 </p>
               </div>
               {/* Avatar */}
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white text-sm font-bold shadow-sm shadow-emerald-200 dark:shadow-emerald-900/30 flex-shrink-0">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white text-sm font-bold shadow-sm shadow-green-200 dark:shadow-green-900/30 flex-shrink-0">
                 {admin?.name?.[0]?.toUpperCase() || 'A'}
               </div>
               <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
@@ -94,9 +94,9 @@ export default function AdminHeader() {
               <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl bg-white dark:bg-[#141414] border border-gray-100 dark:border-[#2a2a2a] shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden z-50">
 
                 {/* User info header */}
-                <div className="px-4 py-3 border-b border-gray-100 dark:border-[#2a2a2a] bg-emerald-50/60 dark:bg-emerald-500/5">
+                <div className="px-4 py-3 border-b border-gray-100 dark:border-[#2a2a2a] bg-green-50/60 dark:bg-green-500/5">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                       {admin?.name?.[0]?.toUpperCase() || 'A'}
                     </div>
                     <div className="overflow-hidden">

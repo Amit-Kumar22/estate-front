@@ -87,7 +87,7 @@ export default function Hero({
           /* ── Video background ── */
           <>
             {/* Poster/gradient shown while video buffers */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-green-800 to-emerald-900" />
+            <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-green-800 to-green-900" />
             <video
               key={activeVideoUrl}
               src={activeVideoUrl}
@@ -111,7 +111,7 @@ export default function Hero({
           /* Base: clearly dark green (NOT black). */
           <div className="absolute inset-0 bg-[#0b1f12]">
             {/* Slow-moving gradient sweep */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-800/50 via-transparent to-emerald-900/40" />
+            <div className="absolute inset-0 bg-gradient-to-br from-green-800/50 via-transparent to-green-900/40" />
             {/* Animated glow orb — top right */}
             <motion.div
               animate={{ scale: [1, 1.25, 1], opacity: [0.35, 0.55, 0.35] }}
@@ -122,7 +122,7 @@ export default function Hero({
             <motion.div
               animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.40, 0.2] }}
               transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-              className="absolute bottom-1/3 left-1/4 w-[380px] h-[380px] rounded-full bg-emerald-400/20 blur-3xl pointer-events-none"
+              className="absolute bottom-1/3 left-1/4 w-[380px] h-[380px] rounded-full bg-green-400/20 blur-3xl pointer-events-none"
             />
             {/* Subtle grid overlay */}
             <div

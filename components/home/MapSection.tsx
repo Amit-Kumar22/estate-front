@@ -75,11 +75,11 @@ export default function MapSection() {
 
           const imageUrl = getImageUrl(project.heroImages?.[0]);
           const statusColors: Record<string, string> = {
-            current: '#16a34a',
-            upcoming: '#3b82f6',
+            current: '#008c3d',
+            upcoming: '#f0b400',
             completed: '#6b7280',
           };
-          const color = statusColors[project.status] || '#16a34a';
+          const color = statusColors[project.status] || '#008c3d';
 
           const customIcon = L.divIcon({
             className: '',
@@ -208,7 +208,7 @@ export default function MapSection() {
         <div className="flex items-center justify-center gap-6 mt-6">
           {[
             { color: 'bg-green-500', label: 'Current' },
-            { color: 'bg-blue-500', label: 'Upcoming' },
+            { color: 'bg-gold-500', label: 'Upcoming' },
             { color: 'bg-gray-500', label: 'Completed' },
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-2">

@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Menu, X, ChevronDown, Building2, Home, Image, Award,
+  Menu, X, ChevronDown, Building2, Home, Image as ImageIcon, Award,
   Phone, LogIn, Layers, Star,
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
@@ -25,7 +26,7 @@ const navLinks = [
       { label: 'Completed Projects', href: '/projects?status=completed', icon: Layers },
     ],
   },
-  { label: 'Gallery', href: '/gallery', icon: Image },
+  { label: 'Gallery', href: '/gallery', icon: ImageIcon },
   { label: 'Awards',  href: '/awards',  icon: Award },
   { label: 'Contact', href: '/contact', icon: Phone },
 ];
@@ -147,15 +148,20 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow-btn-green group-hover:shadow-btn-green-lg transition-all duration-300 group-hover:-translate-y-0.5">
-                <Building2 className="w-5 h-5 text-white" />
-              </div>
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+              <Image
+                src="/logo.png"
+                alt={`${appConfig.site.name} logo`}
+                width={44}
+                height={44}
+                priority
+                className="h-9 w-9 sm:h-11 sm:w-11 object-contain shrink-0 transition-transform duration-300 group-hover:scale-105"
+              />
               <div className="flex items-baseline leading-none select-none">
-                <span className={`font-display font-bold text-xl tracking-tight transition-colors duration-300 group-hover:text-green-500 ${logoTextClass}`}>
+                <span className={`font-display font-bold text-lg sm:text-xl tracking-tight transition-colors duration-300 group-hover:text-green-500 ${logoTextClass}`}>
                   RD Eco
                 </span>
-                <span className={`font-display font-medium text-xl tracking-tight ml-1.5 transition-colors duration-300 group-hover:text-green-400 ${isLightSolid ? 'text-gray-500' : 'text-gray-300'}`}>
+                <span className={`font-display font-medium text-lg sm:text-xl tracking-tight ml-1.5 transition-colors duration-300 group-hover:text-green-400 ${isLightSolid ? 'text-gray-500' : 'text-gray-300'}`}>
                   Developers
                 </span>
               </div>
@@ -223,11 +229,11 @@ export default function Navbar() {
                 onClick={() => setReviewOpen(true)}
                 className={`hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium border transition-all group ${
                   isLightSolid
-                    ? 'border-green-200 text-green-700 hover:bg-green-600 hover:text-white hover:border-green-600'
-                    : 'border-green-700/40 text-green-400 hover:bg-green-600 hover:text-white hover:border-green-600'
+                    ? 'border-gold-200 text-gold-700 hover:bg-gold-500 hover:text-white hover:border-gold-500'
+                    : 'border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-white hover:border-gold-500'
                 }`}
               >
-                <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400 group-hover:fill-white group-hover:text-white transition-colors" />
+                <Star className="w-3.5 h-3.5 fill-gold-400 text-gold-400 group-hover:fill-white group-hover:text-white transition-colors" />
                 Review
               </button>
               {/* Desktop: Login or Dashboard based on auth state */}
@@ -328,7 +334,7 @@ export default function Navbar() {
                   onClick={() => { setMobileOpen(false); setReviewOpen(true); }}
                   className={`flex items-center gap-2.5 w-full px-4 py-3 rounded-xl text-sm font-medium transition-all ${getMobileLinkClass(false)}`}
                 >
-                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  <Star className="w-4 h-4 fill-gold-400 text-gold-400" />
                   Write a Review
                 </button>
                 {isAuthenticated ? (

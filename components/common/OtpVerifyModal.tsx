@@ -150,14 +150,14 @@ export default function OtpVerifyModal({
       <div className="relative w-full sm:max-w-sm bg-white dark:bg-[#0f0f0f] rounded-t-2xl sm:rounded-2xl shadow-2xl border-t border-gray-100 dark:border-white/[0.06] sm:border max-h-[92vh] flex flex-col overflow-hidden">
 
         {/* Top accent */}
-        <div className="h-1 bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 flex-shrink-0" />
+        <div className="h-1 bg-gradient-to-r from-green-400 via-green-500 to-green-600 flex-shrink-0" />
 
         <div className="overflow-y-auto flex-1 px-4 pt-4 pb-5">
 
           {/* Header */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
                 <Lock className="w-3.5 h-3.5 text-white" />
               </div>
               <div>

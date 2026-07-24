@@ -146,7 +146,7 @@ export default function AdminProjectsPage() {
                           <Link
                             href={`/projects/${project.slug}`}
                             target="_blank"
-                            className="p-1.5 rounded-lg text-gray-400 hover:text-blue-400 hover:bg-blue-500/10 transition-all"
+                            className="p-1.5 rounded-lg text-gray-400 hover:text-gold-400 hover:bg-gold-500/10 transition-all"
                           >
                             <Eye className="w-3.5 h-3.5" />
                           </Link>

@@ -145,7 +145,7 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
       <div className="relative w-full sm:max-w-sm bg-white dark:bg-[#0f0f0f] rounded-t-2xl sm:rounded-2xl shadow-2xl border-t border-gray-100 dark:border-white/[0.06] sm:border max-h-[92vh] flex flex-col overflow-hidden">
 
         {/* Top accent */}
-        <div className="h-1 bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 flex-shrink-0" />
+        <div className="h-1 bg-gradient-to-r from-green-400 via-green-500 to-green-600 flex-shrink-0" />
 
         {/* Scrollable body */}
         <div className="overflow-y-auto flex-1 px-4 pt-4 pb-5">
@@ -153,7 +153,7 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
           {/* Header row */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
                 <Sparkles className="w-3.5 h-3.5 text-white" />
               </div>
               <div>
@@ -387,7 +387,7 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
                 <div className="w-14 h-14 rounded-full bg-green-50 dark:bg-green-900/20 flex items-center justify-center">
                   <CheckCircle className="w-7 h-7 text-green-500" />
                 </div>
-                <div className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-[10px]">★</div>
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-gold-400 rounded-full flex items-center justify-center text-[10px]">★</div>
               </div>
               <div>
                 <p className="text-base font-bold text-gray-900 dark:text-white">Thank You!</p>
@@ -398,7 +398,7 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
               <div className="w-full p-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 text-left space-y-1">
                 <div className="flex gap-0.5">
                   {[1,2,3,4,5].map((s) => (
-                    <Star key={s} className={`w-3.5 h-3.5 ${s <= rating ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200 dark:fill-white/10 dark:text-white/10'}`} />
+                    <Star key={s} className={`w-3.5 h-3.5 ${s <= rating ? 'fill-gold-400 text-gold-400' : 'fill-gray-200 text-gray-200 dark:fill-white/10 dark:text-white/10'}`} />
                   ))}
                 </div>
                 <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-3">&ldquo;{reviewText}&rdquo;</p>

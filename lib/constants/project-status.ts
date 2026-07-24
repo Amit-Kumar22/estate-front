@@ -13,13 +13,13 @@ export const PROJECT_STATUS_LABELS: Record<ProjectStatus, string> = {
 
 export const PROJECT_STATUS_COLORS: Record<ProjectStatus, string> = {
   current:   'bg-green-500/10 text-green-400 border-green-500/20',
-  upcoming:  'bg-blue-500/10  text-blue-400  border-blue-500/20',
+  upcoming:  'bg-gold-500/10  text-gold-500  border-gold-500/20',
   completed: 'bg-gray-500/10  text-gray-400  border-gray-500/20',
 };
 
 export const PROJECT_STATUS_DOT_COLORS: Record<ProjectStatus, string> = {
-  current:   '#16a34a',
-  upcoming:  '#3b82f6',
+  current:   '#008c3d',
+  upcoming:  '#f0b400',
   completed: '#6b7280',
 };
 

@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
-import { Building2, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin, Youtube, Star, PenLine } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin, Youtube, Star, PenLine } from 'lucide-react';
 import appConfig from '@/config/app.config';
 import { settingsApi } from '@/lib/api';
 import ReviewForm from '@/components/home/ReviewForm';
@@ -58,9 +59,13 @@ export default function Footer() {
             {/* Brand + contact */}
             <div className="flex-shrink-0 min-w-0 lg:w-72">
               <Link href="/" className="inline-flex items-center gap-2 mb-2.5 group">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
-                  <Building2 className="w-4 h-4 text-white" />
-                </div>
+                <Image
+                  src="/logo.png"
+                  alt={`${companyName} logo`}
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 object-contain shrink-0 transition-transform duration-300 group-hover:scale-105"
+                />
                 <span className="font-display font-bold text-base tracking-tight text-gray-900 dark:text-white group-hover:text-green-600 transition-colors">
                   {companyName}
                 </span>
@@ -107,7 +112,7 @@ export default function Footer() {
               </p>
               <span className="hidden sm:block w-px h-3 bg-gray-200 dark:bg-gray-700" />
               <div className="flex items-center gap-1.5">
-                {[1,2,3,4,5].map((s) => <Star key={s} className="w-3 h-3 fill-yellow-400 text-yellow-400" />)}
+                {[1,2,3,4,5].map((s) => <Star key={s} className="w-3 h-3 fill-gold-400 text-gold-400" />)}
               </div>
               <button
                 onClick={() => setReviewOpen(true)}

@@ -11,7 +11,7 @@ function StarRating({ rating, size = 'sm' }: { rating: number; size?: 'sm' | 'md
   return (
     <div className="flex gap-0.5">
       {[1, 2, 3, 4, 5].map((star) => (
-        <Star key={star} className={`${cls} ${star <= rating ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200 dark:fill-gray-700 dark:text-gray-700'}`} />
+        <Star key={star} className={`${cls} ${star <= rating ? 'fill-gold-400 text-gold-400' : 'fill-gray-200 text-gray-200 dark:fill-gray-700 dark:text-gray-700'}`} />
       ))}
     </div>
   );
@@ -26,7 +26,7 @@ function ReviewModal({ item, onClose }: { item: PublicReview; onClose: () => voi
       <div className="relative w-full max-w-sm bg-white dark:bg-[#111] rounded-2xl shadow-2xl border border-gray-100 dark:border-white/[0.06] overflow-hidden">
 
         {/* accent */}
-        <div className="h-0.5 bg-gradient-to-r from-green-400 to-emerald-500" />
+        <div className="h-0.5 bg-gradient-to-r from-green-400 to-green-500" />
 
         <div className="p-4">
           {/* close */}
@@ -39,14 +39,14 @@ function ReviewModal({ item, onClose }: { item: PublicReview; onClose: () => voi
 
           {/* profile */}
           <div className="flex items-center gap-2.5 mb-3 pr-6">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center flex-shrink-0 shadow-sm">
               <span className="text-white font-bold text-sm">{item.name.charAt(0).toUpperCase()}</span>
             </div>
             <div>
               <p className="font-semibold text-sm text-gray-900 dark:text-white leading-tight">{item.name}</p>
               <div className="flex items-center gap-2 mt-0.5">
                 {item.city && <span className="text-[11px] text-gray-400">{item.city}</span>}
-                <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
+                <span className="inline-flex items-center gap-0.5 text-[10px] text-green-600 dark:text-green-400 font-medium">
                   <BadgeCheck className="w-3 h-3" />
                   Verified Buyer
                 </span>
@@ -116,13 +116,13 @@ function ReviewCard({ item, featured, onClick }: { item: PublicReview; featured?
       )}
 
       <div className="flex items-center gap-2 mb-2">
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center flex-shrink-0">
+        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center flex-shrink-0">
           <span className="text-white font-bold text-xs">{item.name.charAt(0).toUpperCase()}</span>
         </div>
         <div className="min-w-0">
           <h4 className="font-semibold text-xs text-gray-900 dark:text-white truncate">{item.name}</h4>
           {item.city && <p className="text-[10px] text-gray-400 leading-none">{item.city}</p>}
-          <div className="inline-flex items-center gap-0.5 text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
+          <div className="inline-flex items-center gap-0.5 text-[10px] text-green-600 dark:text-green-400 font-medium">
             <BadgeCheck className="w-2.5 h-2.5" />
             Verified
           </div>
@@ -190,7 +190,7 @@ export default function TestimonialSection() {
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-[#111] shadow border border-green-100 dark:border-[#1f1f1f]">
               <div className="flex gap-0.5">
-                {[1,2,3,4,5].map((s) => <Star key={s} className="w-3 h-3 fill-yellow-400 text-yellow-400" />)}
+                {[1,2,3,4,5].map((s) => <Star key={s} className="w-3 h-3 fill-gold-400 text-gold-400" />)}
               </div>
               <span className="text-xs font-semibold text-gray-800 dark:text-white">
                 {avgRating} / 5 &nbsp;·&nbsp; {reviews.length} verified {reviews.length === 1 ? 'review' : 'reviews'}

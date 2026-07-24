@@ -221,7 +221,7 @@ export default function AdminBlogsPage() {
         </div>
         <button
           onClick={openCreate}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white transition-all shadow-lg shadow-emerald-500/20"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-green-600 hover:bg-green-700 text-white transition-all shadow-lg shadow-green-500/20"
         >
           <Plus className="w-4 h-4" />
           Create Blog
@@ -235,12 +235,12 @@ export default function AdminBlogsPage() {
           placeholder="Search blogs by title, author, or category..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#111] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+          className="flex-1 px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#111] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30"
         />
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value as typeof statusFilter)}
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#111] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#111] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30"
         >
           <option value="all">All Status</option>
           <option value="published">Published</option>
@@ -286,7 +286,7 @@ export default function AdminBlogsPage() {
                     type="file"
                     accept="image/*"
                     onChange={handleImageChange}
-                    className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 dark:file:bg-emerald-900/20 dark:file:text-emerald-400"
+                    className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 dark:file:bg-green-900/20 dark:file:text-green-400"
                   />
                 </div>
               </div>
@@ -299,7 +299,7 @@ export default function AdminBlogsPage() {
                 <input
                   value={form.title}
                   onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
-                  className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                  className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30"
                   placeholder="Enter blog title"
                   maxLength={200}
                 />
@@ -314,7 +314,7 @@ export default function AdminBlogsPage() {
                 <textarea
                   value={form.shortDescription}
                   onChange={(e) => setForm((f) => ({ ...f, shortDescription: e.target.value }))}
-                  className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30 min-h-[80px]"
+                  className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30 min-h-[80px]"
                   placeholder="Brief description for blog card"
                   maxLength={300}
                 />
@@ -329,7 +329,7 @@ export default function AdminBlogsPage() {
                 <textarea
                   value={form.content}
                   onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
-                  className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30 min-h-[300px] font-mono"
+                  className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30 min-h-[300px] font-mono"
                   placeholder="Full blog content (supports HTML/Markdown)"
                 />
                 <p className="text-xs text-gray-500 mt-1">You can use HTML tags for rich formatting</p>
@@ -344,7 +344,7 @@ export default function AdminBlogsPage() {
                   <input
                     value={form.author}
                     onChange={(e) => setForm((f) => ({ ...f, author: e.target.value }))}
-                    className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                    className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30"
                     placeholder="Author name"
                   />
                 </div>
@@ -355,7 +355,7 @@ export default function AdminBlogsPage() {
                   <input
                     value={form.category}
                     onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
-                    className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                    className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30"
                     placeholder="e.g., Market Trends, Tips"
                   />
                 </div>
@@ -371,7 +371,7 @@ export default function AdminBlogsPage() {
                     value={tagInput}
                     onChange={(e) => setTagInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
-                    className="flex-1 px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                    className="flex-1 px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30"
                     placeholder="Add a tag and press Enter"
                   />
                   <button
@@ -386,13 +386,13 @@ export default function AdminBlogsPage() {
                   {form.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center gap-1 px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs font-medium rounded-full"
+                      className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium rounded-full"
                     >
                       {tag}
                       <button
                         type="button"
                         onClick={() => removeTag(tag)}
-                        className="hover:text-emerald-900 dark:hover:text-emerald-200"
+                        className="hover:text-green-900 dark:hover:text-green-200"
                       >
                         <X className="w-3 h-3" />
                       </button>
@@ -412,7 +412,7 @@ export default function AdminBlogsPage() {
                     <input
                       value={form.seoMetaTitle || ''}
                       onChange={(e) => setForm((f) => ({ ...f, seoMetaTitle: e.target.value }))}
-                      className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                      className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30"
                       placeholder="SEO meta title"
                       maxLength={60}
                     />
@@ -425,7 +425,7 @@ export default function AdminBlogsPage() {
                     <textarea
                       value={form.seoMetaDescription || ''}
                       onChange={(e) => setForm((f) => ({ ...f, seoMetaDescription: e.target.value }))}
-                      className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30 min-h-[60px]"
+                      className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30 min-h-[60px]"
                       placeholder="SEO meta description"
                       maxLength={160}
                     />
@@ -442,7 +442,7 @@ export default function AdminBlogsPage() {
                 <select
                   value={form.status}
                   onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as 'published' | 'draft' }))}
-                  className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                  className="w-full px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30"
                 >
                   <option value="draft">Draft</option>
                   <option value="published">Published</option>
@@ -462,7 +462,7 @@ export default function AdminBlogsPage() {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="flex items-center gap-2 px-6 py-2 text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/20"
+                className="flex items-center gap-2 px-6 py-2 text-sm font-semibold bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-green-500/20"
               >
                 {saving && <Loader2 className="w-4 h-4 animate-spin" />}
                 {saving ? 'Saving...' : editBlog ? 'Update Blog' : 'Create Blog'}
@@ -475,7 +475,7 @@ export default function AdminBlogsPage() {
       {/* Blogs List */}
       {isLoading ? (
         <div className="flex justify-center py-12">
-          <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
+          <Loader2 className="w-8 h-8 animate-spin text-green-500" />
         </div>
       ) : isError ? (
         <div className="text-center py-12 bg-white dark:bg-[#111] rounded-2xl border border-red-200 dark:border-red-900">
@@ -596,7 +596,7 @@ export default function AdminBlogsPage() {
                   </a>
                   <button
                     onClick={() => openEdit(blog)}
-                    className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg transition-colors"
+                    className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-green-700 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-colors"
                   >
                     <Edit2 className="w-3.5 h-3.5" />
                     Edit

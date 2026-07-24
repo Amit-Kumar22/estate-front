@@ -117,8 +117,8 @@ export default function AdminReviewsPage() {
             onClick={() => { setStatusFilter(tab.value); setPage(1); }}
             className={`px-4 py-1.5 rounded-xl text-sm font-medium transition-all ${
               statusFilter === tab.value
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'bg-white dark:bg-[#111] text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-[#1f1f1f] hover:border-emerald-300 dark:hover:border-emerald-800'
+                ? 'bg-green-600 text-white shadow-sm'
+                : 'bg-white dark:bg-[#111] text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-[#1f1f1f] hover:border-green-300 dark:hover:border-green-800'
             }`}
           >
             {tab.label}
@@ -134,7 +134,7 @@ export default function AdminReviewsPage() {
           value={search}
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
           placeholder="Search by name, email, city..."
-          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#111] text-gray-900 dark:text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#111] text-gray-900 dark:text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
         />
       </div>
 
@@ -143,7 +143,7 @@ export default function AdminReviewsPage() {
         {isLoading ? (
           <div className="flex items-center justify-center h-48 text-gray-500 dark:text-gray-400">
             <div className="flex flex-col items-center gap-3">
-              <div className="w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+              <div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
               <p className="text-sm">Loading reviews...</p>
             </div>
           </div>
@@ -263,14 +263,14 @@ export default function AdminReviewsPage() {
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-gray-200 dark:border-[#1f1f1f] text-sm font-medium text-gray-600 dark:text-gray-400 hover:border-emerald-300 dark:hover:border-emerald-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-gray-200 dark:border-[#1f1f1f] text-sm font-medium text-gray-600 dark:text-gray-400 hover:border-green-300 dark:hover:border-green-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
             >
               <ChevronLeft className="w-4 h-4" /> Prev
             </button>
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-gray-200 dark:border-[#1f1f1f] text-sm font-medium text-gray-600 dark:text-gray-400 hover:border-emerald-300 dark:hover:border-emerald-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-gray-200 dark:border-[#1f1f1f] text-sm font-medium text-gray-600 dark:text-gray-400 hover:border-green-300 dark:hover:border-green-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
             >
               Next <ChevronRight className="w-4 h-4" />
             </button>

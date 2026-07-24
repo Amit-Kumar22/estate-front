@@ -62,7 +62,7 @@ const milestones = [
     },
 ];
 
-/* ── Milestone icon SVGs (blue / gold) ─────────────────────────── */
+/* ── Milestone icon SVGs (green / gold) ────────────────────────── */
 const MilestoneIcons = [
     /* 2013 – flag / founding */
     <svg key="flag" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
@@ -165,7 +165,7 @@ export default function JourneyTimelineSection() {
                 .journey-line-fill {
                     position: absolute;
                     inset: 0;
-                    background: linear-gradient(90deg, #F5C542 0%, #2D6BFF 100%);
+                    background: linear-gradient(90deg, #F5C542 0%, #008c3d 100%);
                     transform: scaleX(0);
                     transform-origin: left;
                     transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -192,7 +192,7 @@ export default function JourneyTimelineSection() {
                 }
                 .journey-milestone-card:hover {
                     transform: translateY(-6px) scale(1.04);
-                    box-shadow: 0 12px 40px rgba(45, 107, 255, 0.25);
+                    box-shadow: 0 12px 40px rgba(0, 140, 61, 0.3);
                 }
 
                 /* gold glow on first node icon */
@@ -228,7 +228,7 @@ export default function JourneyTimelineSection() {
                         <div
                             className="w-full flex flex-col md:flex-row items-center gap-4 px-5 py-4 rounded-[16px]"
                             style={{
-                                background: 'rgba(6, 18, 40, 0.65)',
+                                background: 'rgba(4, 23, 15, 0.65)',
                                 backdropFilter: 'blur(15px)',
                                 WebkitBackdropFilter: 'blur(15px)',
                                 border: '1px solid rgba(255,255,255,0.15)',
@@ -262,7 +262,7 @@ export default function JourneyTimelineSection() {
                                     }}
                                     onMouseEnter={e => {
                                         (e.currentTarget as HTMLElement).style.background = '#F5C542';
-                                        (e.currentTarget as HTMLElement).style.color = '#061A2E';
+                                        (e.currentTarget as HTMLElement).style.color = '#04170F';
                                     }}
                                     onMouseLeave={e => {
                                         (e.currentTarget as HTMLElement).style.background = 'transparent';
@@ -315,7 +315,7 @@ export default function JourneyTimelineSection() {
                         <div
                             className="w-full px-5 py-4 rounded-[20px]"
                             style={{
-                                background: 'linear-gradient(135deg, #061A2E 0%, #0B2540 60%, #061A2E 100%)',
+                                background: 'linear-gradient(135deg, #04170F 0%, #0B4025 60%, #04170F 100%)',
                                 backdropFilter: 'blur(12px)',
                                 WebkitBackdropFilter: 'blur(12px)',
                                 border: '1px solid rgba(255,255,255,0.08)',
@@ -370,11 +370,11 @@ export default function JourneyTimelineSection() {
                                                     background: m.highlighted
                                                         ? 'linear-gradient(135deg, #F5C542, #e0a800)'
                                                         : '#FFFFFF',
-                                                    color: m.highlighted ? '#061A2E' : '#2D6BFF',
+                                                    color: m.highlighted ? '#04170F' : '#008c3d',
                                                     boxShadow: m.highlighted
                                                         ? '0 0 0 3px rgba(245,197,66,0.35), 0 6px 20px rgba(245,197,66,0.3)'
                                                         : '0 4px 16px rgba(0,0,0,0.25)',
-                                                    border: m.highlighted ? 'none' : '2px solid rgba(45,107,255,0.2)',
+                                                    border: m.highlighted ? 'none' : '2px solid rgba(0,140,61,0.25)',
                                                 }}
                                             >
                                                 <span className={m.highlighted ? 'journey-icon-gold' : ''}>
@@ -414,15 +414,15 @@ export default function JourneyTimelineSection() {
                                                 }}
                                                 className="text-[8px] font-semibold transition-all duration-300 px-2 py-0.5 rounded-full"
                                                 style={{
-                                                    color: '#2D6BFF',
-                                                    background: 'rgba(45, 107, 255, 0.1)',
-                                                    border: '1px solid rgba(45, 107, 255, 0.3)',
+                                                    color: '#3ddc84',
+                                                    background: 'rgba(0, 140, 61, 0.15)',
+                                                    border: '1px solid rgba(0, 140, 61, 0.35)',
                                                 }}
                                                 onMouseEnter={e => {
-                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(45, 107, 255, 0.2)';
+                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(0, 140, 61, 0.28)';
                                                 }}
                                                 onMouseLeave={e => {
-                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(45, 107, 255, 0.1)';
+                                                    (e.currentTarget as HTMLElement).style.background = 'rgba(0, 140, 61, 0.15)';
                                                 }}
                                             >
                                                 Read More
@@ -459,9 +459,9 @@ export default function JourneyTimelineSection() {
                                 className="relative w-full max-w-3xl max-h-[85vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
                             >
                                 {/* Header */}
-                                <div className="sticky top-0 z-10 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-700 dark:to-emerald-800 px-6 py-4 flex items-center justify-between">
+                                <div className="sticky top-0 z-10 bg-gradient-to-r from-green-600 to-green-700 dark:from-green-700 dark:to-green-800 px-6 py-4 flex items-center justify-between">
                                     <div>
-                                        <span className="block text-xs font-semibold text-emerald-100 uppercase tracking-wider mb-1">
+                                        <span className="block text-xs font-semibold text-green-100 uppercase tracking-wider mb-1">
                                             OUR JOURNEY
                                         </span>
                                         <h3 className="text-xl font-bold text-white">
@@ -482,36 +482,36 @@ export default function JourneyTimelineSection() {
                                     {/* Introduction */}
                                     <div>
                                         <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                                            Every successful journey begins with a vision. For RD ECO Developers Pvt. Ltd., that vision started in <span className="font-semibold text-emerald-700 dark:text-emerald-400">2013</span> with a commitment to redefine urban living by delivering quality homes, commercial spaces, and lifestyle-driven communities across Bihar.
+                                            Every successful journey begins with a vision. For RD ECO Developers Pvt. Ltd., that vision started in <span className="font-semibold text-green-700 dark:text-green-400">2013</span> with a commitment to redefine urban living by delivering quality homes, commercial spaces, and lifestyle-driven communities across Bihar.
                                         </p>
                                     </div>
 
                                     {/* Growth Story */}
                                     <div>
                                         <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                                            <div className="w-1 h-6 bg-emerald-600 rounded-full" />
+                                            <div className="w-1 h-6 bg-green-600 rounded-full" />
                                             From Dream to Reality
                                         </h4>
                                         <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                                            What began as a dream has grown into a <span className="font-semibold text-emerald-700 dark:text-emerald-400">trusted real estate brand</span> known for quality construction, transparency, timely delivery, and customer satisfaction. Every project we develop reflects our dedication to excellence, innovation, and long-term value.
+                                            What began as a dream has grown into a <span className="font-semibold text-green-700 dark:text-green-400">trusted real estate brand</span> known for quality construction, transparency, timely delivery, and customer satisfaction. Every project we develop reflects our dedication to excellence, innovation, and long-term value.
                                         </p>
                                     </div>
 
                                     {/* Expansion */}
                                     <div>
                                         <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                                            <div className="w-1 h-6 bg-emerald-600 rounded-full" />
+                                            <div className="w-1 h-6 bg-green-600 rounded-full" />
                                             Continuous Growth & Impact
                                         </h4>
                                         <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                                            Over the years, we have continuously expanded our footprint, successfully delivering residential and commercial developments that have transformed the lives of <span className="font-semibold text-emerald-700 dark:text-emerald-400">thousands of families</span>. From affordable homes to premium apartments and commercial landmarks, our journey is built on trust, integrity, and an unwavering commitment to quality.
+                                            Over the years, we have continuously expanded our footprint, successfully delivering residential and commercial developments that have transformed the lives of <span className="font-semibold text-green-700 dark:text-green-400">thousands of families</span>. From affordable homes to premium apartments and commercial landmarks, our journey is built on trust, integrity, and an unwavering commitment to quality.
                                         </p>
                                     </div>
 
                                     {/* Present & Future */}
-                                    <div className="bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/20 dark:to-gray-800 rounded-xl p-5 border border-emerald-200 dark:border-emerald-500/20">
+                                    <div className="bg-gradient-to-br from-green-50 to-white dark:from-green-950/20 dark:to-gray-800 rounded-xl p-5 border border-green-200 dark:border-green-500/20">
                                         <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                                            <div className="w-1 h-6 bg-emerald-600 rounded-full" />
+                                            <div className="w-1 h-6 bg-green-600 rounded-full" />
                                             Today & Tomorrow
                                         </h4>
                                         <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -524,28 +524,28 @@ export default function JourneyTimelineSection() {
                                         <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Our Journey is Built On:</h4>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                             <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                                                <div className="w-2 h-2 rounded-full bg-emerald-600 mt-2 flex-shrink-0" />
+                                                <div className="w-2 h-2 rounded-full bg-green-600 mt-2 flex-shrink-0" />
                                                 <div>
                                                     <h5 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Trust & Transparency</h5>
                                                     <p className="text-xs text-gray-600 dark:text-gray-400">Honest dealings and clear communication</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                                                <div className="w-2 h-2 rounded-full bg-emerald-600 mt-2 flex-shrink-0" />
+                                                <div className="w-2 h-2 rounded-full bg-green-600 mt-2 flex-shrink-0" />
                                                 <div>
                                                     <h5 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Quality Construction</h5>
                                                     <p className="text-xs text-gray-600 dark:text-gray-400">Superior materials and craftsmanship</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                                                <div className="w-2 h-2 rounded-full bg-emerald-600 mt-2 flex-shrink-0" />
+                                                <div className="w-2 h-2 rounded-full bg-green-600 mt-2 flex-shrink-0" />
                                                 <div>
                                                     <h5 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Timely Delivery</h5>
                                                     <p className="text-xs text-gray-600 dark:text-gray-400">Projects completed on schedule</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                                                <div className="w-2 h-2 rounded-full bg-emerald-600 mt-2 flex-shrink-0" />
+                                                <div className="w-2 h-2 rounded-full bg-green-600 mt-2 flex-shrink-0" />
                                                 <div>
                                                     <h5 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Customer Satisfaction</h5>
                                                     <p className="text-xs text-gray-600 dark:text-gray-400">Dedicated support and after-sales service</p>
@@ -559,7 +559,7 @@ export default function JourneyTimelineSection() {
                     )}
                 </AnimatePresence>
 
-                {/* Timeline Details Modal - Compact Blue Popup */}
+                {/* Timeline Details Modal - Compact Popup */}
                 <AnimatePresence>
                     {timelineModalOpen && selectedMilestone && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -581,13 +581,13 @@ export default function JourneyTimelineSection() {
                                 transition={{ duration: 0.2 }}
                                 className="relative w-full max-w-md max-h-[70vh] rounded-xl shadow-2xl overflow-hidden"
                                 style={{
-                                    background: 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)',
+                                    background: 'linear-gradient(135deg, #008c3d 0%, #04170F 100%)',
                                 }}
                             >
                                 {/* Header */}
                                 <div className="px-4 py-3 flex items-center justify-between border-b border-white/10">
                                     <div>
-                                        <span className="block text-xs font-semibold text-blue-200 uppercase tracking-wider">
+                                        <span className="block text-xs font-semibold text-gold-300 uppercase tracking-wider">
                                             {selectedMilestone.year}
                                         </span>
                                         <h3 className="text-base font-bold text-white">
@@ -620,7 +620,7 @@ export default function JourneyTimelineSection() {
                                                         key={idx}
                                                         className="flex items-start gap-2 px-2.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-sm"
                                                     >
-                                                        <div className="w-1 h-1 rounded-full bg-yellow-400 mt-1.5 flex-shrink-0" />
+                                                        <div className="w-1 h-1 rounded-full bg-gold-400 mt-1.5 flex-shrink-0" />
                                                         <span className="text-xs text-white/90">{project}</span>
                                                     </div>
                                                 ))}

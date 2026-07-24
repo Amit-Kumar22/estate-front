@@ -185,8 +185,8 @@ export default function AdminUsersPage() {
                   <td className="px-4 py-3">
                     <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold ${
                       admin.role === 'super_admin'
-                        ? 'bg-purple-500/10 text-purple-400'
-                        : 'bg-blue-500/10 text-blue-400'
+                        ? 'bg-gold-500/10 text-gold-500'
+                        : 'bg-green-500/10 text-green-400'
                     }`}>
                       <Shield className="w-2.5 h-2.5" />
                       {admin.role === 'super_admin' ? 'Super Admin' : 'Admin'}

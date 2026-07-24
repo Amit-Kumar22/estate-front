@@ -60,7 +60,7 @@ export default function BlogSection() {
 
           {/* ── Section Header (content unchanged) ─────────────── */}
           <div className="text-center mb-8 md:mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-medium mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-400 text-xs font-medium mb-3">
               <BookOpen className="w-3.5 h-3.5" />
               Latest Updates
             </div>
@@ -75,7 +75,7 @@ export default function BlogSection() {
           {/* ── Loading ──────────────────────────────────────────── */}
           {isLoading && (
             <div className="flex justify-center items-center py-12">
-              <Loader2 className="w-7 h-7 animate-spin text-emerald-500" />
+              <Loader2 className="w-7 h-7 animate-spin text-green-500" />
             </div>
           )}
 
@@ -91,7 +91,7 @@ export default function BlogSection() {
               </p>
               <button
                 onClick={() => window.location.reload()}
-                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium rounded-lg transition-colors"
+                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-medium rounded-lg transition-colors"
               >
                 Retry
               </button>
@@ -281,7 +281,7 @@ export default function BlogSection() {
                 >
                   <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-green-500/20 hover:shadow-xl hover:shadow-green-500/30 hover:-translate-y-0.5"
                   >
                     View All Blogs
                     <ArrowRight className="w-4 h-4" />

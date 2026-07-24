@@ -154,10 +154,10 @@ export default function TeamPage() {
           {/* Founders */}
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs font-bold tracking-widest uppercase">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-50 dark:bg-gold-500/10 border border-gold-200 dark:border-gold-500/20 text-gold-700 dark:text-gold-400 text-xs font-bold tracking-widest uppercase">
                 <Crown className="w-3 h-3" /> Founders
               </span>
-              <div className="flex-1 h-px bg-amber-200 dark:bg-amber-700/30" />
+              <div className="flex-1 h-px bg-gold-200 dark:bg-gold-700/30" />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {ALL_TEAM_MEMBERS.slice(0, 3).map((member, i) => (

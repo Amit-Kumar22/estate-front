@@ -23,7 +23,7 @@ export default function AwardsSection() {
   if (!isLoading && awards.length === 0) return null;
 
   return (
-    <section className="py-3 md:py-5 bg-gradient-to-br from-green-100 via-green-100 to-emerald-100 dark:from-[#0d2210] dark:via-[#0f1f0f] dark:to-[#111]">
+    <section className="py-3 md:py-5 bg-gradient-to-br from-green-50 via-green-100 to-gold-50 dark:from-[#0d2210] dark:via-[#0f1f0f] dark:to-[#111]">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,9 +32,9 @@ export default function AwardsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-6"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-50 dark:bg-yellow-500/8 border border-yellow-200 dark:border-yellow-500/15 mb-4">
-            <Trophy className="w-3.5 h-3.5 text-yellow-600 dark:text-yellow-500" />
-            <span className="text-yellow-700 dark:text-yellow-400 text-xs font-bold tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-50 dark:bg-gold-500/8 border border-gold-200 dark:border-gold-500/15 mb-4">
+            <Trophy className="w-3.5 h-3.5 text-gold-600 dark:text-gold-500" />
+            <span className="text-gold-700 dark:text-gold-400 text-xs font-bold tracking-widest uppercase">
               Recognition
             </span>
           </div>
@@ -64,7 +64,7 @@ export default function AwardsSection() {
                 className="group bg-white dark:bg-[#111] rounded-2xl p-5
                   border border-green-100 dark:border-[#1f1f1f]
                   shadow-card dark:shadow-none
-                  hover:shadow-card-hover dark:hover:border-yellow-500/20
+                  hover:shadow-card-hover dark:hover:border-gold-500/20
                   hover:-translate-y-1.5 transition-all duration-300"
               >
                 {/* Award Image */}
@@ -78,7 +78,7 @@ export default function AwardsSection() {
 
                 {/* Content */}
                 <div className="text-center">
-                  <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-500/10 text-yellow-500 mb-2">
+                  <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-gold-500/10 text-gold-500 mb-2">
                     {award.year}
                   </span>
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm leading-snug mb-1 line-clamp-2">

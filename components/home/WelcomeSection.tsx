@@ -19,16 +19,16 @@ export default function WelcomeSection() {
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/8 border border-emerald-200 dark:border-emerald-500/15 mb-3">
-              <Home className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500" />
-              <span className="text-emerald-700 dark:text-emerald-400 text-xs font-bold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 dark:bg-green-500/8 border border-green-200 dark:border-green-500/15 mb-3">
+              <Home className="w-3.5 h-3.5 text-green-600 dark:text-green-500" />
+              <span className="text-green-700 dark:text-green-400 text-xs font-bold tracking-widest uppercase">
                 About Us
               </span>
             </div>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2">
               Welcome to RD Eco Developers Pvt. Ltd. - Your Trusted Real Estate Partner
             </h2>
-            <p className="text-base md:text-lg text-emerald-600 dark:text-emerald-400 font-medium">
+            <p className="text-base md:text-lg text-green-600 dark:text-green-400 font-medium">
               Find Your Dream Property with Confidence
             </p>
           </motion.div>
@@ -62,7 +62,7 @@ export default function WelcomeSection() {
                 </button>
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-green-500/20 hover:shadow-xl hover:shadow-green-500/30 hover:-translate-y-0.5"
                 >
                   Explore Properties
                   <ChevronRight className="w-4 h-4" />
@@ -79,8 +79,8 @@ export default function WelcomeSection() {
               className="grid grid-cols-1 sm:grid-cols-2 gap-3"
             >
               {/* Feature Card 1 */}
-              <div className="group p-4 bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-500/10 dark:to-emerald-500/5 rounded-xl border border-emerald-200 dark:border-emerald-500/20 hover:border-emerald-300 dark:hover:border-emerald-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10">
-                <div className="w-10 h-10 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+              <div className="group p-4 bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-500/10 dark:to-green-500/5 rounded-xl border border-green-200 dark:border-green-500/20 hover:border-green-300 dark:hover:border-green-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/10">
+                <div className="w-10 h-10 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
                   <Shield className="w-5 h-5 text-white" />
                 </div>
                 <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1.5">
@@ -92,8 +92,8 @@ export default function WelcomeSection() {
               </div>
 
               {/* Feature Card 2 */}
-              <div className="group p-4 bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-500/10 dark:to-emerald-500/5 rounded-xl border border-emerald-200 dark:border-emerald-500/20 hover:border-emerald-300 dark:hover:border-emerald-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10">
-                <div className="w-10 h-10 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+              <div className="group p-4 bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-500/10 dark:to-green-500/5 rounded-xl border border-green-200 dark:border-green-500/20 hover:border-green-300 dark:hover:border-green-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/10">
+                <div className="w-10 h-10 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
                   <Award className="w-5 h-5 text-white" />
                 </div>
                 <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1.5">
@@ -105,8 +105,8 @@ export default function WelcomeSection() {
               </div>
 
               {/* Feature Card 3 */}
-              <div className="group p-4 bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-500/10 dark:to-emerald-500/5 rounded-xl border border-emerald-200 dark:border-emerald-500/20 hover:border-emerald-300 dark:hover:border-emerald-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10">
-                <div className="w-10 h-10 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+              <div className="group p-4 bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-500/10 dark:to-green-500/5 rounded-xl border border-green-200 dark:border-green-500/20 hover:border-green-300 dark:hover:border-green-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/10">
+                <div className="w-10 h-10 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
                   <Home className="w-5 h-5 text-white" />
                 </div>
                 <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1.5">
@@ -118,8 +118,8 @@ export default function WelcomeSection() {
               </div>
 
               {/* Feature Card 4 */}
-              <div className="group p-4 bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-500/10 dark:to-emerald-500/5 rounded-xl border border-emerald-200 dark:border-emerald-500/20 hover:border-emerald-300 dark:hover:border-emerald-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10">
-                <div className="w-10 h-10 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+              <div className="group p-4 bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-500/10 dark:to-green-500/5 rounded-xl border border-green-200 dark:border-green-500/20 hover:border-green-300 dark:hover:border-green-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/10">
+                <div className="w-10 h-10 rounded-lg bg-green-600 dark:bg-green-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
                   <TrendingUp className="w-5 h-5 text-white" />
                 </div>
                 <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1.5">
@@ -142,7 +142,7 @@ export default function WelcomeSection() {
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400 mb-1">
+                <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
                   500+
                 </div>
                 <div className="text-xs text-gray-600 dark:text-gray-400">
@@ -150,7 +150,7 @@ export default function WelcomeSection() {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400 mb-1">
+                <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
                   50+
                 </div>
                 <div className="text-xs text-gray-600 dark:text-gray-400">
@@ -158,7 +158,7 @@ export default function WelcomeSection() {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400 mb-1">
+                <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
                   15+
                 </div>
                 <div className="text-xs text-gray-600 dark:text-gray-400">
@@ -166,7 +166,7 @@ export default function WelcomeSection() {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400 mb-1">
+                <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
                   98%
                 </div>
                 <div className="text-xs text-gray-600 dark:text-gray-400">
@@ -201,7 +201,7 @@ export default function WelcomeSection() {
               className="relative w-full max-w-3xl max-h-[85vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
             >
               {/* Modal Header */}
-              <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-700 dark:to-emerald-800 border-b border-emerald-500/20">
+              <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-gradient-to-r from-green-600 to-green-700 dark:from-green-700 dark:to-green-800 border-b border-green-500/20">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
                     <Home className="w-5 h-5 text-white" />
@@ -242,9 +242,9 @@ export default function WelcomeSection() {
                     </p>
                     <p className="text-sm md:text-base leading-relaxed">
                       We are committed to delivering projects built on the foundation of{' '}
-                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">transparency</span>,{' '}
-                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">trust</span>, and{' '}
-                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">customer satisfaction</span>.
+                      <span className="font-semibold text-green-600 dark:text-green-400">transparency</span>,{' '}
+                      <span className="font-semibold text-green-600 dark:text-green-400">trust</span>, and{' '}
+                      <span className="font-semibold text-green-600 dark:text-green-400">customer satisfaction</span>.
                     </p>
                   </div>
 
@@ -269,13 +269,13 @@ export default function WelcomeSection() {
                   </div>
 
                   {/* Key Highlights */}
-                  <div className="bg-emerald-50 dark:bg-emerald-500/10 rounded-xl p-5 border border-emerald-200 dark:border-emerald-500/20">
+                  <div className="bg-green-50 dark:bg-green-500/10 rounded-xl p-5 border border-green-200 dark:border-green-500/20">
                     <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       Why Choose Us?
                     </h4>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-6 h-6 rounded-full bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Shield className="w-3.5 h-3.5 text-white" />
                         </div>
                         <span className="text-sm md:text-base">
@@ -283,7 +283,7 @@ export default function WelcomeSection() {
                         </span>
                       </li>
                       <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-6 h-6 rounded-full bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Award className="w-3.5 h-3.5 text-white" />
                         </div>
                         <span className="text-sm md:text-base">
@@ -291,7 +291,7 @@ export default function WelcomeSection() {
                         </span>
                       </li>
                       <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-6 h-6 rounded-full bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Home className="w-3.5 h-3.5 text-white" />
                         </div>
                         <span className="text-sm md:text-base">
@@ -299,7 +299,7 @@ export default function WelcomeSection() {
                         </span>
                       </li>
                       <li className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-6 h-6 rounded-full bg-green-600 dark:bg-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <TrendingUp className="w-3.5 h-3.5 text-white" />
                         </div>
                         <span className="text-sm md:text-base">
@@ -314,7 +314,7 @@ export default function WelcomeSection() {
                     <Link
                       href="/projects"
                       onClick={() => setIsModalOpen(false)}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-green-500/20 hover:shadow-xl hover:shadow-green-500/30"
                     >
                       Explore Our Projects
                       <ChevronRight className="w-4 h-4" />

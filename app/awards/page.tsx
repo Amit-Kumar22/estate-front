@@ -34,9 +34,9 @@ export default function AwardsPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14 pt-8"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-500/8 border border-yellow-500/15 mb-4">
-            <Trophy className="w-3.5 h-3.5 text-yellow-500" />
-            <span className="text-yellow-400 text-xs font-semibold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold-500/8 border border-gold-500/15 mb-4">
+            <Trophy className="w-3.5 h-3.5 text-gold-500" />
+            <span className="text-gold-400 text-xs font-semibold tracking-wider uppercase">
               Recognition
             </span>
           </div>
@@ -64,7 +64,7 @@ export default function AwardsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="group bg-white dark:bg-[#111] rounded-2xl p-5 border border-gray-100 dark:border-[#1f1f1f] hover:border-yellow-500/20 hover:-translate-y-1 transition-all duration-300 text-center"
+                className="group bg-white dark:bg-[#111] rounded-2xl p-5 border border-gray-100 dark:border-[#1f1f1f] hover:border-gold-500/20 hover:-translate-y-1 transition-all duration-300 text-center"
               >
                 {/* Award image */}
                 <div className="relative h-32 mb-4 rounded-xl overflow-hidden bg-gray-50 dark:bg-[#1a1a1a]">
@@ -74,7 +74,7 @@ export default function AwardsPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                   <div className="absolute top-2 right-2">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-500/90 text-white">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-gold-500/90 text-white">
                       {award.year}
                     </span>
                   </div>

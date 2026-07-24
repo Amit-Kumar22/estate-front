@@ -158,7 +158,7 @@ function GenerationCard({ member, index }: { member: FamilyMember; index: number
         {/* Generation badge */}
         <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border text-[10px] font-bold tracking-widest uppercase mb-3 ${
           index < 3
-            ? 'bg-amber-50 dark:bg-amber-500/10 border-amber-200 dark:border-amber-500/20 text-amber-700 dark:text-amber-400'
+            ? 'bg-gold-50 dark:bg-gold-500/10 border-gold-200 dark:border-gold-500/20 text-gold-700 dark:text-gold-400'
             : 'bg-green-50 dark:bg-green-500/10 border-green-200 dark:border-green-500/20 text-green-700 dark:text-green-400'
         }`}>
           <Crown className="w-2.5 h-2.5" />
@@ -264,10 +264,10 @@ export default function FamilyLegacySection() {
           {/* Founding Generation */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs font-bold tracking-widest uppercase">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-50 dark:bg-gold-500/10 border border-gold-200 dark:border-gold-500/20 text-gold-700 dark:text-gold-400 text-xs font-bold tracking-widest uppercase">
                 <Crown className="w-3 h-3" /> Founding Generation
               </span>
-              <div className="flex-1 h-px bg-amber-200 dark:bg-amber-700/30" />
+              <div className="flex-1 h-px bg-gold-200 dark:bg-gold-700/30" />
             </div>
             <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
               {isLoading
