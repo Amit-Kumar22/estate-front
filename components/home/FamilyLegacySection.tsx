@@ -72,10 +72,10 @@ const GEN_LABELS = [
 
 // ─── Statistics ───────────────────────────────────────────────────────────────
 const STATS = [
-  { end: 5000, suffix: '+', label: 'Homes Delivered',       icon: Home },
-  { end: 25,   suffix: '+', label: 'Projects Completed',    icon: Building2 },
-  { end: 3,    suffix: '',  label: 'Generations',           icon: Users },
-  { end: 40,   suffix: '+', label: 'Years of Trust',        icon: Star },
+  { end: 500, suffix: '+', label: 'Homes Delivered',       icon: Home },
+  { end: 13,   suffix: '+', label: 'Projects Completed',    icon: Building2 },
+  { end: 2,    suffix: '',  label: 'Generations',           icon: Users },
+  { end: 13,   suffix: '+', label: 'Years of Trust',        icon: Star },
   { end: 100,  suffix: '%', label: 'Customer Commitment',   icon: CheckCircle },
 ];
 
