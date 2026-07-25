@@ -3,7 +3,7 @@ import './globals.css';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { AuthProvider } from '@/context/AuthContext';
 import QueryProvider from '@/context/QueryProvider';
-import { Toaster } from 'react-hot-toast';
+import AppToaster from '@/components/common/AppToaster';
 
 export const metadata: Metadata = {
   title: {
@@ -63,25 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeProvider>
             <AuthProvider>
               {children}
-              <Toaster
-                position="top-right"
-                toastOptions={{
-                  duration: 4000,
-                  style: {
-                    background: '#111',
-                    color: '#f1f5f9',
-                    border: '1px solid #1f1f1f',
-                    borderRadius: '10px',
-                    fontSize: '14px',
-                  },
-                  success: {
-                    iconTheme: { primary: '#f0b400', secondary: '#fff' },
-                  },
-                  error: {
-                    iconTheme: { primary: '#ef4444', secondary: '#fff' },
-                  },
-                }}
-              />
+              <AppToaster />
             </AuthProvider>
           </ThemeProvider>
         </QueryProvider>
