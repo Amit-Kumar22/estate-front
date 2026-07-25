@@ -8,7 +8,7 @@ import { Plus, Trash2, Edit2, Upload, X, ZoomIn, Filter } from 'lucide-react';
 import Image from 'next/image';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
-import { getImageUrl } from '@/lib/utils';
+import { getImageUrl, getErrorMessage } from '@/lib/utils';
 import { queryKeys } from '@/lib/constants/query-keys';
 import toast from 'react-hot-toast';
 
@@ -42,7 +42,7 @@ export default function AdminGalleryPage() {
       queryClient.invalidateQueries({ queryKey: queryKeys.gallery.all() });
       toast.success('Image deleted');
     },
-    onError: () => toast.error('Failed to delete image'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete image')),
   });
 
   const images = data ?? [];
@@ -63,8 +63,8 @@ export default function AdminGalleryPage() {
       await galleryApi.upload(formData);
       queryClient.invalidateQueries({ queryKey: queryKeys.gallery.all() });
       toast.success(`${files.length} image(s) uploaded`);
-    } catch {
-      toast.error('Upload failed');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Upload failed'));
     } finally {
       setUploading(false);
       if (fileInputRef.current) fileInputRef.current.value = '';

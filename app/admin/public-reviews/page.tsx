@@ -8,7 +8,7 @@ import {
   Plus, Trash2, Edit2, X, Loader2, Clapperboard,
   ChevronUp, ChevronDown, Eye, EyeOff, PlayCircle,
 } from 'lucide-react';
-import { getImageUrl } from '@/lib/utils';
+import { getImageUrl, getErrorMessage } from '@/lib/utils';
 import { queryKeys } from '@/lib/constants/query-keys';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
@@ -47,7 +47,7 @@ export default function AdminPublicReviewsPage() {
       queryClient.invalidateQueries({ queryKey: queryKeys.publicReviews.all() });
       toast.success('Public review deleted');
     },
-    onError: () => toast.error('Failed to delete public review'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete public review')),
   });
 
   const items = data ?? [];
@@ -112,8 +112,8 @@ export default function AdminPublicReviewsPage() {
       setShowForm(false);
       setThumbnailFile(null);
       setThumbnailPreview('');
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message || 'Failed to save public review');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Failed to save public review'));
     } finally {
       setSaving(false);
     }
@@ -126,8 +126,8 @@ export default function AdminPublicReviewsPage() {
       await publicReviewService.update(item._id, fd);
       queryClient.invalidateQueries({ queryKey: queryKeys.publicReviews.all() });
       toast.success('Status updated');
-    } catch {
-      toast.error('Failed to update status');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Failed to update status'));
     }
   };
 
@@ -148,8 +148,8 @@ export default function AdminPublicReviewsPage() {
 
       queryClient.invalidateQueries({ queryKey: queryKeys.publicReviews.all() });
       toast.success('Order updated');
-    } catch {
-      toast.error('Failed to update order');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Failed to update order'));
     }
   };
 

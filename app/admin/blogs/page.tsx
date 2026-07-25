@@ -17,7 +17,7 @@ import {
   User,
   Tag
 } from 'lucide-react';
-import { getImageUrl, PLACEHOLDER_IMAGE } from '@/lib/utils';
+import { getImageUrl, PLACEHOLDER_IMAGE, getErrorMessage } from '@/lib/utils';
 import { queryKeys } from '@/lib/constants/query-keys';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
@@ -63,7 +63,7 @@ export default function AdminBlogsPage() {
       invalidateBlogQueries();
       toast.success('Blog deleted successfully');
     },
-    onError: () => toast.error('Failed to delete blog'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete blog')),
   });
 
   const toggleStatusMutation = useMutation({
@@ -72,7 +72,7 @@ export default function AdminBlogsPage() {
       invalidateBlogQueries();
       toast.success('Blog status updated');
     },
-    onError: () => toast.error('Failed to update status'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to update status')),
   });
 
   const blogs = data ?? [];
@@ -198,8 +198,7 @@ export default function AdminBlogsPage() {
       invalidateBlogQueries();
       setShowForm(false);
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to save blog';
-      toast.error(errorMessage);
+      toast.error(getErrorMessage(error, 'Failed to save blog'));
     } finally {
       setSaving(false);
     }
@@ -481,7 +480,7 @@ export default function AdminBlogsPage() {
         <div className="text-center py-12 bg-white dark:bg-[#111] rounded-2xl border border-red-200 dark:border-red-900">
           <BookOpen className="w-12 h-12 text-red-300 dark:text-red-600 mx-auto mb-3" />
           <p className="text-sm font-semibold text-red-700 dark:text-red-300">Unable to load blogs</p>
-          <p className="text-xs text-red-500 dark:text-red-400 mt-2">{error instanceof Error ? error.message : 'An unexpected error occurred.'}</p>
+          <p className="text-xs text-red-500 dark:text-red-400 mt-2">{getErrorMessage(error, 'An unexpected error occurred.')}</p>
         </div>
       ) : filteredBlogs.length === 0 ? (
         <div className="text-center py-12 bg-white dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#1f1f1f]">

@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { whyChooseUsService } from '@/lib/api';
 import { WhyChooseUs } from '@/types';
 import { Plus, Trash2, Edit2, X, Loader2, Sparkles, ChevronUp, ChevronDown, Eye, EyeOff } from 'lucide-react';
-import { getImageUrl } from '@/lib/utils';
+import { getImageUrl, getErrorMessage } from '@/lib/utils';
 import { queryKeys } from '@/lib/constants/query-keys';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
@@ -48,7 +48,7 @@ export default function AdminWhyChooseUsPage() {
       queryClient.invalidateQueries({ queryKey: queryKeys.whyChooseUs.all() });
       toast.success('Item deleted successfully');
     },
-    onError: () => toast.error('Failed to delete item'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete item')),
   });
 
   // Toggle status mutation
@@ -58,7 +58,7 @@ export default function AdminWhyChooseUsPage() {
       queryClient.invalidateQueries({ queryKey: queryKeys.whyChooseUs.all() });
       toast.success('Status updated');
     },
-    onError: () => toast.error('Failed to update status'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to update status')),
   });
 
   const items = data ?? [];
@@ -137,9 +137,8 @@ export default function AdminWhyChooseUsPage() {
       setShowForm(false);
       setIconFile(null);
       setIconPreview('');
-    } catch (error: any) {
-      const message = error?.response?.data?.message || 'Failed to save item';
-      toast.error(message);
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Failed to save item'));
     } finally {
       setSaving(false);
     }
@@ -171,8 +170,8 @@ export default function AdminWhyChooseUsPage() {
 
       queryClient.invalidateQueries({ queryKey: queryKeys.whyChooseUs.all() });
       toast.success('Order updated');
-    } catch {
-      toast.error('Failed to update order');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Failed to update order'));
     }
   };
 

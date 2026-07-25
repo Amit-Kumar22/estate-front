@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { leadApi } from '@/lib/api';
 import { Lead } from '@/types';
 import { Search, Download, Trash2, Filter, User, Phone, Mail } from 'lucide-react';
-import { formatDate, formatRelativeDate } from '@/lib/utils';
+import { formatDate, formatRelativeDate, getErrorMessage } from '@/lib/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -29,7 +29,7 @@ export default function AdminLeadsPage() {
       queryClient.invalidateQueries({ queryKey: ['admin-leads'] });
       toast.success('Lead deleted');
     },
-    onError: () => toast.error('Failed to delete lead'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete lead')),
   });
 
   const handleExport = async () => {
@@ -43,8 +43,8 @@ export default function AdminLeadsPage() {
       a.click();
       URL.revokeObjectURL(url);
       toast.success('CSV exported');
-    } catch {
-      toast.error('Export failed');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Export failed'));
     }
   };
 

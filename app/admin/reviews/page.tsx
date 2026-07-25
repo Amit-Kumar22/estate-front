@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { reviewService, AdminReview } from '@/lib/api/review.service';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '@/lib/utils';
 
 const STATUS_COLORS = {
   pending:  'bg-gold-100 text-gold-700 dark:bg-gold-500/10 dark:text-gold-400',
@@ -63,7 +64,7 @@ export default function AdminReviewsPage() {
       queryClient.invalidateQueries({ queryKey: ['admin-reviews'] });
       queryClient.invalidateQueries({ queryKey: ['public-reviews'] });
     },
-    onError: () => toast.error('Failed to update review status.'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to update review status.')),
   });
 
   const deleteReview = useMutation({
@@ -74,7 +75,7 @@ export default function AdminReviewsPage() {
       queryClient.invalidateQueries({ queryKey: ['admin-reviews'] });
       queryClient.invalidateQueries({ queryKey: ['public-reviews'] });
     },
-    onError: () => toast.error('Failed to delete review.'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete review.')),
   });
 
   const reviews = data?.data?.reviews ?? [];

@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { reviewService } from '@/lib/api/review.service';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '@/lib/utils';
 
 type Step = 'email' | 'otp' | 'review' | 'done';
 
@@ -61,8 +62,7 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
       setStep('otp');
       startResendCooldown();
     } catch (err: unknown) {
-      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message;
-      toast.error(msg || 'Failed to send code. Try again.');
+      toast.error(getErrorMessage(err, 'Failed to send code. Try again.'));
     } finally { setLoading(false); }
   };
 
@@ -93,8 +93,7 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
       setReviewToken(token);
       setStep('review');
     } catch (err: unknown) {
-      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message;
-      toast.error(msg || 'Incorrect code. Try again.');
+      toast.error(getErrorMessage(err, 'Incorrect code. Try again.'));
     } finally { setLoading(false); }
   };
 
@@ -106,7 +105,7 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
       setOtp(['', '', '', '', '', '']);
       toast.success('New code sent!');
       startResendCooldown();
-    } catch { toast.error('Failed to resend.'); }
+    } catch (err) { toast.error(getErrorMessage(err, 'Failed to resend.')); }
     finally { setLoading(false); }
   };
 
@@ -119,8 +118,7 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
       await reviewService.create({ name, email, city, rating, review: reviewText, reviewToken });
       setStep('done');
     } catch (err: unknown) {
-      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message;
-      toast.error(msg || 'Failed to submit. Try again.');
+      toast.error(getErrorMessage(err, 'Failed to submit. Try again.'));
     } finally { setLoading(false); }
   };
 

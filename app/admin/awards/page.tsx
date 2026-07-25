@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { awardApi } from '@/lib/api';
 import { Award } from '@/types';
 import { Plus, Trash2, Edit2, Trophy, X, Loader2 } from 'lucide-react';
-import { getImageUrl } from '@/lib/utils';
+import { getImageUrl, getErrorMessage } from '@/lib/utils';
 import { queryKeys } from '@/lib/constants/query-keys';
 import toast from 'react-hot-toast';
 
@@ -41,7 +41,7 @@ export default function AdminAwardsPage() {
       queryClient.invalidateQueries({ queryKey: queryKeys.awards.all() });
       toast.success('Award deleted');
     },
-    onError: () => toast.error('Failed to delete award'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete award')),
   });
 
   const awards = data ?? [];
@@ -88,8 +88,8 @@ export default function AdminAwardsPage() {
       }
       queryClient.invalidateQueries({ queryKey: queryKeys.awards.all() });
       setShowForm(false);
-    } catch {
-      toast.error('Failed to save award');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Failed to save award'));
     } finally {
       setSaving(false);
     }

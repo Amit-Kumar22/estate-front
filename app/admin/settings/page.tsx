@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { settingsApi } from '@/lib/api';
-import { getImageUrl } from '@/lib/utils';
+import { getImageUrl, getErrorMessage } from '@/lib/utils';
 import appConfig from '@/config/app.config';
 import {
   Settings, Loader2, Save, Globe, Phone, Mail, MapPin,
@@ -122,7 +122,7 @@ export default function AdminSettingsPage() {
       setValues(res.data.data.settings as SettingsMap);
       setPendingFiles({});
     },
-    onError: () => toast.error('Failed to save settings'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to save settings')),
   });
 
   const handleChange = (key: string, value: string) => {

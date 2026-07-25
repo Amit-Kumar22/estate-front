@@ -9,6 +9,7 @@ import { Phone, Mail, MapPin, MessageSquare, Send, CheckCircle2, Loader2 } from 
 import { leadApi } from '@/lib/api';
 import appConfig from '@/config/app.config';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '@/lib/utils';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -54,8 +55,8 @@ export default function ContactPage() {
       await leadApi.create({ ...values, source: 'contact' });
       setSubmitted(true);
       toast.success('Message sent! We will get back to you shortly.');
-    } catch {
-      toast.error('Something went wrong. Please try again.');
+    } catch (error) {
+      toast.error(getErrorMessage(error));
     }
   };
 

@@ -8,6 +8,7 @@ import { projectApi } from '@/lib/api';
 import { ArrowLeft, Plus, X, Loader2, Save, Upload, LocateFixed, Map } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '@/lib/utils';
 
 const LocationPickerModal = dynamic(
   () => import('@/components/admin/LocationPickerModal'),
@@ -47,7 +48,7 @@ export default function CreateProjectPage() {
       toast.success('Project created successfully');
       router.push('/admin/projects');
     },
-    onError: () => toast.error('Failed to create project'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to create project')),
   });
 
   const applyLocation = useCallback((lat: number, lng: number, address: string) => {

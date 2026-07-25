@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { Building2, Mail, Lock, LogIn, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '@/lib/utils';
 
 const schema = z.object({
   email:    z.string().email('Enter a valid email'),
@@ -43,10 +44,7 @@ function LoginForm() {
       toast.success('Welcome back!');
       router.push('/admin');
     } catch (err: unknown) {
-      const message =
-        (err as { response?: { data?: { message?: string } } })?.response?.data?.message ||
-        'Invalid credentials. Please try again.';
-      toast.error(message);
+      toast.error(getErrorMessage(err, 'Invalid credentials. Please try again.'));
     }
   };
 

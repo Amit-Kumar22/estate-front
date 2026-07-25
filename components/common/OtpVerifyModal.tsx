@@ -8,6 +8,7 @@ import {
 import toast from 'react-hot-toast';
 import { reviewService } from '@/lib/api/review.service';
 import { leadApi } from '@/lib/api';
+import { getErrorMessage } from '@/lib/utils';
 
 export interface OtpVerifyModalProps {
   projectId: string;
@@ -74,8 +75,7 @@ export default function OtpVerifyModal({
       setStep('otp');
       startResendCooldown();
     } catch (err: unknown) {
-      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message;
-      toast.error(msg || 'Failed to send code. Please try again.');
+      toast.error(getErrorMessage(err, 'Failed to send code. Please try again.'));
     } finally { setLoading(false); }
   };
 
@@ -120,8 +120,7 @@ export default function OtpVerifyModal({
       toast.success(successMsg);
       onSuccess({ brochureUrl });
     } catch (err: unknown) {
-      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message;
-      toast.error(msg || 'Incorrect code. Please try again.');
+      toast.error(getErrorMessage(err, 'Incorrect code. Please try again.'));
     } finally { setLoading(false); }
   };
 
@@ -133,7 +132,7 @@ export default function OtpVerifyModal({
       setOtp(['', '', '', '', '', '']);
       toast.success('New code sent!');
       startResendCooldown();
-    } catch { toast.error('Failed to resend code.'); }
+    } catch (err) { toast.error(getErrorMessage(err, 'Failed to resend code.')); }
     finally { setLoading(false); }
   };
 
