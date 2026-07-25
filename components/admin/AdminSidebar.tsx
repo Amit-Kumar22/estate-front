@@ -10,6 +10,7 @@ import {
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '@/lib/utils';
 
 const navGroups = [
   {
@@ -46,8 +47,8 @@ export default function AdminSidebar() {
       await logout();
       router.push('/admin/login');
       toast.success('Logged out successfully');
-    } catch {
-      toast.error('Logout failed');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Logout failed'));
     }
   };
 

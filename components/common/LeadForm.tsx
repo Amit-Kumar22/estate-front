@@ -9,6 +9,7 @@ import { leadApi } from '@/lib/api';
 import { LeadFormData } from '@/types';
 import { LeadPayload } from '@/lib/api/lead.service';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '@/lib/utils';
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -75,8 +76,8 @@ export default function LeadForm({
       if (onSuccess) {
         onSuccess({ brochureUrl: res.data?.data?.brochureUrl });
       }
-    } catch {
-      toast.error('Something went wrong. Please try again.');
+    } catch (error) {
+      toast.error(getErrorMessage(error));
     }
   };
 

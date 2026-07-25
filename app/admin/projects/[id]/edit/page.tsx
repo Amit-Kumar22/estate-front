@@ -8,7 +8,7 @@ import { projectApi } from '@/lib/api';
 import { Project } from '@/types';
 import { ArrowLeft, Plus, X, Loader2, Save, Trash2, LocateFixed, Map, Upload } from 'lucide-react';
 import Link from 'next/link';
-import { getImageUrl } from '@/lib/utils';
+import { getImageUrl, getErrorMessage } from '@/lib/utils';
 import { queryKeys } from '@/lib/constants/query-keys';
 import toast from 'react-hot-toast';
 import RichTextEditor from '@/components/admin/RichTextEditor';
@@ -89,7 +89,7 @@ export default function EditProjectPage() {
       toast.success('Project updated');
       router.push('/admin/projects');
     },
-    onError: () => toast.error('Failed to update project'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to update project')),
   });
 
   const deleteImageMutation = useMutation({
@@ -99,7 +99,7 @@ export default function EditProjectPage() {
       queryClient.invalidateQueries({ queryKey: queryKeys.projects.detail(id) });
       toast.success('Image removed');
     },
-    onError: () => toast.error('Failed to remove image'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to remove image')),
   });
 
   const applyLocation = useCallback((lat: number, lng: number, address: string) => {

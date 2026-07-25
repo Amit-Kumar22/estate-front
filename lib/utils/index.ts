@@ -5,3 +5,4 @@ export { formatDate, formatRelativeDate, formatShortDate, truncate, slugify, cap
 export { getImageUrl, PLACEHOLDER_IMAGE } from './image';
 export { cn, buildWhatsAppUrl } from './style';
 export { getCookie, setCookie, removeCookie } from './cookies';
+export { getErrorMessage } from './errors';

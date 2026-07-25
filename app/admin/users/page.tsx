@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { authApi } from '@/lib/api';
 import { Admin } from '@/types';
 import { Plus, Trash2, Edit2, User, Shield, X, Loader2, UserCheck, UserX } from 'lucide-react';
-import { formatDate } from '@/lib/utils';
+import { formatDate, getErrorMessage } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
 import toast from 'react-hot-toast';
 
@@ -39,7 +39,7 @@ export default function AdminUsersPage() {
       queryClient.invalidateQueries({ queryKey: ['admin-users'] });
       toast.success('User deleted');
     },
-    onError: () => toast.error('Failed to delete user'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete user')),
   });
 
   const toggleActiveMutation = useMutation({
@@ -49,7 +49,7 @@ export default function AdminUsersPage() {
       queryClient.invalidateQueries({ queryKey: ['admin-users'] });
       toast.success('User status updated');
     },
-    onError: () => toast.error('Failed to update status'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to update status')),
   });
 
   const admins = data ?? [];
@@ -66,8 +66,8 @@ export default function AdminUsersPage() {
       toast.success('Admin user created');
       setShowForm(false);
       setForm({ name: '', email: '', password: '', role: 'admin' });
-    } catch {
-      toast.error('Failed to create user');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Failed to create user'));
     } finally {
       setSaving(false);
     }

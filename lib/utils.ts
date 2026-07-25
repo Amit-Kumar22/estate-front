@@ -23,6 +23,7 @@ export {
 export { getImageUrl, PLACEHOLDER_IMAGE } from './utils/image';
 export { cn }                             from './utils/style';
 export { getCookie, setCookie, removeCookie } from './utils/cookies';
+export { getErrorMessage } from './utils/errors';
 
 // WhatsApp helper (legacy name kept for compatibility)
 export { buildWhatsAppUrl, buildWhatsAppUrl as getWhatsAppUrl } from './utils/style';

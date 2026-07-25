@@ -7,6 +7,7 @@ import { useAuth } from '@/context/AuthContext';
 import { LogOut, User, Settings, ExternalLink, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '@/lib/utils';
 
 const pageMeta: Record<string, { title: string; subtitle: string }> = {
   '/admin':            { title: 'Dashboard',   subtitle: 'Overview of your real estate platform' },
@@ -45,8 +46,8 @@ export default function AdminHeader() {
       await logout();
       toast.success('Logged out successfully');
       router.push('/');          // ← redirect to home page
-    } catch {
-      toast.error('Logout failed');
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Logout failed'));
     }
   };
 

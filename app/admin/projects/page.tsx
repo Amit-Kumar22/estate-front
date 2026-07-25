@@ -6,7 +6,7 @@ import { projectApi } from '@/lib/api';
 import { Project } from '@/types';
 import { Plus, Edit2, Trash2, MapPin, Star, Eye, Search, Building2 } from 'lucide-react';
 import Link from 'next/link';
-import { getStatusColor, getStatusLabel, formatDate, getImageUrl } from '@/lib/utils';
+import { getStatusColor, getStatusLabel, formatDate, getImageUrl, getErrorMessage } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
 export default function AdminProjectsPage() {
@@ -28,7 +28,7 @@ export default function AdminProjectsPage() {
       queryClient.invalidateQueries({ queryKey: ['admin-projects'] });
       toast.success('Project deleted successfully');
     },
-    onError: () => toast.error('Failed to delete project'),
+    onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete project')),
   });
 
   const handleDelete = (project: Project) => {

@@ -22,7 +22,14 @@ interface HeroProps {
 
 type Slide = { type: 'video'; src: string } | { type: 'image'; src: string };
 
-const SLIDE_INTERVAL_MS = 7000;
+// How long a static image slide stays on screen before advancing. Video
+// slides don't use this — they advance on their own `ended` event so the
+// next slide starts exactly when the video finishes, not on a blind timer.
+const IMAGE_SLIDE_MS = 7000;
+// Crossfade duration between slides. Also gates how long the outgoing slot
+// must stay untouched after a transition before it's safe to reassign its
+// video source (see the re-prime effect below) — keep both in sync.
+const CROSSFADE_MS = 1000;
 
 export default function Hero({
   headline,
@@ -41,35 +48,138 @@ export default function Hero({
   }, [videoUrls, backgroundImages]);
 
   const total = slides.length;
-  const [current, setCurrent] = React.useState(0);
+
+  // ── Multi-slide crossfade carousel ──────────────────────────────────────
+  // Two DOM "slots" stay permanently mounted for the life of the carousel —
+  // we never unmount/remount a <video> mid-playback, since that teardown is
+  // exactly what causes a decoder to cold-start and flash a garbage/solid
+  // colored frame before the real picture appears. Instead, the slot that's
+  // about to become visible is preloaded (buffered, primed) *while hidden*,
+  // and becoming "active" is just a CSS opacity crossfade — the browser
+  // never has to render an empty/undecoded frame.
+  const [slotSlideIndex, setSlotSlideIndex] = React.useState<[number, number]>([0, total > 1 ? 1 % total : 0]);
+  const [activeSlot, setActiveSlot] = React.useState<0 | 1>(0);
+  const activeSlotRef = React.useRef<0 | 1>(0);
+  const activeIndexRef = React.useRef(0);
+  const videoRefs: [React.RefObject<HTMLVideoElement>, React.RefObject<HTMLVideoElement>] = [
+    React.useRef<HTMLVideoElement>(null),
+    React.useRef<HTMLVideoElement>(null),
+  ];
+
+  const activeIndex = slotSlideIndex[activeSlot];
+  activeSlotRef.current = activeSlot;
+  activeIndexRef.current = activeIndex;
+
+  const goToSlide = React.useCallback(
+    (targetIndex: number) => {
+      if (total <= 1) return;
+      const inactive = activeSlotRef.current === 0 ? 1 : 0;
+      setSlotSlideIndex((prev) => {
+        if (prev[inactive] === targetIndex) return prev;
+        const updated = [...prev] as [number, number];
+        updated[inactive] = targetIndex;
+        return updated;
+      });
+      setActiveSlot(inactive);
+    },
+    [total]
+  );
 
   const next = React.useCallback(() => {
-    setCurrent((i) => (i + 1) % total);
-  }, [total]);
+    goToSlide((activeIndexRef.current + 1) % total);
+  }, [goToSlide, total]);
 
   const prev = React.useCallback(() => {
-    setCurrent((i) => (i - 1 + total) % total);
-  }, [total]);
+    goToSlide((activeIndexRef.current - 1 + total) % total);
+  }, [goToSlide, total]);
 
+  // Keep the hidden slot always primed with whatever comes right after the
+  // active slide, so it's ready — and, for video, already buffering — well
+  // before it's ever needed.
+  //
+  // The re-prime is deliberately delayed until the CSS crossfade has fully
+  // finished (CROSSFADE_MS), not fired the instant `activeSlot` flips. The
+  // slot we're about to repurpose is the one that was just visible — its
+  // opacity is still animating 100% → 0% for the next second. Reassigning
+  // its `src` (a completely different video) while it's still on screen and
+  // partially transparent forces the decoder to cold-start mid-fade, which
+  // is exactly the flash this whole effect exists to prevent. Waiting for
+  // the fade to finish means the slot is fully invisible before its content
+  // ever changes.
   React.useEffect(() => {
     if (total <= 1) return;
-    const id = setInterval(next, SLIDE_INTERVAL_MS);
-    return () => clearInterval(id);
-  }, [total, next]);
+    const inactive = activeSlot === 0 ? 1 : 0;
+    const desiredIndex = (slotSlideIndex[activeSlot] + 1) % total;
+    if (slotSlideIndex[inactive] === desiredIndex) return;
+    const id = setTimeout(() => {
+      setSlotSlideIndex((prev) => {
+        if (prev[inactive] === desiredIndex) return prev;
+        const updated = [...prev] as [number, number];
+        updated[inactive] = desiredIndex;
+        return updated;
+      });
+    }, CROSSFADE_MS);
+    return () => clearTimeout(id);
+  }, [activeSlot, slotSlideIndex, total]);
 
-  const activeSlide = total > 0 ? slides[current % total] : undefined;
+  // Reset + preload a slot's video (paused — it just needs to buffer, not
+  // play) whenever the slide *assigned to that slot* actually changes. By
+  // the time this fires, the effect above has already waited out the
+  // crossfade, so the slot being touched here is guaranteed fully hidden.
+  React.useEffect(() => {
+    if (total <= 1) return;
+    ([0, 1] as const).forEach((slot) => {
+      if (slot === activeSlot) return; // never touch the visible slot
+      const slide = slides[slotSlideIndex[slot]];
+      const el = videoRefs[slot].current;
+      if (slide?.type === 'video' && el) {
+        el.pause();
+        el.currentTime = 0;
+        el.load();
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slotSlideIndex[0], slotSlideIndex[1], total]);
+
+  // Drive the active slot: play its video from the start (video slides
+  // advance via their own onEnded handler below) or schedule the timed
+  // advance for image slides.
+  React.useEffect(() => {
+    if (total === 0) return;
+    const slide = slides[activeIndex];
+    if (!slide) return;
+
+    if (slide.type === 'video') {
+      const el = videoRefs[activeSlot].current;
+      if (el) {
+        el.muted = true;
+        el.currentTime = 0;
+        el.play().catch(() => {});
+      }
+      return;
+    }
+
+    if (total <= 1) return;
+    const id = setTimeout(next, IMAGE_SLIDE_MS);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSlot, activeIndex, slides, total, next]);
+
+  const activeSlide = total > 0 ? slides[activeIndex] : undefined;
 
   // Only use a video URL if it is actually configured — no external CDN fallback
   // because third-party CDNs (Mixkit, Pexels, etc.) block cross-origin embedding.
   // When neither videoUrl nor backgroundImage is set, a rich animated gold
   // gradient renders as the background instead.
-  const activeVideoUrl =
-    (activeSlide?.type === 'video' ? activeSlide.src : '') ||
-    (total === 0 ? appConfig.hero.fallbackVideoUrl : '') ||
-    '';
-  const backgroundImage = activeSlide?.type === 'image' ? activeSlide.src : '';
+  const singleVideoUrl =
+    total === 1 && activeSlide?.type === 'video'
+      ? activeSlide.src
+      : total === 0
+      ? appConfig.hero.fallbackVideoUrl || ''
+      : '';
+  const singleBackgroundImage = total === 1 && activeSlide?.type === 'image' ? activeSlide.src : '';
 
-  const hasMedia = !!(activeVideoUrl || backgroundImage);
+  const hasMedia = total > 0 || !!appConfig.hero.fallbackVideoUrl;
   const displayHeadline    = headline    || '';
   const displaySubheadline = subheadline || '';
 
@@ -83,14 +193,52 @@ export default function Hero({
       {/* ── Background layer ──────────────────────────────────────────────── */}
       <div className="absolute inset-0">
 
-        {activeVideoUrl ? (
-          /* ── Video background ── */
+        {total > 1 ? (
+          /* ── Crossfade carousel: two permanently-mounted slots, only ──
+             opacity changes on transition. Neither slot is ever unmounted
+             mid-playback, so there's no decoder cold-start and therefore no
+             flash/blank frame between slides. */
           <>
-            {/* Poster/gradient shown while video buffers */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-green-800 to-green-900" />
+            {([0, 1] as const).map((slot) => {
+              const slideData = slides[slotSlideIndex[slot]];
+              if (!slideData) return null;
+              const isActive = activeSlot === slot;
+              return (
+                <div
+                  key={slot}
+                  className={`absolute inset-0 transition-opacity ease-in-out ${
+                    isActive ? 'opacity-100 z-[1]' : 'opacity-0 z-0'
+                  }`}
+                  style={{ transitionDuration: `${CROSSFADE_MS}ms` }}
+                >
+                  {slideData.type === 'video' ? (
+                    <video
+                      ref={videoRefs[slot]}
+                      src={slideData.src}
+                      muted
+                      playsInline
+                      disablePictureInPicture
+                      preload="auto"
+                      onEnded={next}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+                      style={{ backgroundImage: `url(${slideData.src})` }}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </>
+        ) : singleVideoUrl ? (
+          /* ── Single video background (only one slide — no crossfade needed) ── */
+          <>
             <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-green-800 to-green-900" />
             <video
-              key={activeVideoUrl}
-              src={activeVideoUrl}
+              src={singleVideoUrl}
               autoPlay
               muted
               loop
@@ -100,11 +248,11 @@ export default function Hero({
               className="absolute inset-0 w-full h-full object-cover"
             />
           </>
-        ) : backgroundImage ? (
+        ) : singleBackgroundImage ? (
           /* ── Static image background ── */
           <div
             className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
+            style={{ backgroundImage: `url(${singleBackgroundImage})` }}
           />
         ) : (
           /* ── Animated gradient — used when no media is configured ── */
@@ -170,10 +318,10 @@ export default function Hero({
             {slides.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrent(i)}
+                onClick={() => goToSlide(i)}
                 aria-label={`Go to slide ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === current ? 'w-6 bg-white' : 'w-1.5 bg-white/50'
+                  i === activeIndex ? 'w-6 bg-white' : 'w-1.5 bg-white/50'
                 }`}
               />
             ))}
