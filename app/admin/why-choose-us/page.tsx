@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { whyChooseUsService } from '@/lib/api';
 import { WhyChooseUs } from '@/types';
 import { Plus, Trash2, Edit2, X, Loader2, Sparkles, ChevronUp, ChevronDown, Eye, EyeOff } from 'lucide-react';
-import { getImageUrl, getErrorMessage } from '@/lib/utils';
+import { getImageUrl, getErrorMessage, PLACEHOLDER_IMAGE } from '@/lib/utils';
 import { queryKeys } from '@/lib/constants/query-keys';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
@@ -333,6 +333,9 @@ export default function AdminWhyChooseUsPage() {
                       alt={item.title}
                       fill
                       className="object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = PLACEHOLDER_IMAGE;
+                      }}
                     />
                   </div>
 

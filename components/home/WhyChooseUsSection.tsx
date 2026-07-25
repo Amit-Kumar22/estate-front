@@ -5,9 +5,31 @@ import { useQuery } from '@tanstack/react-query';
 import { whyChooseUsService } from '@/lib/api';
 import { WhyChooseUs } from '@/types';
 import { queryKeys } from '@/lib/constants/query-keys';
-import { getImageUrl } from '@/lib/utils';
+import { getImageUrl, PLACEHOLDER_IMAGE } from '@/lib/utils';
 import Image from 'next/image';
 import { Sparkles, Loader2, AlertCircle } from 'lucide-react';
+
+/** Falls back to the placeholder if the resolved image URL fails to load
+ *  (e.g. the file was removed, or a stale path is stored in the DB) so a
+ *  broken icon is never shown to visitors. */
+function WhyChooseUsIcon({ src, alt }: { src: string; alt: string }) {
+  const [imgSrc, setImgSrc] = useState(src);
+
+  useEffect(() => {
+    setImgSrc(src);
+  }, [src]);
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={alt}
+      fill
+      sizes="56px"
+      className="object-contain p-2.5 group-hover:scale-110 transition-transform duration-300"
+      onError={() => setImgSrc(PLACEHOLDER_IMAGE)}
+    />
+  );
+}
 
 export default function WhyChooseUsSection() {
   const [isMounted, setIsMounted] = useState(false);
@@ -119,13 +141,7 @@ export default function WhyChooseUsSection() {
                 <div className="relative w-12 h-12 md:w-14 md:h-14 mb-3 md:mb-4">
                   <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-green-600/20 dark:from-green-500/10 dark:to-green-700/10 rounded-xl transform group-hover:scale-110 transition-transform duration-300" />
                   <div className="relative w-full h-full rounded-xl overflow-hidden">
-                    <Image
-                      src={getImageUrl(item.icon)}
-                      alt={item.title}
-                      fill
-                      sizes="56px"
-                      className="object-contain p-2.5 group-hover:scale-110 transition-transform duration-300"
-                    />
+                    <WhyChooseUsIcon src={getImageUrl(item.icon)} alt={item.title} />
                   </div>
                 </div>
 
