@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { projectApi } from '@/lib/api';
 import { Project } from '@/types';
-import { Plus, Edit2, Trash2, MapPin, Star, Eye, Search, Building2 } from 'lucide-react';
+import { Plus, Edit2, Trash2, MapPin, Star, Eye, Search, Building2, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { getStatusColor, getStatusLabel, formatDate, getImageUrl, getErrorMessage } from '@/lib/utils';
 import toast from 'react-hot-toast';
@@ -17,7 +17,11 @@ export default function AdminProjectsPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['admin-projects', search, status],
     queryFn: async () => {
-      const res = await projectApi.getAll({ search: search || undefined, status: (status as 'current' | 'upcoming' | 'completed') || undefined, limit: 50 });
+      const res = await projectApi.getAll({
+        search: search || undefined,
+        status: (status as 'current' | 'upcoming' | 'completed') || undefined,
+        limit: 50,
+      });
       return res.data.data.projects as Project[];
     },
   });
@@ -29,6 +33,16 @@ export default function AdminProjectsPage() {
       toast.success('Project deleted successfully');
     },
     onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete project')),
+  });
+
+  const priorityMutation = useMutation({
+    mutationFn: ({ id, priority }: { id: string; priority: number }) => projectApi.updatePriority(id, priority),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['admin-projects'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboard-stats'] });
+      toast.success('Priority updated');
+    },
+    onError: () => toast.error('Failed to update priority'),
   });
 
   const handleDelete = (project: Project) => {
@@ -85,7 +99,7 @@ export default function AdminProjectsPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-gray-50 dark:bg-[#1a1a1a]">
-                {['Project', 'Location', 'Price', 'Status', 'Featured', 'Date', 'Actions'].map((h) => (
+                {['Project', 'Location', 'Price', 'Status', 'Featured', 'Date', 'Priority / Actions'].map((h) => (
                   <th key={h} className="text-left px-4 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider whitespace-nowrap">
                     {h}
                   </th>
@@ -142,26 +156,33 @@ export default function AdminProjectsPage() {
                         {formatDate(project.createdAt)}
                       </td>
                       <td className="px-4 py-3">
-                        <div className="flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Link
-                            href={`/projects/${project.slug}`}
-                            target="_blank"
-                            className="p-1.5 rounded-lg text-gray-400 hover:text-gold-400 hover:bg-gold-500/10 transition-all"
-                          >
-                            <Eye className="w-3.5 h-3.5" />
-                          </Link>
-                          <Link
-                            href={`/admin/projects/${project._id}/edit`}
-                            className="p-1.5 rounded-lg text-gray-400 hover:text-green-400 hover:bg-green-500/10 transition-all"
-                          >
-                            <Edit2 className="w-3.5 h-3.5" />
-                          </Link>
-                          <button
-                            onClick={() => handleDelete(project)}
-                            className="p-1.5 rounded-lg text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-all"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </button>
+                        <div className="flex items-center gap-2">
+                          <PriorityInput
+                            project={project}
+                            onSave={(priority) => priorityMutation.mutate({ id: project._id, priority })}
+                            saving={priorityMutation.isPending && priorityMutation.variables?.id === project._id}
+                          />
+                          <div className="flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Link
+                              href={`/projects/${project.slug}`}
+                              target="_blank"
+                              className="p-1.5 rounded-lg text-gray-400 hover:text-gold-400 hover:bg-gold-500/10 transition-all"
+                            >
+                              <Eye className="w-3.5 h-3.5" />
+                            </Link>
+                            <Link
+                              href={`/admin/projects/${project._id}/edit`}
+                              className="p-1.5 rounded-lg text-gray-400 hover:text-green-400 hover:bg-green-500/10 transition-all"
+                            >
+                              <Edit2 className="w-3.5 h-3.5" />
+                            </Link>
+                            <button
+                              onClick={() => handleDelete(project)}
+                              className="p-1.5 rounded-lg text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-all"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
                         </div>
                       </td>
                     </tr>
@@ -180,6 +201,47 @@ export default function AdminProjectsPage() {
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+function PriorityInput({
+  project,
+  onSave,
+  saving,
+}: {
+  project: Project;
+  onSave: (priority: number) => void;
+  saving: boolean;
+}) {
+  const [value, setValue] = useState(String(project.priority ?? 0));
+
+  useEffect(() => {
+    setValue(String(project.priority ?? 0));
+  }, [project.priority]);
+
+  const commit = () => {
+    const parsed = Number(value);
+    if (Number.isNaN(parsed) || parsed === project.priority) {
+      setValue(String(project.priority ?? 0));
+      return;
+    }
+    onSave(parsed);
+  };
+
+  return (
+    <div className="flex items-center gap-1" title="Priority rank (1 = highest)">
+      <input
+        type="number"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={commit}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') e.currentTarget.blur();
+        }}
+        className="w-14 px-2 py-1.5 text-xs text-center rounded-lg border border-gray-200 dark:border-[#1f1f1f] bg-white dark:bg-[#0d0d0d] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500/40"
+      />
+      {saving && <Loader2 className="w-3 h-3 animate-spin text-gray-400" />}
     </div>
   );
 }

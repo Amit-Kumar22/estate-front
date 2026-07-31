@@ -34,6 +34,9 @@ export const projectService = {
       headers: { 'Content-Type': 'multipart/form-data' },
     }),
 
+  updatePriority: (id: string, priority: number) =>
+    client.patch(`/projects/${id}/priority`, { priority }),
+
   remove: (id: string) =>
     client.delete(`/projects/${id}`),
 
