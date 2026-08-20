@@ -3,13 +3,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
-import {
-  Crown, Calendar, Home, Building2, Users, Star, CheckCircle,
-} from 'lucide-react';
+import { Crown, Calendar } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
-import { familyLegacyService } from '@/lib/api';
+import { familyLegacyService, settingsApi } from '@/lib/api';
 import { queryKeys } from '@/lib/constants/query-keys';
-import { FamilyMember, ApiResponse } from '@/types';
+import { resolveStatIcon } from '@/lib/constants/stat-icons';
+import { FamilyMember, ApiResponse, FamilyLegacyStat, SiteSettings } from '@/types';
 import { getImageUrl } from '@/lib/utils/image';
 
 // ─── Fallback data (displayed while API has no records) ───────────────────────
@@ -70,14 +69,22 @@ const GEN_LABELS = [
   'Next Gen', 'Next Gen', 'Next Gen',
 ];
 
-// ─── Statistics ───────────────────────────────────────────────────────────────
-const STATS = [
-  { end: 500, suffix: '+', label: 'Homes Delivered',       icon: Home },
-  { end: 13,   suffix: '+', label: 'Projects Completed',    icon: Building2 },
-  { end: 2,    suffix: '',  label: 'Generations',           icon: Users },
-  { end: 13,   suffix: '+', label: 'Years of Trust',        icon: Star },
-  { end: 100,  suffix: '%', label: 'Customer Commitment',   icon: CheckCircle },
+// ─── Statistics (fallback, shown until admin-configured settings load) ────────
+const FALLBACK_STATS: FamilyLegacyStat[] = [
+  { value: 1500, suffix: '+', label: 'Homes Delivered',     icon: 'Home' },
+  { value: 13,   suffix: '+', label: 'Projects Completed',  icon: 'Building2' },
+  { value: 2,    suffix: '',  label: 'Generations',         icon: 'Users' },
+  { value: 13,   suffix: '+', label: 'Years of Trust',      icon: 'Star' },
+  { value: 100,  suffix: '%', label: 'Customer Commitment', icon: 'CheckCircle' },
 ];
+
+// Tailwind needs literal class names in source to keep them out of purge —
+// keyed by stat count so the achievements bar stays balanced whatever number
+// of stats an admin configures.
+const LG_COLS_CLASS: Record<number, string> = {
+  1: 'lg:grid-cols-1', 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3',
+  4: 'lg:grid-cols-4', 5: 'lg:grid-cols-5', 6: 'lg:grid-cols-6',
+};
 
 // ─── Counter ──────────────────────────────────────────────────────────────────
 function useCountUp(end: number, duration = 1800, trigger = false) {
@@ -224,6 +231,20 @@ export default function FamilyLegacySection() {
       ? [...data.data.members].sort((a, b) => a.order - b.order)
       : FALLBACK_MEMBERS;
 
+  const { data: settings } = useQuery({
+    queryKey: ['settings'],
+    queryFn: async () => {
+      const res = await settingsApi.get();
+      return (res.data?.data?.settings ?? null) as Partial<SiteSettings> | null;
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const stats: FamilyLegacyStat[] =
+    settings?.familyLegacyStats && settings.familyLegacyStats.length > 0
+      ? settings.familyLegacyStats
+      : FALLBACK_STATS;
+
   return (
     <section className="py-10 md:py-12 bg-white dark:bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -313,14 +334,14 @@ export default function FamilyLegacySection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-8 rounded-2xl overflow-hidden bg-gradient-to-r from-green-800 via-green-700 to-green-800 dark:from-green-900 dark:via-green-800 dark:to-green-900 shadow-glow"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-x divide-green-600/40 dark:divide-green-700/50">
-            {STATS.map(({ end, suffix, label, icon }) => (
+          <div className={`grid grid-cols-2 sm:grid-cols-3 ${LG_COLS_CLASS[stats.length] ?? 'lg:grid-cols-5'} divide-x divide-green-600/40 dark:divide-green-700/50`}>
+            {stats.map(({ value, suffix, label, icon }) => (
               <StatChip
                 key={label}
-                end={end}
+                end={value}
                 suffix={suffix}
                 label={label}
-                icon={icon}
+                icon={resolveStatIcon(icon)}
                 inView={statsInView}
               />
             ))}

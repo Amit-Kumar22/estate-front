@@ -150,6 +150,13 @@ export interface BlogFormData {
 }
 
 // ─── Settings Types ───────────────────────────────────────────────────────────
+export interface FamilyLegacyStat {
+  value: number;
+  suffix: string;
+  label: string;
+  icon: string;
+}
+
 export interface SiteSettings {
   companyName: string;
   companyTagline: string;
@@ -168,6 +175,7 @@ export interface SiteSettings {
   heroStat2Label?: string;
   heroStat3Value?: string;
   heroStat3Label?: string;
+  familyLegacyStats?: FamilyLegacyStat[];
   metaTitle: string;
   metaDescription: string;
   logoUrl: string;

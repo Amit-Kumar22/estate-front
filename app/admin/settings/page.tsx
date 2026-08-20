@@ -8,9 +8,11 @@ import appConfig from '@/config/app.config';
 import {
   Settings, Loader2, Save, Globe, Phone, Mail, MapPin,
   Building2, MessageSquare, Image, BarChart2, Film, AlignLeft,
-  Upload, X,
+  Upload, X, Plus, Trash2,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { STAT_ICONS, STAT_ICON_NAMES, DEFAULT_STAT_ICON } from '@/lib/constants/stat-icons';
+import type { FamilyLegacyStat } from '@/types';
 
 type SettingsMap = Record<string, unknown>;
 
@@ -153,6 +155,34 @@ export default function AdminSettingsPage() {
 
   const removePendingFile = (key: string, index: number) => {
     setPendingFiles((prev) => ({ ...prev, [key]: (prev[key] ?? []).filter((_, i) => i !== index) }));
+  };
+
+  const getStats = (): FamilyLegacyStat[] => {
+    const value = values['familyLegacyStats'];
+    return Array.isArray(value) ? (value as FamilyLegacyStat[]) : [];
+  };
+
+  const withStats = (
+    prev: SettingsMap,
+    transform: (stats: FamilyLegacyStat[]) => FamilyLegacyStat[]
+  ): SettingsMap => {
+    const stats = Array.isArray(prev['familyLegacyStats']) ? (prev['familyLegacyStats'] as FamilyLegacyStat[]) : [];
+    return { ...prev, familyLegacyStats: transform(stats) };
+  };
+
+  const updateStat = (index: number, patch: Partial<FamilyLegacyStat>) => {
+    setValues((prev) => withStats(prev, (stats) => stats.map((s, i) => (i === index ? { ...s, ...patch } : s))));
+  };
+
+  const addStat = () => {
+    setValues((prev) => withStats(prev, (stats) => [
+      ...stats,
+      { value: 0, suffix: '', label: '', icon: DEFAULT_STAT_ICON },
+    ]));
+  };
+
+  const removeStat = (index: number) => {
+    setValues((prev) => withStats(prev, (stats) => stats.filter((_, i) => i !== index)));
   };
 
   return (
@@ -300,6 +330,82 @@ export default function AdminSettingsPage() {
               )}
             </div>
           ))}
+
+          {/* Family Legacy stats — achievement counters on the homepage Family Legacy section */}
+          <div className="bg-white dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#1f1f1f] overflow-hidden shadow-sm dark:shadow-none">
+            <div className="px-4 py-2.5 border-b border-gray-200 dark:border-[#1f1f1f] bg-gray-50 dark:bg-[#151515] flex items-center justify-between">
+              <div>
+                <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Family Legacy Stats</h4>
+                <p className="text-[10px] text-gray-400 mt-0.5">Achievement counters shown on the homepage Family Legacy section.</p>
+              </div>
+              <button
+                type="button"
+                onClick={addStat}
+                className="flex items-center gap-1 text-[11px] font-semibold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors flex-shrink-0"
+              >
+                <Plus className="w-3.5 h-3.5" /> Add Stat
+              </button>
+            </div>
+            <div className="divide-y divide-gray-100 dark:divide-[#1a1a1a]">
+              {getStats().length === 0 && (
+                <p className="text-xs text-gray-400 px-4 py-3.5">
+                  No stats configured — the homepage will show its default values until you add some here.
+                </p>
+              )}
+              {getStats().map((stat, index) => {
+                const StatIcon = STAT_ICONS[stat.icon] ?? STAT_ICONS[DEFAULT_STAT_ICON];
+                return (
+                  <div key={index} className="flex flex-wrap items-center gap-3 px-4 py-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-[#1a1a1a] flex items-center justify-center flex-shrink-0">
+                      <StatIcon className="w-3.5 h-3.5 text-gray-400" />
+                    </div>
+                    <input
+                      type="number"
+                      value={stat.value}
+                      onChange={(e) => updateStat(index, { value: Number(e.target.value) })}
+                      placeholder="Value"
+                      aria-label="Stat value"
+                      className="w-20 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none border border-gray-200 dark:border-[#2a2a2a] rounded-lg px-2 py-1.5"
+                    />
+                    <input
+                      type="text"
+                      value={stat.suffix}
+                      onChange={(e) => updateStat(index, { suffix: e.target.value })}
+                      placeholder="Suffix"
+                      aria-label="Stat suffix"
+                      className="w-16 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none border border-gray-200 dark:border-[#2a2a2a] rounded-lg px-2 py-1.5"
+                    />
+                    <input
+                      type="text"
+                      value={stat.label}
+                      onChange={(e) => updateStat(index, { label: e.target.value })}
+                      placeholder="Label (e.g. Homes Delivered)"
+                      aria-label="Stat label"
+                      className="flex-1 min-w-[140px] bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none border border-gray-200 dark:border-[#2a2a2a] rounded-lg px-2 py-1.5"
+                    />
+                    <select
+                      value={stat.icon}
+                      onChange={(e) => updateStat(index, { icon: e.target.value })}
+                      aria-label="Stat icon"
+                      className="bg-transparent text-sm text-gray-900 dark:text-white focus:outline-none border border-gray-200 dark:border-[#2a2a2a] rounded-lg px-2 py-1.5"
+                    >
+                      {STAT_ICON_NAMES.map((name) => (
+                        <option key={name} value={name}>{name}</option>
+                      ))}
+                    </select>
+                    <button
+                      type="button"
+                      onClick={() => removeStat(index)}
+                      aria-label="Remove stat"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors flex-shrink-0"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
 
