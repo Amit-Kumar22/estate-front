@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import { AuthProvider } from '@/context/AuthContext';
 import QueryProvider from '@/context/QueryProvider';
 import AppToaster from '@/components/common/AppToaster';
+import ComplaintBoxButton from '@/components/common/ComplaintBoxButton';
 
 export const metadata: Metadata = {
   title: {
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <AuthProvider>
               {children}
               <AppToaster />
+              <ComplaintBoxButton />
             </AuthProvider>
           </ThemeProvider>
         </QueryProvider>

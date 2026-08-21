@@ -334,9 +334,9 @@ export default function VisionMissionSection() {
                 </motion.div>
 
                 {/* Family Legacy Section */}
-                <div className="mt-10">
+                {/* <div className="mt-10">
                     <FamilyLegacySection />
-                </div>
+                </div> */}
 
                 {/* Our Services Section */}
                 <motion.div

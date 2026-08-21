@@ -56,6 +56,21 @@ export interface Lead {
   updatedAt: string;
 }
 
+// ─── Complaint Types ──────────────────────────────────────────────────────────
+export interface Complaint {
+  _id: string;
+  name: string;
+  email: string;
+  mobile?: string;
+  subject: string;
+  message: string;
+  status: 'pending' | 'in_progress' | 'resolved';
+  adminNote?: string;
+  emailVerified: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface LeadFormData {
   name: string;
   mobile: string;

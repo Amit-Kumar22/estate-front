@@ -21,6 +21,7 @@ import {
   familyLegacyService,
   reviewService,
   publicReviewService,
+  complaintService,
 } from './api/index';
 
 // Legacy aliases — method names bridged where they changed
@@ -70,6 +71,12 @@ export const familyLegacyApi = familyLegacyService;
 export const reviewApi = reviewService;
 export const publicReviewApi = publicReviewService;
 
+export const complaintApi = {
+  ...complaintService,
+  /** @deprecated use complaintService.remove() */
+  delete: complaintService.remove,
+};
+
 // Also export new canonical names
 export {
   authService,
@@ -84,5 +91,6 @@ export {
   familyLegacyService,
   reviewService,
   publicReviewService,
+  complaintService,
 };
 
